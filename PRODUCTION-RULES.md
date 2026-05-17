@@ -34,3 +34,14 @@ The website must be:
 - Do not mix main-site and portal-site files
 - Main site defines the brand style
 - Portal site should visually match the main site
+
+## Animation Requirements
+- Use modern, smooth animations
+- Keep animations lightweight and fast
+- Animations must not slow the website
+- Use scroll reveal effects for sections
+- Use hover effects for cards and buttons
+- Use subtle hero animations
+- Avoid heavy video backgrounds
+- Respect mobile performance
+- Website must remain fully usable without animations
