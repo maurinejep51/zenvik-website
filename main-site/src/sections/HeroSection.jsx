@@ -1,4 +1,6 @@
 import { motion } from "framer-motion"
+import Button from "../components/ui/Button"
+import Container from "../components/common/Container"
 
 function HeroSection() {
   return (
@@ -8,7 +10,7 @@ function HeroSection() {
         <div className="absolute bottom-10 right-10 h-72 w-72 rounded-full bg-blue-400 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto grid min-h-screen max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-2">
+      <Container className="relative grid min-h-screen items-center gap-12 py-20 lg:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -28,19 +30,19 @@ function HeroSection() {
           </p>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <a
+            <Button
               href="#services"
-              className="rounded-full bg-accent px-8 py-4 text-center font-semibold text-white shadow-soft transition hover:-translate-y-1"
+              variant="accent"
             >
               Explore Services
-            </a>
+            </Button>
 
-            <a
+            <Button
               href="https://portal.zenviktechnologies.com"
-              className="rounded-full border border-white/30 px-8 py-4 text-center font-semibold text-white transition hover:bg-white hover:text-primary"
+              variant="light"
             >
               Client Portal
-            </a>
+            </Button>
           </div>
 
           <div className="mt-12 flex flex-wrap gap-6 text-sm text-white/70">
@@ -89,7 +91,7 @@ function HeroSection() {
             </div>
           </div>
         </motion.div>
-      </div>
+      </Container>
     </section>
   )
 }
