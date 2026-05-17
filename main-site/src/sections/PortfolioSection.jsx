@@ -1,0 +1,125 @@
+import { motion } from "framer-motion"
+import { projects } from "../data/projects"
+import Container from "../components/common/Container"
+import SectionHeader from "../components/common/SectionHeader"
+import Button from "../components/ui/Button"
+
+function PortfolioSection() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  }
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  }
+
+  return (
+    <section id="portfolio" className="bg-light py-24">
+      <Container>
+        <SectionHeader
+          eyebrow="Our Work"
+          title="Portfolio & Case Studies"
+          description="Discover how Zenvik Technologies delivers enterprise-grade solutions across web development, custom software, and hosting infrastructure."
+        />
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+        >
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              variants={cardVariants}
+              className="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-soft transition duration-300 hover:shadow-lg hover:-translate-y-1"
+            >
+              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+              <div className="mb-6 flex items-start justify-between">
+                <span className="inline-block rounded-full bg-gold/10 px-4 py-2 text-sm font-semibold text-gold">
+                  {project.category}
+                </span>
+                <div className="text-3xl font-bold text-primary/20 transition-colors duration-300 group-hover:text-primary/40">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+              </div>
+
+              <h3 className="text-2xl font-bold text-primary transition-colors duration-300">
+                {project.title}
+              </h3>
+
+              <p className="mt-4 leading-relaxed text-slate-600 transition-colors duration-300">
+                {project.description}
+              </p>
+
+              <div className="mt-6 inline-block">
+                <a
+                  href="#contact"
+                  className="font-semibold text-primary transition-all duration-300 hover:text-accent flex items-center gap-2 group/link"
+                >
+                  <span>Learn More</span>
+                  <span className="transition-transform duration-300 group-hover/link:translate-x-1">
+                    →
+                  </span>
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mt-20 rounded-3xl bg-primary p-12 text-center text-white shadow-soft"
+        >
+          <p className="mb-2 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
+            Ready to Build Something Great?
+          </p>
+
+          <h3 className="text-4xl font-black leading-tight md:text-5xl">
+            Start Your Next Project Today
+          </h3>
+
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/80">
+            Whether you need a custom software solution, enterprise hosting infrastructure, or a modern website,
+            our team of experts is ready to deliver exceptional results.
+          </p>
+
+          <div className="mt-10 flex flex-col gap-4 justify-center sm:flex-row">
+            <Button
+              href="#contact"
+              variant="accent"
+            >
+              Start a Project
+            </Button>
+
+            <Button
+              href="https://portal.zenviktechnologies.com"
+              variant="light"
+            >
+              View Our Services
+            </Button>
+          </div>
+        </motion.div>
+      </Container>
+    </section>
+  )
+}
+
+export default PortfolioSection
