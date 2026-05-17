@@ -5,6 +5,7 @@ import HostingSection from "./sections/HostingSection"
 import SoftwareSection from "./sections/SoftwareSection"
 import MarketingSection from "./sections/MarketingSection"
 import WhyChooseSection from "./sections/WhyChooseSection"
+import CTASection from "./sections/CTASection"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <SoftwareSection />
         <MarketingSection />
         <WhyChooseSection />
+        <CTASection />
       </main>
     </MainLayout>
   )
