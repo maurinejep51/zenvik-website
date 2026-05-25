@@ -1,13 +1,7 @@
 import { useState, useRef, useEffect } from "react"
 import { locations } from "../data/locations"
-
-const navLinks = [
-  { label: "Home", href: "#" },
-  { label: "Services", href: "#services" },
-  { label: "Hosting", href: "#hosting" },
-  { label: "Software", href: "#software" },
-  { label: "Contact", href: "#contact" },
-]
+import { navigationLinks } from "../data/navigation"
+import { siteConfig } from "../constants/site"
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -32,18 +26,18 @@ function Navbar() {
   }, [])
 
   return (
-    <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-[#043a7e]/95 shadow-[0_18px_45px_rgba(4,58,126,0.18)] backdrop-blur-xl">
+    <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-primary/95 shadow-soft backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-6 lg:px-8">
         <a href="#" className="text-xl font-bold tracking-tight text-white" onClick={closeMenu}>
           Zenvik<span className="text-accent">.</span>
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
+          {navigationLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-white/85 transition duration-200 hover:text-[#dfa408]"
+              className="text-sm font-medium text-white/85 transition duration-200 hover:text-accent"
             >
               {link.label}
             </a>
@@ -54,7 +48,7 @@ function Navbar() {
           <div className="relative" ref={locationDropdownRef}>
             <button
               type="button"
-              className="flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white/90 transition duration-200 hover:border-white/40 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-[#dfa408] focus:ring-offset-2 focus:ring-offset-[#043a7e]"
+              className="flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white/90 transition duration-200 hover:border-white/40 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary"
               onClick={() =>
                 setIsLocationDropdownOpen((open) => !open)
               }
@@ -86,7 +80,7 @@ function Navbar() {
             {isLocationDropdownOpen && (
               <div
                 id="location-dropdown-menu"
-                className="absolute right-0 top-full z-50 mt-2 min-w-56 overflow-hidden rounded-2xl border border-white/20 bg-[#032550] shadow-2xl backdrop-blur-xl"
+                className="absolute right-0 top-full z-50 mt-2 min-w-56 overflow-hidden rounded-3xl border border-white/20 bg-primary shadow-soft backdrop-blur-xl"
               >
                 <div className="p-2">
                   {locations.map((location) => (
@@ -95,9 +89,9 @@ function Navbar() {
                       type="button"
                       className={`w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition duration-200 ${
                         selectedLocation.id === location.id
-                          ? "bg-[#dfa408] text-[#043a7e]"
+                          ? "bg-accent text-primary"
                           : "text-white/80 hover:bg-white/10 hover:text-white"
-                      } focus:outline-none focus:ring-2 focus:ring-[#dfa408]`}
+                      } focus:outline-none focus:ring-2 focus:ring-accent`}
                       onClick={() => {
                         setSelectedLocation(location)
                         setIsLocationDropdownOpen(false)
@@ -135,8 +129,8 @@ function Navbar() {
           </div>
 
           <a
-            href="https://portal.zenviktechnologies.com"
-            className="rounded-full bg-[#dfa408] px-5 py-2.5 text-sm font-semibold text-[#043a7e] shadow-sm shadow-black/10 transition duration-200 hover:-translate-y-0.5 hover:bg-[#f0b21a] focus:outline-none focus:ring-2 focus:ring-[#dfa408] focus:ring-offset-2 focus:ring-offset-[#043a7e]"
+            href={siteConfig.portalUrl}
+            className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-primary shadow-sm shadow-black/10 transition duration-200 hover:-translate-y-0.5 hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary"
           >
             Client Portal
           </a>
@@ -144,7 +138,7 @@ function Navbar() {
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition duration-200 hover:border-[#dfa408]/70 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#dfa408] focus:ring-offset-2 focus:ring-offset-[#043a7e] md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition duration-200 hover:border-accent/70 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary md:hidden"
           aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isMenuOpen}
           aria-controls="mobile-navigation"
@@ -173,17 +167,17 @@ function Navbar() {
 
       <div
         id="mobile-navigation"
-        className={`overflow-hidden border-t border-white/10 bg-[#043a7e]/98 transition-all duration-300 ease-out md:hidden ${
+        className={`overflow-hidden border-t border-white/10 bg-primary transition-all duration-300 ease-out md:hidden ${
           isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-4 sm:px-6" aria-label="Mobile navigation">
-          {navLinks.map((link) => (
+          {navigationLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={closeMenu}
-              className="rounded-lg px-3 py-3 text-base font-medium text-white/90 transition duration-200 hover:bg-white/10 hover:text-[#dfa408] focus:outline-none focus:ring-2 focus:ring-[#dfa408] focus:ring-offset-2 focus:ring-offset-[#043a7e]"
+              className="rounded-lg px-3 py-3 text-base font-medium text-white/90 transition duration-200 hover:bg-white/10 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary"
             >
               {link.label}
             </a>
@@ -200,9 +194,9 @@ function Navbar() {
                   type="button"
                   className={`w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition duration-200 ${
                     selectedLocation.id === location.id
-                      ? "bg-[#dfa408] text-[#043a7e]"
+                      ? "bg-accent text-primary"
                       : "text-white/80 hover:bg-white/10 hover:text-white"
-                  } focus:outline-none focus:ring-2 focus:ring-[#dfa408] focus:ring-offset-2 focus:ring-offset-[#043a7e]`}
+                  } focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary`}
                   onClick={() => {
                     setSelectedLocation(location)
                     closeMenu()
@@ -221,9 +215,9 @@ function Navbar() {
           </div>
 
           <a
-            href="https://portal.zenviktechnologies.com"
+            href={siteConfig.portalUrl}
             onClick={closeMenu}
-            className="mt-4 inline-flex items-center justify-center rounded-full bg-[#dfa408] px-5 py-3 text-sm font-semibold text-[#043a7e] transition duration-200 hover:bg-[#f0b21a] focus:outline-none focus:ring-2 focus:ring-[#dfa408] focus:ring-offset-2 focus:ring-offset-[#043a7e]"
+            className="mt-4 inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-primary transition duration-200 hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary"
           >
             Client Portal
           </a>

@@ -14,7 +14,7 @@ const softwareSolutions = [
 
 function SoftwareSection() {
   return (
-    <section id="software" className="bg-slate-950 py-24 text-white">
+    <section id="software" className="bg-dark py-24 text-white">
       <Container>
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <motion.div

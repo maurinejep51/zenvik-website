@@ -1,6 +1,8 @@
+import { siteConfig } from "../constants/site"
+
 function Footer() {
   return (
-    <footer className="bg-slate-950 text-white">
+    <footer className="bg-dark text-white">
       <div className="mx-auto max-w-7xl px-6 py-20">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
@@ -9,8 +11,7 @@ function Footer() {
             </h3>
 
             <p className="mt-5 leading-relaxed text-slate-400">
-              Modern hosting, software, branding, marketing,
-              and enterprise ICT solutions for growing businesses.
+              {siteConfig.positioning}
             </p>
           </div>
 
@@ -18,11 +19,11 @@ function Footer() {
             <h4 className="text-lg font-bold">Services</h4>
 
             <ul className="mt-5 space-y-3 text-slate-400">
-              <li>Hosting & Cloud</li>
-              <li>Software Development</li>
-              <li>Website Development</li>
-              <li>Marketing & Branding</li>
-              <li>ICT Solutions</li>
+              <li><a href="#hosting" className="transition hover:text-white">Hosting & Cloud</a></li>
+              <li><a href="#software" className="transition hover:text-white">Software Development</a></li>
+              <li><a href="#services" className="transition hover:text-white">Website Development</a></li>
+              <li><a href="#services" className="transition hover:text-white">Marketing & Branding</a></li>
+              <li><a href="#services" className="transition hover:text-white">ICT Services</a></li>
             </ul>
           </div>
 
@@ -30,11 +31,11 @@ function Footer() {
             <h4 className="text-lg font-bold">Company</h4>
 
             <ul className="mt-5 space-y-3 text-slate-400">
-              <li>About Us</li>
-              <li>Our Services</li>
-              <li>Portfolio</li>
-              <li>Client Portal</li>
-              <li>Contact</li>
+              <li><a href="#" className="transition hover:text-white">Home</a></li>
+              <li><a href="#services" className="transition hover:text-white">Our Services</a></li>
+              <li><a href="#portfolio" className="transition hover:text-white">Portfolio</a></li>
+              <li><a href={siteConfig.portalUrl} className="transition hover:text-white">Client Portal</a></li>
+              <li><a href="#contact" className="transition hover:text-white">Contact</a></li>
             </ul>
           </div>
 
@@ -42,9 +43,9 @@ function Footer() {
             <h4 className="text-lg font-bold">Get In Touch</h4>
 
             <ul className="mt-5 space-y-3 text-slate-400">
-              <li>info@zenviktechnologies.com</li>
-              <li>support@zenviktechnologies.com</li>
-              <li>portal.zenviktechnologies.com</li>
+              <li><a href={`mailto:${siteConfig.email}`} className="transition hover:text-white">{siteConfig.email}</a></li>
+              <li><a href={`mailto:${siteConfig.supportEmail}`} className="transition hover:text-white">{siteConfig.supportEmail}</a></li>
+              <li><a href={siteConfig.portalUrl} className="transition hover:text-white">portal.zenviktechnologies.com</a></li>
             </ul>
           </div>
         </div>

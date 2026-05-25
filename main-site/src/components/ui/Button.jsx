@@ -4,6 +4,8 @@ function Button({
   variant = "primary",
   className = "",
   onClick,
+  as = "a",
+  type = "button",
 }) {
   const baseStyles =
     "inline-flex items-center justify-center rounded-full px-7 py-3.5 text-center text-sm font-semibold transition duration-300"
@@ -22,11 +24,21 @@ function Button({
       "border border-white/20 text-white hover:bg-white hover:text-primary",
   }
 
+  const classes = `${baseStyles} ${variants[variant]} ${className}`
+
+  if (as === "button") {
+    return (
+      <button type={type} onClick={onClick} className={classes}>
+        {children}
+      </button>
+    )
+  }
+
   return (
     <a
       href={href}
       onClick={onClick}
-      className={`${baseStyles} ${variants[variant]} ${className}`}
+      className={classes}
     >
       {children}
     </a>

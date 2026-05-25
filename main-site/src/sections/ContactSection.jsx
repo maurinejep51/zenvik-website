@@ -19,8 +19,6 @@ function ContactSection() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
-    setFormData({ name: "", email: "", service: "", message: "" })
   }
 
   return (
@@ -197,11 +195,8 @@ function ContactSection() {
               </div>
 
               <Button
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault()
-                  handleSubmit(e)
-                }}
+                as="button"
+                type="submit"
                 variant="accent"
                 className="w-full justify-center"
               >

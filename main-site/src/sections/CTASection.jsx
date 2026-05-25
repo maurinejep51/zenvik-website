@@ -4,7 +4,7 @@ import Button from "../components/ui/Button"
 
 function CTASection() {
   return (
-    <section className="bg-slate-950 py-24 text-white">
+    <section className="bg-dark py-24 text-white">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
