@@ -32,7 +32,7 @@ function HostingSection() {
             {hostingFeatures.map((feature) => (
               <div
                 key={feature}
-                className="rounded-2xl border border-slate-200 bg-light px-5 py-4 font-medium text-slate-700"
+                className="rounded-3xl border border-slate-200 bg-light px-5 py-4 font-medium text-slate-700"
               >
                 {feature}
               </div>
@@ -63,24 +63,24 @@ function HostingSection() {
           viewport={{ once: true }}
           className="relative"
         >
-          <div className="rounded-[2rem] bg-primary p-10 text-white shadow-soft">
+          <div className="rounded-[2rem] bg-primary p-8 text-white shadow-soft md:p-10">
             <div className="grid gap-6">
               <div className="rounded-3xl bg-white/10 p-6 backdrop-blur">
-                <h3 className="text-2xl font-bold">99.9% Uptime</h3>
+                <h3 className="text-xl font-bold">99.9% Uptime</h3>
                 <p className="mt-2 text-white/70">
                   Reliable infrastructure with enterprise-grade stability.
                 </p>
               </div>
 
               <div className="rounded-3xl bg-white/10 p-6 backdrop-blur">
-                <h3 className="text-2xl font-bold">Fast Deployment</h3>
+                <h3 className="text-xl font-bold">Fast Deployment</h3>
                 <p className="mt-2 text-white/70">
                   Quick setup for websites, emails, and hosting services.
                 </p>
               </div>
 
               <div className="rounded-3xl bg-white/10 p-6 backdrop-blur">
-                <h3 className="text-2xl font-bold">Secure Environment</h3>
+                <h3 className="text-xl font-bold">Secure Environment</h3>
                 <p className="mt-2 text-white/70">
                   Security-first hosting with backups and protection layers.
                 </p>

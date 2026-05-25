@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react"
-import { locations, getLocationById } from "../data/locations"
+import { locations } from "../data/locations"
 
 const navLinks = [
   { label: "Home", href: "#" },

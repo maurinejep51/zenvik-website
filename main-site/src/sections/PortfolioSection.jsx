@@ -45,7 +45,7 @@ function PortfolioSection() {
             <motion.div
               key={project.title}
               variants={cardVariants}
-              className="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-soft transition duration-300 hover:shadow-lg hover:-translate-y-1"
+              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -66,10 +66,10 @@ function PortfolioSection() {
                 {project.description}
               </p>
 
-              <div className="mt-6 inline-block">
+              <div className="mt-auto pt-6">
                 <a
                   href="#contact"
-                  className="font-semibold text-primary transition-all duration-300 hover:text-accent flex items-center gap-2 group/link"
+                  className="inline-flex items-center gap-2 font-semibold text-primary transition-all duration-300 hover:text-accent group/link"
                 >
                   <span>Learn More</span>
                   <span className="transition-transform duration-300 group-hover/link:translate-x-1">
@@ -86,7 +86,7 @@ function PortfolioSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-20 rounded-3xl bg-primary p-12 text-center text-white shadow-soft"
+          className="mt-20 rounded-[2rem] bg-primary px-8 py-14 text-center text-white shadow-soft md:p-12"
         >
           <p className="mb-2 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Ready to Build Something Great?
@@ -101,7 +101,7 @@ function PortfolioSection() {
             our team of experts is ready to deliver exceptional results.
           </p>
 
-          <div className="mt-10 flex flex-col gap-4 justify-center sm:flex-row">
+          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
             <Button
               href="#contact"
               variant="accent"

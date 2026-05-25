@@ -1,5 +1,6 @@
 import { motion } from "framer-motion"
 import Container from "../components/common/Container"
+import Button from "../components/ui/Button"
 
 function CTASection() {
   return (
@@ -10,7 +11,7 @@ function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="overflow-hidden rounded-[2.5rem] bg-primary p-10 shadow-soft md:p-16"
+          className="overflow-hidden rounded-[2rem] bg-primary px-8 py-14 shadow-soft md:p-16"
         >
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
@@ -29,20 +30,22 @@ function CTASection() {
               </p>
             </div>
 
-            <div className="flex flex-col gap-5 lg:items-end">
-              <a
+            <div className="flex flex-col gap-4 lg:items-end">
+              <Button
                 href="https://portal.zenviktechnologies.com"
-                className="w-full rounded-full bg-accent px-8 py-5 text-center text-lg font-semibold text-white transition duration-200 hover:-translate-y-1 hover:shadow-soft lg:w-auto"
+                variant="accent"
+                className="w-full lg:w-auto"
               >
                 Visit Client Portal
-              </a>
+              </Button>
 
-              <a
+              <Button
                 href="#contact"
-                className="w-full rounded-full border border-white/20 px-8 py-5 text-center text-lg font-semibold text-white transition duration-200 hover:bg-white hover:text-primary lg:w-auto"
+                variant="light"
+                className="w-full lg:w-auto"
               >
                 Request Consultation
-              </a>
+              </Button>
             </div>
           </div>
         </motion.div>

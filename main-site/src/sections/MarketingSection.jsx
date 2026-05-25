@@ -1,5 +1,7 @@
 import { motion } from "framer-motion"
 import Container from "../components/common/Container"
+import SectionHeader from "../components/common/SectionHeader"
+import Button from "../components/ui/Button"
 
 const marketingServices = [
   "Brand Identity Design",
@@ -14,21 +16,12 @@ function MarketingSection() {
   return (
     <section className="bg-light py-24">
       <Container>
-        <div className="text-center">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-gold">
-            Marketing & Branding
-          </p>
-
-          <h2 className="mx-auto max-w-4xl text-4xl font-black leading-tight text-primary md:text-5xl">
-            Build A Strong Digital Presence For Your Business
-          </h2>
-
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-600">
-            Beyond technology, Zenvik Technologies helps businesses grow through
-            strategic branding, digital marketing, creative design, and modern
-            online visibility solutions.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="Marketing & Branding"
+          title="Build A Strong Digital Presence For Your Business"
+          description="Beyond technology, Zenvik Technologies helps businesses grow through strategic branding, digital marketing, creative design, and modern online visibility solutions."
+          align="center"
+        />
 
         <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {marketingServices.map((service, index) => (
@@ -38,9 +31,9 @@ function MarketingSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className="rounded-3xl bg-white p-8 shadow-soft transition duration-300 hover:shadow-lg hover:-translate-y-2"
+              className="flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-8 shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="mb-6 inline-flex rounded-2xl bg-primary px-4 py-2 text-sm font-semibold text-white">
+              <div className="mb-6 inline-flex self-start rounded-2xl bg-primary px-4 py-2 text-sm font-semibold text-white">
                 Growth Solution
               </div>
 
@@ -73,19 +66,19 @@ function MarketingSection() {
           </p>
 
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            <a
+            <Button
               href="#contact"
-              className="rounded-full bg-accent px-8 py-4 font-semibold text-white transition duration-200 hover:-translate-y-1 hover:shadow-soft"
+              variant="accent"
             >
               Request Consultation
-            </a>
+            </Button>
 
-            <a
+            <Button
               href="#services"
-              className="rounded-full border border-white/20 px-8 py-4 font-semibold text-white transition duration-200 hover:bg-white hover:text-primary"
+              variant="light"
             >
               Explore More Services
-            </a>
+            </Button>
           </div>
         </motion.div>
       </Container>

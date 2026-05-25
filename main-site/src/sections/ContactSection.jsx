@@ -24,7 +24,7 @@ function ContactSection() {
   }
 
   return (
-    <section id="contact" className="bg-white py-20">
+    <section id="contact" className="bg-white py-24">
       <Container>
         <SectionHeader
           eyebrow="Get in Touch"
@@ -32,15 +32,15 @@ function ContactSection() {
           description="Have a question or ready to start a project? Our mission is to empower businesses through innovative technology and creative digital experiences that drive measurable growth."
         />
 
-        <div className="mt-14 grid gap-10 lg:grid-cols-2">
+        <div className="mt-16 grid gap-8 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="grid gap-6 md:grid-cols-3 lg:grid-cols-1"
           >
-            <div className="rounded-3xl border border-slate-200 bg-light p-6 shadow-soft">
+            <div className="h-full rounded-3xl border border-slate-200 bg-light p-6 shadow-soft">
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-primary text-white">
                 <svg
                   className="h-5 w-5"
@@ -60,14 +60,14 @@ function ContactSection() {
               <p className="mt-2 text-slate-600">
                 <a
                   href="mailto:info@zenviktechnologies.com"
-                  className="text-primary hover:text-gold transition"
+                  className="text-primary transition hover:text-gold"
                 >
                   info@zenviktechnologies.com
                 </a>
               </p>
             </div>
 
-            <div className="rounded-3xl border border-slate-200 bg-light p-6 shadow-soft">
+            <div className="h-full rounded-3xl border border-slate-200 bg-light p-6 shadow-soft">
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-primary text-white">
                 <svg
                   className="h-5 w-5"
@@ -87,14 +87,14 @@ function ContactSection() {
               <p className="mt-2 text-slate-600">
                 <a
                   href="tel:+254700000000"
-                  className="text-primary hover:text-gold transition"
+                  className="text-primary transition hover:text-gold"
                 >
                   +254 (0) 700 000 000
                 </a>
               </p>
             </div>
 
-            <div className="rounded-3xl border border-slate-200 bg-light p-6 shadow-soft">
+            <div className="h-full rounded-3xl border border-slate-200 bg-light p-6 shadow-soft">
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-primary text-white">
                 <svg
                   className="h-5 w-5"
@@ -132,7 +132,7 @@ function ContactSection() {
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-semibold text-primary mb-2">
+                <label className="mb-2 block text-sm font-semibold text-primary">
                   Full Name
                 </label>
                 <input
@@ -147,7 +147,7 @@ function ContactSection() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-primary mb-2">
+                <label className="mb-2 block text-sm font-semibold text-primary">
                   Email Address
                 </label>
                 <input
@@ -162,7 +162,7 @@ function ContactSection() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-primary mb-2">
+                <label className="mb-2 block text-sm font-semibold text-primary">
                   Service Interest
                 </label>
                 <select
@@ -182,7 +182,7 @@ function ContactSection() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-primary mb-2">
+                <label className="mb-2 block text-sm font-semibold text-primary">
                   Message
                 </label>
                 <textarea
@@ -191,7 +191,7 @@ function ContactSection() {
                   onChange={handleChange}
                   placeholder="Tell us about your project..."
                   rows="5"
-                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder-slate-400 transition focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary resize-none"
+                  className="w-full resize-none rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder-slate-400 transition focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                   required
                 />
               </div>

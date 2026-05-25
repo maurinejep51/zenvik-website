@@ -90,17 +90,17 @@ function PricingSection() {
             <motion.div
               key={plan.name}
               variants={cardVariants}
-              className={`group relative overflow-hidden rounded-3xl transition duration-300 ${
+              className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border transition duration-300 ${
                 plan.recommended
-                  ? "ring-2 ring-gold md:scale-105 shadow-lg"
-                  : "bg-white shadow-soft hover:shadow-lg"
+                  ? "border-gold bg-white shadow-lg ring-2 ring-gold"
+                  : "border-slate-200 bg-white shadow-soft hover:shadow-lg"
               } ${!plan.recommended && "hover:-translate-y-1"}`}
             >
               {plan.recommended && (
                 <div className="absolute inset-0 -z-10 bg-gradient-to-br from-gold/10 to-primary/5" />
               )}
 
-              <div className={`p-8 ${plan.recommended ? "bg-white/95 backdrop-blur-sm" : ""}`}>
+              <div className={`flex h-full flex-col p-8 ${plan.recommended ? "bg-white/95 backdrop-blur-sm" : ""}`}>
                 {plan.recommended && (
                   <div className="mb-4 inline-block rounded-full bg-gold/20 px-4 py-1 text-sm font-semibold text-gold">
                     Recommended
@@ -130,7 +130,7 @@ function PricingSection() {
                   </p>
                 )}
 
-                <div className="mt-8 space-y-4">
+                <div className="mt-8 flex-1 space-y-4">
                   {plan.features.map((feature) => (
                     <div key={feature} className="flex items-start gap-3">
                       <svg

@@ -12,7 +12,7 @@ const reasons = [
 
 function WhyChooseSection() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white py-24">
       <Container>
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <motion.div
@@ -47,7 +47,7 @@ function WhyChooseSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
                 viewport={{ once: true }}
-                className="rounded-3xl border border-slate-200 bg-light p-5 shadow-soft"
+                className="h-full rounded-3xl border border-slate-200 bg-light p-5 shadow-soft"
               >
                 <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-primary text-sm font-bold text-white">
                   {index + 1}

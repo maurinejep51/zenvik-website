@@ -2,6 +2,7 @@ import { motion } from "framer-motion"
 import { testimonials } from "../data/testimonials"
 import Container from "../components/common/Container"
 import SectionHeader from "../components/common/SectionHeader"
+import Button from "../components/ui/Button"
 
 function TestimonialsSection() {
   const containerVariants = {
@@ -44,12 +45,12 @@ function TestimonialsSection() {
             <motion.div
               key={`${testimonial.name}-${index}`}
               variants={cardVariants}
-              className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/5 to-transparent border border-slate-200 p-8 shadow-soft transition duration-300 hover:shadow-lg hover:border-gold/30"
+              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-primary/5 to-transparent p-8 shadow-soft transition duration-300 hover:border-gold/30 hover:shadow-lg"
             >
               <div className="absolute top-0 right-0 -mt-4 -mr-4 h-20 w-20 rounded-full bg-gold/10 blur-2xl transition-transform duration-300 group-hover:scale-125" />
 
               <div className="relative z-10">
-                <div className="flex items-center gap-1 mb-6">
+                <div className="mb-6 flex items-center gap-1">
                   {[...Array(5)].map((_, i) => (
                     <svg
                       key={i}
@@ -61,15 +62,15 @@ function TestimonialsSection() {
                   ))}
                 </div>
 
-                <p className="text-lg leading-relaxed text-slate-700 mb-8">
+                <p className="mb-8 text-base leading-relaxed text-slate-700">
                   "{testimonial.message}"
                 </p>
 
-                <div className="border-t border-slate-200 pt-6">
-                  <p className="font-semibold text-primary text-lg">
+                <div className="mt-auto border-t border-slate-200 pt-6">
+                  <p className="text-lg font-semibold text-primary">
                     {testimonial.name}
                   </p>
-                  <p className="text-sm text-gold font-semibold mt-1">
+                  <p className="mt-1 text-sm font-semibold text-gold">
                     {testimonial.company}
                   </p>
                 </div>
@@ -89,17 +90,17 @@ function TestimonialsSection() {
             <p className="mb-4 text-3xl font-black text-primary">
               Join our growing list of satisfied clients
             </p>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-lg text-slate-600">
               Experience the difference that professional hosting, custom software, and expert digital solutions can make for your business.
             </p>
           </div>
 
-          <a
+          <Button
             href="#contact"
-            className="rounded-full bg-primary px-8 py-4 font-semibold text-white transition hover:-translate-y-1 hover:shadow-soft inline-block"
+            variant="primary"
           >
             Get Started Today
-          </a>
+          </Button>
         </motion.div>
       </Container>
     </section>

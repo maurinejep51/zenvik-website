@@ -15,7 +15,7 @@ function SectionHeader({
         </p>
       )}
 
-      <h2 className={`text-4xl font-black leading-tight md:text-5xl ${light ? "text-white" : "text-primary"}`}>
+      <h2 className={`text-3xl font-black leading-tight sm:text-4xl md:text-5xl ${light ? "text-white" : "text-primary"}`}>
         {title}
       </h2>
 

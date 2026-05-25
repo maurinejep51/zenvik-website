@@ -1,5 +1,7 @@
 import { motion } from "framer-motion"
 import Container from "../components/common/Container"
+import SectionHeader from "../components/common/SectionHeader"
+import Button from "../components/ui/Button"
 
 const softwareSolutions = [
   "Business Management Systems",
@@ -21,25 +23,18 @@ function SoftwareSection() {
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
-              Software Development
-            </p>
-
-            <h2 className="text-4xl font-black leading-tight md:text-5xl">
-              Scalable Software Built For Real Businesses
-            </h2>
-
-            <p className="mt-6 text-lg leading-relaxed text-slate-300">
-              We design and develop enterprise-grade software solutions,
-              automation systems, business platforms, and SaaS applications
-              tailored for modern organizations and growing companies.
-            </p>
+            <SectionHeader
+              eyebrow="Software Development"
+              title="Scalable Software Built For Real Businesses"
+              description="We design and develop enterprise-grade software solutions, automation systems, business platforms, and SaaS applications tailored for modern organizations and growing companies."
+              light
+            />
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               {softwareSolutions.map((solution) => (
                 <div
                   key={solution}
-                  className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur"
+                  className="rounded-3xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur"
                 >
                   {solution}
                 </div>
@@ -47,19 +42,19 @@ function SoftwareSection() {
             </div>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <a
+              <Button
                 href="#contact"
-                className="rounded-full bg-accent px-8 py-4 text-center font-semibold text-white transition duration-200 hover:-translate-y-1 hover:shadow-soft"
+                variant="accent"
               >
                 Start Your Project
-              </a>
+              </Button>
 
-              <a
+              <Button
                 href="#services"
-                className="rounded-full border border-white/20 px-8 py-4 text-center font-semibold text-white transition duration-200 hover:bg-white hover:text-slate-950"
+                variant="light"
               >
                 Explore Solutions
-              </a>
+              </Button>
             </div>
           </motion.div>
 
@@ -72,21 +67,21 @@ function SoftwareSection() {
             <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-xl">
               <div className="grid gap-6">
                 <div className="rounded-3xl bg-primary p-6">
-                  <h3 className="text-2xl font-bold">Custom Systems</h3>
+                  <h3 className="text-xl font-bold">Custom Systems</h3>
                   <p className="mt-3 text-white/80">
                     Tailored software solutions for unique business workflows.
                   </p>
                 </div>
 
                 <div className="rounded-3xl bg-white/5 p-6">
-                  <h3 className="text-2xl font-bold">Enterprise Automation</h3>
+                  <h3 className="text-xl font-bold">Enterprise Automation</h3>
                   <p className="mt-3 text-slate-300">
                     Streamline operations through modern digital automation.
                   </p>
                 </div>
 
                 <div className="rounded-3xl bg-white/5 p-6">
-                  <h3 className="text-2xl font-bold">Scalable Architecture</h3>
+                  <h3 className="text-xl font-bold">Scalable Architecture</h3>
                   <p className="mt-3 text-slate-300">
                     Built for future growth, performance, and long-term scalability.
                   </p>

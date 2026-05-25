@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
 import Container from "../components/common/Container"
 import SectionHeader from "../components/common/SectionHeader"
+import Button from "../components/ui/Button"
 
 const faqs = [
   {
@@ -48,7 +49,7 @@ function FAQSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mt-16 max-w-3xl mx-auto space-y-4"
+          className="mx-auto mt-16 max-w-3xl space-y-4"
         >
           {faqs.map((faq, index) => (
             <motion.div
@@ -57,13 +58,13 @@ function FAQSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
               viewport={{ once: true }}
-              className="rounded-2xl border border-slate-200 overflow-hidden shadow-soft transition-all duration-300 hover:shadow-lg"
+              className="overflow-hidden rounded-3xl border border-slate-200 shadow-soft transition-all duration-300 hover:shadow-lg"
             >
               <button
                 onClick={() =>
                   setActiveIndex(activeIndex === index ? null : index)
                 }
-                className="w-full bg-white px-8 py-6 text-left transition-colors duration-300 hover:bg-light flex items-center justify-between"
+                className="flex w-full items-center justify-between bg-white px-5 py-5 text-left transition-colors duration-300 hover:bg-light md:px-8 md:py-6"
               >
                 <h3 className="text-lg font-bold text-primary">
                   {faq.question}
@@ -71,7 +72,7 @@ function FAQSection() {
                 <motion.svg
                   animate={{ rotate: activeIndex === index ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
-                  className="h-6 w-6 flex-shrink-0 text-gold ml-4"
+                  className="ml-4 h-5 w-5 flex-shrink-0 text-gold"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -94,7 +95,7 @@ function FAQSection() {
                     transition={{ duration: 0.3 }}
                     className="border-t border-slate-200 bg-light"
                   >
-                    <div className="px-8 py-6 text-slate-700 leading-relaxed">
+                    <div className="px-5 py-5 leading-relaxed text-slate-700 md:px-8 md:py-6">
                       {faq.answer}
                     </div>
                   </motion.div>
@@ -117,12 +118,12 @@ function FAQSection() {
           <p className="max-w-2xl text-lg text-slate-600">
             Can't find the answer you're looking for? Our support team is ready to help. Contact us today.
           </p>
-          <a
+          <Button
             href="#contact"
-            className="rounded-full bg-primary px-8 py-4 font-semibold text-white transition hover:-translate-y-1 hover:shadow-soft inline-block"
+            variant="primary"
           >
             Contact Support
-          </a>
+          </Button>
         </motion.div>
       </Container>
     </section>

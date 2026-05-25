@@ -6,7 +6,7 @@ function Button({
   onClick,
 }) {
   const baseStyles =
-    "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition duration-300"
+    "inline-flex items-center justify-center rounded-full px-7 py-3.5 text-center text-sm font-semibold transition duration-300"
 
   const variants = {
     primary:

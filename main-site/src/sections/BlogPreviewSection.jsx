@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import Container from "../components/common/Container"
 import SectionHeader from "../components/common/SectionHeader"
+import Button from "../components/ui/Button"
 
 const blogArticles = [
   {
@@ -67,11 +68,11 @@ function BlogPreviewSection() {
             <motion.article
               key={article.title}
               variants={cardVariants}
-              className="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-soft transition duration-300 hover:shadow-lg hover:-translate-y-1"
+              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-              <div className="mb-6 flex items-center justify-between">
+              <div className="mb-6 flex items-center justify-between gap-4">
                 <span className="inline-block rounded-full bg-gold/10 px-4 py-2 text-sm font-semibold text-gold">
                   {article.category}
                 </span>
@@ -86,10 +87,10 @@ function BlogPreviewSection() {
                 {article.excerpt}
               </p>
 
-              <div className="mt-8">
+              <div className="mt-auto pt-8">
                 <a
                   href="/blog"
-                  className="font-semibold text-primary transition-all duration-300 hover:text-gold hover:gap-2 inline-flex items-center gap-1 group/link"
+                  className="inline-flex items-center gap-2 font-semibold text-primary transition-all duration-300 hover:text-gold group/link"
                 >
                   <span>Read More</span>
                   <span className="transition-transform duration-300 group-hover/link:translate-x-1">
@@ -114,12 +115,12 @@ function BlogPreviewSection() {
           <p className="max-w-2xl text-lg text-white/80">
             Subscribe to our blog for regular updates on hosting, software development, and digital solutions.
           </p>
-          <a
+          <Button
             href="#contact"
-            className="rounded-full bg-accent px-8 py-4 font-semibold text-white transition hover:-translate-y-1 hover:shadow-soft inline-block"
+            variant="accent"
           >
             Subscribe Now
-          </a>
+          </Button>
         </motion.div>
       </Container>
     </section>
