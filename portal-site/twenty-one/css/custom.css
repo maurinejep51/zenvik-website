@@ -1,0 +1,76 @@
+:root{
+  --zenvik-blue: #043a7e;
+  --zenvik-gold: #7a6200;
+  --zenvik-cta: #dfa408;
+  --zenvik-dark: #0b1630;
+  --zenvik-muted: #687182;
+}
+
+/* Base typography and layout tweaks */
+body{
+  font-family: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #0f1724;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.navbar-light .navbar-brand .logo-img{ max-height:42px; }
+.navbar{ box-shadow: 0 2px 6px rgba(4,58,126,0.06); }
+
+/* Primary navbar */
+.main-navbar-wrapper .navbar-nav > li > a{
+  color: var(--zenvik-dark);
+  font-weight:600;
+  padding:0.75rem 1rem;
+  transition: color .18s ease, transform .18s ease;
+}
+.main-navbar-wrapper .navbar-nav > li > a:hover{ color:var(--zenvik-cta); transform:translateY(-1px); }
+
+/* Premium dark dropdown/mega menu */
+.dropdown-menu{ background: linear-gradient(180deg,#071029 0%, #0d1b33 100%); border:none; color:#e6eefb; padding:1.25rem; min-width:280px; box-shadow: 0 10px 30px rgba(4,58,126,0.25); border-radius:8px; }
+.dropdown-menu a{ color: #cfe2ff; }
+.dropdown-menu a:hover{ color:var(--zenvik-cta); }
+.dropdown-menu .dropdown-divider{ border-top:1px solid rgba(255,255,255,0.06); }
+
+/* Mega style for larger dropdowns */
+.dropdown-menu.mega{ display:grid; grid-template-columns: repeat(3, minmax(140px,1fr)); gap:1rem; }
+.dropdown-menu.mega .dropdown-item{ padding:0.4rem 0; }
+
+/* Mobile full-screen drawer via styled collapse */
+@media(max-width:1199px){
+  .navbar-collapse{ position:fixed; inset:0; background:#fff; z-index:1040; padding:3.5rem 1rem; overflow:auto; }
+  .navbar-collapse .navbar-nav{ display:block; }
+  .navbar-collapse .navbar-nav > li{ margin-bottom:.5rem; }
+  .navbar-collapse .search{ margin-bottom:1rem; }
+  .mobile-footer{ position:sticky; bottom:0; background:linear-gradient(180deg,#fff, #f7f9fc); padding:1rem; border-top:1px solid #eef2f6; }
+}
+
+/* Buttons and CTAs */
+.btn-primary, .btn.btn-primary{ background:var(--zenvik-blue); border-color:var(--zenvik-blue); color:#fff; }
+.btn-outline-primary{ color:var(--zenvik-blue); border-color:rgba(4,58,126,0.12); }
+.btn-primary:hover{ background:var(--zenvik-cta); border-color:var(--zenvik-cta); }
+
+/* Cards & pricing */
+.card{ border-radius:10px; box-shadow:0 6px 20px rgba(11,22,48,0.06); }
+.pricing-card-title{ color:var(--zenvik-dark); font-weight:700; }
+
+/* Domain search styling */
+.domain-search .input-group .form-control{ border-radius:8px 0 0 8px; border-right:0; }
+.domain-search .input-group .btn{ border-radius:0 8px 8px 0; background:var(--zenvik-cta); color:#082030; }
+
+/* Footer */
+.footer{ background:#031227; color:#cfe6ff; padding:3rem 0; }
+.footer a{ color:#dbeeff; }
+.footer .footer-logo img{ max-height:40px; }
+.footer .social-links a{ display:inline-block; margin-right:.5rem; color:#fff; padding:.35rem; border-radius:6px; background:rgba(255,255,255,0.04); }
+.footer .contact-list li{ margin-bottom:.25rem; }
+
+/* Floating WhatsApp */
+.whatsapp-float{ position:fixed; right:1rem; bottom:1.2rem; background: #25D366; color:#fff; width:56px; height:56px; border-radius:999px; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(37,211,102,0.18); z-index:1200; }
+.whatsapp-float:hover{ transform:translateY(-4px); }
+
+/* Small helpers */
+.badge-info{ background:var(--zenvik-cta); color:#082030; }
+
+/* Accessibility: ensure focus states */
+a:focus, button:focus{ outline:3px solid rgba(7,58,126,0.12); outline-offset:2px; }

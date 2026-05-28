@@ -6,7 +6,7 @@
             {if $item->hasBadge()}&nbsp;<span class="badge">{$item->getBadge()}</span>{/if}
         </a>
         {if $item->hasChildren()}
-            <ul class="dropdown-menu{if isset($rightDrop) && $rightDrop} dropdown-menu-right{/if}">
+            <ul role="menu" class="dropdown-menu mega{if isset($rightDrop) && $rightDrop} dropdown-menu-right{/if}">
             {foreach $item->getChildren() as $childItem}
                 {if $childItem->getClass() && in_array($childItem->getClass(), ['dropdown-divider', 'nav-divider'])}
                     <div class="dropdown-divider"></div>

@@ -133,6 +133,25 @@
                     <ul class="navbar-nav ml-auto">
                         {include file="$template/includes/navbar.tpl" navbar=$secondaryNavbar rightDrop=true}
                     </ul>
+                    <div class="mobile-footer d-xl-none">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#modalChooseLanguage">
+                                    <i class="fas fa-globe"></i>
+                                    <span class="ml-2">{if $activeLocale}{$activeLocale.localisedName}{/if} / {$activeCurrency.code}</span>
+                                </button>
+                            </div>
+                            <div>
+                                <a href="{$WEB_ROOT}/cart.php?a=view" class="btn btn-sm btn-primary">
+                                    <i class="far fa-shopping-cart"></i>
+                                    <span class="d-none d-sm-inline ml-2">{lang key='carttitle'}</span>
+                                </a>
+                                <a href="clientarea.php" class="btn btn-sm btn-outline-primary ml-2">
+                                    <i class="far fa-user"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

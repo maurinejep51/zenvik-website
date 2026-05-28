@@ -13,6 +13,51 @@
 
     <footer id="footer" class="footer">
         <div class="container">
+            <div class="row mb-4 align-items-start">
+                <div class="col-md-4 footer-logo">
+                    <a href="{$WEB_ROOT}/index.php">
+                        {if $assetLogoPath}
+                            <img src="{$assetLogoPath}" alt="{$companyname}">
+                        {else}
+                            <h3>{$companyname}</h3>
+                        {/if}
+                    </a>
+                    <p class="mt-3">Premium hosting & cloud platform — Zenvik Technologies</p>
+                </div>
+                <div class="col-md-2">
+                    <h5>Hosting</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{$WEB_ROOT}/hosting/web-hosting.php">Web Hosting</a></li>
+                        <li><a href="{$WEB_ROOT}/hosting/wordpress.php">Hosting for WordPress</a></li>
+                        <li><a href="{$WEB_ROOT}/hosting/woocommerce.php">Hosting for WooCommerce</a></li>
+                        <li><a href="{$WEB_ROOT}/hosting/reseller.php">Reseller Hosting</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h5>Servers</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{$WEB_ROOT}/servers/managed-cpanel.php">Managed cPanel VPS</a></li>
+                        <li><a href="{$WEB_ROOT}/servers/vps.php">VPS Hosting</a></li>
+                        <li><a href="{$WEB_ROOT}/servers/dedicated.php">Dedicated Servers</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled contact-list">
+                        <li><strong>Phone:</strong> <a href="tel:+254717990272">+254 717 990 272</a></li>
+                        <li><strong>Email:</strong> <a href="mailto:info@zenviktechnologies.com">info@zenviktechnologies.com</a></li>
+                        <li><strong>Support:</strong> <a href="mailto:support@zenviktechnologies.com">support@zenviktechnologies.com</a></li>
+                        <li><strong>Hosting:</strong> <a href="mailto:hosting@zenviktechnologies.com">hosting@zenviktechnologies.com</a></li>
+                    </ul>
+                    <div class="social-links mt-2">
+                        <a href="https://www.instagram.com/zenviktechnologies/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/zenviktechnologies/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.tiktok.com/@zenviktechnologies" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://x.com/ZenvikTech" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/zenvik-technologies-ltd/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
             <ul class="list-inline mb-7 text-center float-lg-right">
                 {include file="$template/includes/social-accounts.tpl"}
 
@@ -139,6 +184,10 @@
             <span class="d-none d-md-inline-block">{lang key="admin.returnToAdmin"}</span>
         </a>
     {/if}
+
+    <a href="https://wa.me/254717990272" target="_blank" class="whatsapp-float" aria-label="WhatsApp support">
+        <i class="fab fa-whatsapp fa-lg"></i>
+    </a>
 
     {include file="$template/includes/generate-password.tpl"}
 

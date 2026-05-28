@@ -1,3 +1,12 @@
+<section class="hero-hosting py-5">
+    <div class="container text-center">
+        <h1 class="mb-3">Reliable Hosting. Built for Growth.</h1>
+        <p class="lead mb-4">Zenvik Technologies — Enterprise-grade hosting, cloud, and managed servers with Kenyan-based support.</p>
+        <a href="{$WEB_ROOT}/hosting/" class="btn btn-primary btn-lg mr-2">Explore Hosting</a>
+        <a href="{$WEB_ROOT}/servers/" class="btn btn-outline-primary btn-lg">See Servers</a>
+    </div>
+</section>
+
 {if !empty($productGroups) || $registerdomainenabled || $transferdomainenabled}
     <h2 class="text-center m-4">{lang key='clientHomePanels.productsAndServices'}</h2>
 
