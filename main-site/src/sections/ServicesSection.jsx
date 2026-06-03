@@ -13,7 +13,7 @@ function ServicesSection() {
           description="Zenvik Technologies delivers enterprise-grade hosting, software, websites, branding, marketing, and ICT infrastructure solutions tailored for modern businesses."
         />
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-16 grid grid-cols-[repeat(auto-fit,minmax(min(100%,20rem),1fr))] gap-8">
           {coreServices.map((service, index) => (
             <motion.div
               key={service.title}

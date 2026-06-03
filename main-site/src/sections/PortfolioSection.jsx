@@ -39,7 +39,7 @@ function PortfolioSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+          className="mt-16 grid grid-cols-[repeat(auto-fit,minmax(min(100%,21rem),1fr))] gap-8"
         >
           {projects.map((project, index) => (
             <motion.div

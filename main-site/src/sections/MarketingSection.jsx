@@ -23,7 +23,7 @@ function MarketingSection() {
           align="center"
         />
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-16 grid grid-cols-[repeat(auto-fit,minmax(min(100%,20rem),1fr))] gap-8">
           {marketingServices.map((service, index) => (
             <motion.div
               key={service}

@@ -10,7 +10,7 @@ function HeroSection() {
         <div className="absolute bottom-10 right-10 h-48 w-48 rounded-full bg-white blur-3xl" />
       </div>
 
-      <Container className="relative grid min-h-[88vh] items-center gap-10 py-20 lg:grid-cols-2">
+      <Container className="relative grid min-h-[760px] items-center gap-10 py-20 lg:min-h-[820px] xl:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.95fr)]">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -20,7 +20,7 @@ function HeroSection() {
             Enterprise ICT & Hosting Solutions
           </p>
 
-          <h1 className="text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
+          <h1 className="max-w-3xl text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
             Powering Modern Businesses Through Technology
           </h1>
 
@@ -33,7 +33,7 @@ function HeroSection() {
             and enterprise ICT solutions built for modern businesses and growing brands.
           </p>
 
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
             <Button
               href="#services"
               variant="accent"
@@ -61,7 +61,7 @@ function HeroSection() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9 }}
-          className="relative"
+          className="relative w-full max-w-2xl justify-self-center xl:max-w-none"
         >
           <div className="rounded-[2rem] border border-white/15 bg-white/10 p-6 shadow-soft backdrop-blur-xl md:p-8">
             <div className="grid gap-4 md:grid-cols-2">

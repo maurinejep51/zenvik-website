@@ -8,7 +8,7 @@ function Button({
   type = "button",
 }) {
   const baseStyles =
-    "inline-flex items-center justify-center rounded-full px-7 py-3.5 text-center text-sm font-semibold transition duration-300"
+    "inline-flex max-w-full items-center justify-center rounded-full px-7 py-3.5 text-center text-sm font-semibold transition duration-300"
 
   const variants = {
     primary:

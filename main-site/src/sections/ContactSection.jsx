@@ -30,13 +30,13 @@ function ContactSection() {
           description="Have a question or ready to start a project? Our mission is to empower businesses through innovative technology and creative digital experiences that drive measurable growth."
         />
 
-        <div className="mt-16 grid gap-8 lg:grid-cols-2">
+        <div className="mt-16 grid gap-8 xl:grid-cols-[minmax(0,0.9fr)_minmax(420px,1.1fr)]">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="grid gap-6 md:grid-cols-3 lg:grid-cols-1"
+            className="grid gap-6 md:grid-cols-3 xl:grid-cols-1"
           >
             <div className="h-full rounded-3xl border border-slate-200 bg-light p-6 shadow-soft">
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-primary text-white">

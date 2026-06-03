@@ -68,8 +68,8 @@ function Footer() {
 
   return (
     <footer className="bg-dark text-white">
-      <div className="mx-auto max-w-7xl px-6 py-20">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto w-full max-w-[1280px] px-5 py-20 sm:px-6 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-[minmax(0,1.35fr)_minmax(0,0.9fr)_minmax(0,0.9fr)_minmax(0,1.2fr)]">
           <div>
             <img
               src="/logo.png"

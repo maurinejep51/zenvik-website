@@ -14,7 +14,7 @@ function WhyChooseSection() {
   return (
     <section className="bg-white py-24">
       <Container>
-        <div className="grid items-center gap-16 lg:grid-cols-2">
+        <div className="grid items-center gap-12 lg:gap-16 xl:grid-cols-[minmax(0,1.05fr)_minmax(380px,0.95fr)]">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}

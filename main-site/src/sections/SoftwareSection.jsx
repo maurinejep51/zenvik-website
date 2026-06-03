@@ -16,7 +16,7 @@ function SoftwareSection() {
   return (
     <section id="software" className="bg-dark py-24 text-white">
       <Container>
-        <div className="grid items-center gap-16 lg:grid-cols-2">
+        <div className="grid items-center gap-12 lg:gap-16 xl:grid-cols-[minmax(0,1.05fr)_minmax(380px,0.95fr)]">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -63,6 +63,7 @@ function SoftwareSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
+            className="w-full max-w-2xl justify-self-center xl:max-w-none"
           >
             <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-xl">
               <div className="grid gap-6">
