@@ -32,7 +32,7 @@ function Navbar() {
           <img
             src="/logo.png"
             alt="Zenvik Technologies"
-            className="h-14 w-auto max-w-[210px] object-contain xl:h-16 xl:max-w-[260px]"
+            className="h-[34px] w-auto max-w-[190px] object-contain xl:h-[42px] xl:max-w-[240px]"
           />
         </a>
 
