@@ -1,20 +1,16 @@
-{include file="$template/includes/alert.tpl" type="info" msg=$LANG.creditcard3dsecure textcenter=true}
+{include file="$template/includes/alert.tpl" type="info" msg="{lang key='creditcard3dsecure'}" textcenter=true}
 
-<br /><br />
+<div class="card">
+    <div class="card-body text-center">
+        <div id="frmThreeDAuth" class="w-hidden">
+            {$code}
+        </div>
 
-<div class="text-center">
-
-    <div id="frmThreeDAuth" class="hidden">
-        {$code}
+        <iframe name="3dauth" height="500" scrolling="auto" src="about:blank" class="submit-3d p-3"></iframe>
     </div>
-
-    <iframe name="3dauth" height="500" scrolling="auto" src="about:blank" class="submit-3d"></iframe>
-
-    <br /><br />
-
 </div>
 
-<script language="javascript">
+<script>
     jQuery("#frmThreeDAuth").find("form:first").attr('target', '3dauth');
     setTimeout("autoSubmitFormByContainer('frmThreeDAuth')", 1000);
 </script>

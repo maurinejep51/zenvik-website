@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="store-order-container">
+    <div class="store-order-container mb-3">
 
         <form method="post" action="{routePath('cart-order-addtocart')}" id="frmAddToCart">
             <input type="hidden" name="pid" value="{$product->id}">
@@ -15,7 +15,7 @@
 
                     <div class="payment-term">
                         <h4>{lang key='store.choosePaymentTerm'}</h4>
-                        <select name="billingcycle" class="form-control">
+                        <select name="billingcycle" class="form-control custom-select">
                             {foreach $product->pricing()->allAvailableCycles() as $pricing}
                                 <option value="{$pricing->cycle()}"{if $requestedCycle == $pricing->cycle()} selected{/if}>
                                     {if $pricing->isRecurring()}
@@ -38,31 +38,44 @@
             <br>
             <h4>{lang key='store.chooseDomain'}</h4>
 
-            <ul class="nav nav-tabs store-domain-tabs" role="tablist">
+            <ul class="nav nav-tabs store-domain-tabs responsive-tabs-sm" role="tablist">
                 {if $requireDomain}
                     {if (count($domains) > 0 && $loggedin)}
-                        <li role="presentation" class="active"><a href="#existing-domain" aria-controls="existing-domain" role="tab" data-toggle="tab">{lang key='store.chooseExistingDomain'}</a></li>
+                        <li class="nav-item active" role="presentation">
+                            <a class="nav-link p-3 px-5" href="#existing-domain" aria-controls="existing-domain" role="tab" data-toggle="tab">
+                                {lang key='store.chooseExistingDomain'}
+                            </a>
+                        </li>
                     {/if}
                     {if $allowSubdomains}
-                        <li role="presentation"><a href="#sub-domain" aria-controls="sub-domain" role="tab" data-toggle="tab">{lang key='store.subOfExisting'}</a></li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link p-3 px-5" href="#sub-domain" aria-controls="sub-domain" role="tab" data-toggle="tab">
+                                {lang key='store.subOfExisting'}
+                            </a>
+                        </li>
                     {/if}
-                    <li role="presentation"><a id="tabCustomDomainControl" href="#custom-domain" aria-controls="custom-domain" role="tab" data-toggle="tab">{lang key='store.domainAlreadyOwned'}</a></li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link p-3 px-5" id="tabCustomDomainControl" href="#custom-domain" aria-controls="custom-domain" role="tab" data-toggle="tab">
+                            {lang key='store.domainAlreadyOwned'}
+                        </a>
+                    </li>
                 {else}
-                    <li role="presentation" class="active">
-                        <a id="tabNoDomain" href="#no-domain" role="tab" data-toggle="tab">
+                    <li class="nav-item" role="presentation" class="active">
+                        <a class="nav-link p-3 px-5" id="tabNoDomain" href="#no-domain" role="tab" data-toggle="tab">
                             {lang key='store.noDomain'}
                         </a>
                     </li>
                 {/if}
             </ul>
-            <div class="tab-content store-domain-tab-content">
+            <div class="responsive-tabs-sm-connector store"><div class="channel"></div><div class="bottom-border"></div></div>
+            <div class="tab-content bg-white store-domain-tab-content">
                 {if $requireDomain}
                     {if count($domains) > 0}
                         <div role="tabpanel" class="tab-pane active" id="existing-domain">
                             {if $loggedin}
                                 <div class="row">
                                     <div class="col-sm-8">
-                                        <select class="form-control" name="existing_domain">
+                                        <select class="form-control custom-select" name="existing_domain">
                                             {foreach $domains as $domain}
                                                 <option value="{$domain}"{if $domain == $selectedDomain} selected="selected"{/if}>
                                                     {$domain}
@@ -86,15 +99,11 @@
                         <div role="tabpanel" class="tab-pane" id="sub-domain">
                             <div class="row">
                                 <div class="col-sm-8">
-                                    <div style="display:inline-block;width:47%;">
-                                        <input type="text" class="form-control subdomain-input" name="sub_domain" placeholder="Your desired subdomain"></div>
-                                    <div style="display:inline-block;width:2%;text-align:center;">
-                                        .
-                                    </div>
-                                    <div style="display:inline-block;width:47%;">
-                                        <select class="form-control" name="existing_sld_for_subdomain" id="existing_sld_for_subdomain">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control subdomain-input" name="sub_domain" placeholder="Your desired subdomain">
+                                        <select class="custom-select" name="existing_sld_for_subdomain" id="existing_sld_for_subdomain">
                                             {foreach $domains as $domain}
-                                                <option value="{$domain}">{$domain}</option>
+                                                <option value="{$domain}">.{$domain}</option>
                                             {/foreach}
                                         </select>
                                     </div>
@@ -144,42 +153,44 @@
     </div>
 
     {if $upsellProduct && $promotion}
-        <div class="store-promoted-product upsell-{$upsellProduct->productKey}">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="icon">
-                        <img src="{$promotion->getImagePath()}">
+        <div class="card mt-5">
+            <div class="card-body p-5 store-promoted-product upsell-{$upsellProduct->productKey}">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="icon">
+                            <img src="{$promotion->getImagePath()}">
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-9">
+                    <div class="col-sm-9">
 
-                    <h3>{$promotion->getHeadline()}</h3>
-                    <h4>{$promotion->getTagline()}</h4>
-                    {if $promotion->getDescription()}
-                        <p>{$promotion->getDescription()}</p>
-                    {/if}
-                    {if $promotion->hasFeatures()}
-                        <ul class="features">
-                            {foreach $promotion->getFeatures() as $highlight}
-                                <li><i class="far fa-check-circle"></i> {$highlight}</li>
-                            {/foreach}
-                        </ul>
-                    {/if}
-                    <form method="post" action="{routePath('cart-order')}">
-                        <input type="hidden" name="pid" value="{$upsellProduct->id}">
-                        <input type="hidden" name="upsell" value="1">
-                        <button type="submit" class="btn btn-success">
-                            {foreach $product->pricing()->allAvailableCycles() as $pricing}
-                                <span class="span-upsell span-upsell-{$pricing->cycle()}">
-                                    {if is_null($upsellComparison->diff({$pricing->cycle()}))}
-                                        {$promotion->getCta()} {$upsellProduct->name} {lang key='store.fromJust'} {$upsellProduct->pricing()->best()->breakdownPrice()}
-                                    {else}
-                                        {$promotion->getCta()} {$upsellProduct->name} {lang key='store.forJust'} {$upsellComparison->diff({$pricing->cycle()})->breakdownPrice()} {lang key='more'}
-                                    {/if}
-                                </span>
-                            {/foreach}
-                        </button>
-                    </form>
+                        <h3>{$promotion->getHeadline()}</h3>
+                        <h4>{$promotion->getTagline()}</h4>
+                        {if $promotion->getDescription()}
+                            <p>{$promotion->getDescription()}</p>
+                        {/if}
+                        {if $promotion->hasFeatures()}
+                            <ul class="features">
+                                {foreach $promotion->getFeatures() as $highlight}
+                                    <li><i class="far fa-check-circle"></i> {$highlight}</li>
+                                {/foreach}
+                            </ul>
+                        {/if}
+                        <form method="post" action="{routePath('cart-order')}">
+                            <input type="hidden" name="pid" value="{$upsellProduct->id}">
+                            <input type="hidden" name="upsell" value="1">
+                            <button type="submit" class="btn btn-success">
+                                {foreach $product->pricing()->allAvailableCycles() as $pricing}
+                                    <span class="span-upsell span-upsell-{$pricing->cycle()}">
+                                        {if is_null($upsellComparison->diff({$pricing->cycle()}))}
+                                            {$promotion->getCta()} {$upsellProduct->name} {lang key='fromJust'} {$upsellProduct->pricing()->best()->breakdownPrice()}
+                                        {else}
+                                            {$promotion->getCta()} {$upsellProduct->name} {lang key='forJust'} {$upsellComparison->diff({$pricing->cycle()})->breakdownPrice()} {{lang key='more'}|lower}
+                                        {/if}
+                                    </span>
+                                {/foreach}
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

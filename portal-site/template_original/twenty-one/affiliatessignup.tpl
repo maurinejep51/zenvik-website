@@ -1,22 +1,30 @@
 {if $affiliatesystemenabled}
 
-    {include file="$template/includes/alert.tpl" type="info" title=$LANG.affiliatesignuptitle msg=$LANG.affiliatesignupintro|cat:'<br /><br />' textcenter=true}
+    <div class="card">
+        <div class="card-body extra-padding">
 
-    <ul>
-        <li>{$LANG.affiliatesignupinfo1}</li>
-        <li>{$LANG.affiliatesignupinfo2}</li>
-        <li>{$LANG.affiliatesignupinfo3}</li>
-    </ul>
+            <h3>{lang key='affiliatesignuptitle'}</h3>
+            <p class="lead">{lang key='affiliatesignupintro'}</p>
 
-    <br />
+            <ul class="py-4">
+                <li>{lang key='affiliatesignupinfo1'}</li>
+                <li>{lang key='affiliatesignupinfo2'}</li>
+                <li>{lang key='affiliatesignupinfo3'}</li>
+            </ul>
 
-    <form method="post" action="affiliates.php">
-        <input type="hidden" name="activate" value="true" />
-        <p align="center">
-            <input id="activateAffiliate" type="submit" value="{$LANG.affiliatesactivate}" class="btn btn-success" />
-        </p>
-    </form>
+            <br />
+
+            <form method="post" action="affiliates.php">
+                <input type="hidden" name="activate" value="true" />
+                <p class="text-center">
+                    <button id="activateAffiliate" type="submit" class="btn btn-success btn-lg px-5 py-2">
+                        {lang key='affiliatesactivate'}
+                    </button>
+                </p>
+            </form>
+        </div>
+    </div>
 
 {else}
-    {include file="$template/includes/alert.tpl" type="warning" msg=$LANG.affiliatesdisabled textcenter=true}
+    {include file="$template/includes/alert.tpl" type="warning" msg="{lang key='affiliatesdisabled'}" textcenter=true}
 {/if}

@@ -1,62 +1,92 @@
-<div class="kb-article-title">
-    <a href="#" class="btn btn-link btn-print" onclick="window.print();return false"><i class="fas fa-print"></i></a>
-    <h2>{$kbarticle.title}</h2>
-</div>
-
 {if $kbarticle.voted}
     {include file="$template/includes/alert.tpl" type="success alert-bordered-left" msg="{lang key="knowledgebaseArticleRatingThanks"}" textcenter=true}
 {/if}
 
-<div class="kb-article-content">
-    {$kbarticle.text}
-</div>
+<div class="card">
+    <div class="card-body">
+        <h1>
+            {$kbarticle.title}
+            <a href="#" class="btn btn-default btn-sm float-right" onclick="window.print();return false">
+                <i class="fas fa-print"></i>
+                {lang key='print'}
+            </a>
+        </h1>
 
-{if $kbarticle.editLink}
-    <a href="{$kbarticle.editLink}" class="btn btn-default btn-sm pull-right">
-        <i class="fas fa-pencil-alt fa-fw"></i>
-        {$LANG.edit}
-    </a>
-{/if}
+        <ul class="list-inline">
+            {if $kbarticle.tags}
+                <li class="list-inline-item pr-3">
+                    <span class="badge badge-pill badge-info">
+                        <i class="fas fa-code mr-1"></i>
+                        {$kbarticle.tags}
+                    </span>
+                </li>
+            {/if}
+            <li class="list-inline-item text-sm pr-3 text-muted"><i class="fas fa-thumbs-up mr-2"></i>{$kbarticle.useful}</li>
+        </ul>
 
-<ul class="kb-article-details">
-    {if $kbarticle.tags }
-        <li><i class="fas fa-tag"></i> {$kbarticle.tags}</li>
-    {/if}
-    <li><i class="fas fa-star"></i> {$kbarticle.useful} {$LANG.knowledgebaseratingtext}</li>
-</ul>
-<div class="clearfix"></div>
+        <hr>
 
-<div class="kb-rate-article hidden-print">
-    <form action="{routePath('knowledgebase-article-view', {$kbarticle.id}, {$kbarticle.urlfriendlytitle})}" method="post">
-        <input type="hidden" name="useful" value="vote">
-        {if $kbarticle.voted}{$LANG.knowledgebaserating}{else}{$LANG.knowledgebasehelpful}{/if}
-        {if $kbarticle.voted}
-            {$kbarticle.useful} {$LANG.knowledgebaseratingtext} ({$kbarticle.votes} {$LANG.knowledgebasevotes})
-        {else}
-            <button type="submit" name="vote" value="yes" class="btn btn-lg btn-link"><i class="far fa-thumbs-up"></i> {$LANG.knowledgebaseyes}</button>
-            <button type="submit" name="vote" value="no" class="btn btn-lg btn-link"><i class="far fa-thumbs-down"></i> {$LANG.knowledgebaseno}</button>
+        <article>
+            {$kbarticle.text}
+        </article>
+
+        {if !$kbarticle.voted}
+            <hr>
+            <h4>{lang key='knowledgebasehelpful'}</h4>
+            <form action="{routePath('knowledgebase-article-view', {$kbarticle.id}, {$kbarticle.urlfriendlytitle})}" method="post" class="d-flex justify-content-between">
+                <input type="hidden" name="useful" value="vote">
+                <div>
+                    <button class="btn btn-sm btn-secondary px-4" type="submit" name="vote" value="yes">
+                        <i class="fas fa-thumbs-up"></i>
+                        {lang key='knowledgebaseyes'}
+                    </button>
+                    <button class="btn btn-sm btn-secondary px-4" type="submit" name="vote" value="no">
+                        <i class="fas fa-thumbs-down"></i>
+                        {lang key='knowledgebaseno'}
+                    </button>
+                </div>
+            </form>
         {/if}
-    </form>
+
+    </div>
 </div>
 
 {if $kbarticles}
-    <div class="kb-also-read">
-        <h3>{$LANG.knowledgebaserelated}</h3>
-        <div class="kbarticles">
-            {foreach key=num item=kbarticle from=$kbarticles}
-                <div>
-                    <a href="{routePath('knowledgebase-article-view', {$kbarticle.id}, {$kbarticle.urlfriendlytitle})}">
-                        <i class="glyphicon glyphicon-file"></i> {$kbarticle.title}
-                    </a>
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title m-0">
+                <i class="fal fa-folder-open fa-fw"></i>
+                {lang key='knowledgebaserelated'}
+            </h3>
+        </div>
+        <div class="list-group list-group-flush">
+            {foreach $kbarticles as $kbarticle}
+                <a href="{routePath('knowledgebase-article-view', {$kbarticle.id}, {$kbarticle.urlfriendlytitle})}" class="list-group-item kb-article-item" data-id="{$kbarticle.id}">
+                    <i class="fal fa-file-alt fa-fw text-black-50"></i>
+                    {$kbarticle.title}
                     {if $kbarticle.editLink}
-                        <a href="{$kbarticle.editLink}" class="admin-inline-edit">
-                            <i class="fas fa-pencil-alt fa-fw"></i>
-                            {$LANG.edit}
-                        </a>
+                        <button class="btn btn-sm btn-default show-on-card-hover" id="btnEditArticle-{$kbarticle.id}" data-url="{$kbarticle.editLink}" type="button">
+                            {lang key="edit"}
+                        </button>
                     {/if}
-                    <p>{$kbarticle.article|truncate:100:"..."}</p>
+                    <small>{$kbarticle.article|truncate:100:"..."}</small>
+                </a>
+            {foreachelse}
+                <div class="list-group-item">
+                    {lang key='knowledgebasenoarticles'}
                 </div>
             {/foreach}
         </div>
     </div>
+{/if}
+
+<a href="javascript:history.go(-1)" class="btn btn-default px-4">
+    {lang key='clientareabacklink'}
+</a>
+
+{if $kbarticle.editLink}
+    <a href="{$kbarticle.editLink}" class="btn btn-default px-4 float-right">
+        <i class="fas fa-pencil-alt fa-fw"></i>
+        {lang key='edit'}
+    </a>
 {/if}

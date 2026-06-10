@@ -1,5 +1,5 @@
- <div class="panel panel-default col-md-4 col-md-offset-4">
-    <div class="panel-body text-center margin-bottom">
+<div class="card mw-540 mb-md-4 mt-md-4">
+    <div class="card-body px-sm-5 py-5 text-center">
         <h2>
             <i class="far fa-times fa-2x text-danger"></i><br>
             {lang key='store.addon.notFound.productUnavailable'}
@@ -14,4 +14,3 @@
         </a>
     </div>
 </div>
-<div class="clearfix"></div>

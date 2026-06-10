@@ -1,6 +1,19 @@
+/*!
+ * WHMCS Twenty-One Theme
+ * Store Stylesheet
+ * Copyright (c) 2020 WHMCS Limited
+ * https://www.whmcs.com/license/
+ */
+
 section#main-body {
     margin: 0;
     padding: 0;
+}
+
+.landing-page::after {
+    display: block;
+    clear: both;
+    content: "";
 }
 
 .landing-page h1,
@@ -129,11 +142,10 @@ section#main-body {
     max-height: 60px;
 }
 
-.landing-page .navbar {
-    border-left: 0;
-    border-right: 0;
-    border-radius: 0;
+.landing-page .navbar-toggler {
+    margin: 5px 0;
 }
+
 @media (min-width: 768px) {
     .landing-page .navbar .navbar-nav {
         width: 100%;
@@ -144,22 +156,25 @@ section#main-body {
     text-align: center;
     border-bottom: 1px solid #eee;
 }
-
-@media (min-width: 992px) {
-    #nav-ssl {
-        white-space: nowrap;
+@media (min-width: 768px) {
+    .landing-page .navbar.navbar-expand-md .navbar-nav > li {
+        width: 25%;
     }
-    .landing-page .navbar .navbar-nav {
-        display: flex;
-        justify-content: space-between;
-    }
-    .landing-page .navbar .navbar-nav > li {
-        flex: 1;
-    }
-    .landing-page .navbar .navbar-nav > li > a {
+    .landing-page .navbar.navbar-expand-md .navbar-nav > li > a {
         border-left: 1px solid #ccc;
     }
-    .landing-page .navbar .navbar-nav > li:last-child > a {
+    .landing-page .navbar.navbar-expand-md .navbar-nav > li:last-child > a {
+        border-right: 1px solid #ccc;
+    }
+}
+@media (min-width: 992px) {
+    .landing-page .navbar.navbar-expand-lg .navbar-nav > li {
+        width: 25%;
+    }
+    .landing-page .navbar.navbar-expand-lg .navbar-nav > li > a {
+        border-left: 1px solid #ccc;
+    }
+    .landing-page .navbar.navbar-expand-lg .navbar-nav > li:last-child > a {
         border-right: 1px solid #ccc;
     }
 }
@@ -420,19 +435,23 @@ section#main-body {
 }
 .landing-page.ssl .validation-levels h3 {
     margin: 0;
-    line-height: 100px;
+    line-height: 80px;
     font-weight: 400;
     font-size: 2em;
     color: #eee;
 }
 
+.landing-page.ssl .validation-levels .row {
+    justify-content: space-around;
+}
+
 .landing-page.ssl .validation-levels .item {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 4fr 5fr 4fr 4fr 10fr auto;
-    row-gap: 20px;
+    grid-template-rows: 3fr 5fr 5fr 4fr 9fr auto;
+    row-gap: 10px;
     height: 100% !important;
-    margin: 0 0 20px 0;
+    margin: 20px 0 20px 0;
     padding: 30px 30px;
     color: #432448;
     background-color: #fff;
@@ -531,7 +550,7 @@ section#main-body {
 }
 
 .landing-page.ssl .standout {
-    font-size: 1.3em;
+    font-size: 1.2em;
     font-weight: 300;
 }
 
@@ -633,13 +652,6 @@ section#main-body {
     padding-right: 40px;
 }
 
-@media (min-width: 992px) {
-    .landing-page.ssl .validation-levels .row {
-        display: flex;
-        justify-content: space-around;
-    }
-}
-
 @media (max-width: 1199px) {
     .landing-page.ssl .browser-msg span {
         padding: 25px 30px;
@@ -709,12 +721,12 @@ section#main-body {
     margin-right: 10px;
     text-align: center;
 }
-.landing-page.ssl .detailed-info .panel-heading {
+.landing-page.ssl .detailed-info .card-header {
     background-color: #327aa7;
     color: #fff;
     border-radius: 3px;
 }
-.landing-page.ssl .detailed-info .panel-heading h4 {
+.landing-page.ssl .detailed-info .card-header h4 {
     margin: 0;
     font-weight: 300;
     font-size: 1.5em;
@@ -723,15 +735,17 @@ section#main-body {
     background-color: transparent;
     border: 0;
 }
-.landing-page.ssl .detailed-info .panel-body {
-    margin-top: 15px;
-    padding: 40px;
+.landing-page.ssl .detailed-info .card-body {
+    margin-top: 0;
+    padding: 35px;
     background-color: #fff;
     border: 1px solid #ddd;
     box-shadow: none;
-    font-size: 1.2em;
 }
-.landing-page.ssl .detailed-info .panel-body h4 {
+.landing-page.ssl .detailed-info div#collapseAllCerts .card-body {
+    padding: 0;
+}
+.landing-page.ssl .detailed-info .card-body h4 {
     margin: 20px 0;
     font-weight: 700;
 }
@@ -773,8 +787,11 @@ section#main-body {
 }
 .landing-page.ssl ul.ssl-certs-all li {
     margin: 0;
-    padding: 25px 15px 15px;
+    padding: 15px 35px;
     border-bottom: 3px solid #f8f8f8;
+}
+.landing-page.ssl ul.ssl-certs-all li .row {
+    margin-top: 1em;
 }
 .landing-page.ssl ul.ssl-certs-all li.featured {
     background: #fff7cc;
@@ -785,6 +802,9 @@ section#main-body {
 }
 .landing-page.ssl ul.ssl-certs-all li h3 {
     font-weight: 300;
+}
+.landing-page.ssl ul.ssl-certs-all li h4 {
+    margin-top: 0 !important;
 }
 .landing-page.ssl ul.ssl-certs-all .padded-cell {
     padding-top: 30px;
@@ -797,7 +817,7 @@ section#main-body {
     font-size: 0.9em;
 }
 .landing-page.ssl ul.ssl-certs-all .price strong {
-    font-size: 2em;
+    font-size: 1.6em;
 }
 .landing-page.ssl ul.ssl-certs-all .price span {
     font-size: 0.9em;
@@ -880,9 +900,9 @@ section#main-body {
     margin-left: -2px;
     margin-right: -2px;
 }
-.landing-page.ssl .row-pricing-table .col-sm-3,
-.landing-page.ssl .row-pricing-table .col-sm-4,
-.landing-page.ssl .row-pricing-table .col-sm-6 {
+.landing-page.ssl .row-pricing-table .col-md-3,
+.landing-page.ssl .row-pricing-table .col-md-4,
+.landing-page.ssl .row-pricing-table .col-md-6 {
     padding-left: 2px;
     padding-right: 2px;
 }
@@ -994,23 +1014,23 @@ section#main-body {
     border-bottom: 0;
     border-radius: 0 0 4px 4px;
 }
-.landing-page.ssl .certificate-options .col-sm-3.sidebar ul li,
-.landing-page.ssl .certificate-options .col-sm-4.sidebar ul li,
-.landing-page.ssl .certificate-options .col-sm-6.sidebar ul li {
+.landing-page.ssl .certificate-options .col-md-3.sidebar ul li,
+.landing-page.ssl .certificate-options .col-md-4.sidebar ul li,
+.landing-page.ssl .certificate-options .col-md-6.sidebar ul li {
     background-color: transparent;
     text-align: left;
     padding-right: 20px;
     color: #eee;
     border-color: #4484bb;
 }
-.landing-page.ssl .certificate-options.ov .col-sm-3.sidebar ul li,
-.landing-page.ssl .certificate-options.ov .col-sm-4.sidebar ul li,
-.landing-page.ssl .certificate-options.ov .col-sm-6.sidebar ul li {
+.landing-page.ssl .certificate-options.ov .col-md-3.sidebar ul li,
+.landing-page.ssl .certificate-options.ov .col-md-4.sidebar ul li,
+.landing-page.ssl .certificate-options.ov .col-md-6.sidebar ul li {
     border-color: #f9cb6c;
 }
-.landing-page.ssl .certificate-options.ev .col-sm-3.sidebar ul li,
-.landing-page.ssl .certificate-options.ev .col-sm-4.sidebar ul li,
-.landing-page.ssl .certificate-options.ev .col-sm-6.sidebar ul li {
+.landing-page.ssl .certificate-options.ev .col-md-3.sidebar ul li,
+.landing-page.ssl .certificate-options.ev .col-md-4.sidebar ul li,
+.landing-page.ssl .certificate-options.ev .col-md-6.sidebar ul li {
     border-color: #90cca8;
 }
 
@@ -1184,6 +1204,7 @@ section#main-body {
 .landing-page.sitelock .feature-wrapper i {
     float: left;
     font-size: 5em;
+    margin-right: 15px;
 }
 .landing-page.sitelock .feature-wrapper .content {
     margin-left: 100px;
@@ -1229,7 +1250,7 @@ section#main-body {
     margin: 30px 0;
     font-size: 1.2em;
 }
-.landing-page.sitelock .faq .panel-group .panel-body {
+.landing-page.sitelock .faq .panel-group .card-body {
     padding: 20px;
 }
 .landing-page.sitelock .faq .panel-group li {
@@ -1652,7 +1673,7 @@ section#main-body {
     max-width: 150px;
 }
 .landing-page.marketgoo .feature-blocks .block span {
-    font-size: 1.6em;
+    font-size: 1.4em;
 }
 .landing-page.marketgoo .feature-blocks .block p {
     font-size: 1.2em;
@@ -1669,7 +1690,6 @@ section#main-body {
     float: left;
     margin: 0 0 20px 0;
     width: 30%;
-    font-size: 1.15em;
     text-align: center;
 }
 .landing-page.marketgoo .plan.labels {
@@ -1681,7 +1701,7 @@ section#main-body {
     display: block;
 }
 .landing-page.marketgoo .plan .header {
-    height: 110px;
+    height: 120px;
 }
 .landing-page.marketgoo .plan.marketgoo_pro .header h4 {
     color: #ac18b4;
@@ -1819,7 +1839,7 @@ section#main-body {
         max-width: 100px;
     }
     .landing-page.marketgoo .faqs .faq {
-        padding: 0 20px;
+        padding: 0 20px 20px;
     }
 }
 @media (max-width: 767px) {
@@ -1838,9 +1858,6 @@ section#main-body {
     }
 }
 
-.landing-page.ox {
-    padding: 0 0 30px 0;
-}
 .landing-page.ox img {
     max-width: 100%;
 }
@@ -1978,6 +1995,9 @@ section#main-body {
     }
 }
 
+.landing-page.sitebuilder {
+    background-color: #fff;
+}
 .landing-page.sitebuilder .logo-container {
     padding: 60px;
     text-align: center;
@@ -2038,6 +2058,9 @@ section#main-body {
     background-color: transparent;
     text-align: left;
 }
+.landing-page.sitebuilder .feature-block {
+    font-size: 0.9em;
+}
 @media (min-width: 768px) {
     .landing-page.sitebuilder .feature-block {
         min-height: 260px;
@@ -2066,13 +2089,16 @@ section#main-body {
 }
 .landing-page.sitebuilder .nav-tabs a.active,
 .landing-page.sitebuilder .nav-tabs a.active:focus,
-.landing-page.sitebuilder .nav-tabs a.active:hover,
-.landing-page.sitebuilder .nav-tabs > li.active > a,
-.landing-page.sitebuilder .nav-tabs > li.active > a:focus,
-.landing-page.sitebuilder .nav-tabs > li.active > a:hover {
+.landing-page.sitebuilder .nav-tabs a.active:hover {
     border: 0;
     color: #ff3377;
     background: #ddd;
+}
+.landing-page.sitebuilder .carousel-indicators li {
+    background-color: #aaa;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
 }
 .landing-page.sitebuilder .tab-content {
     background-color: transparent;
@@ -2089,6 +2115,7 @@ section#main-body {
     color: #666;
 }
 .landing-page.sitebuilder .btn-primary {
+    padding: 2px 15px;
     background-color: #ff3377;
     border-color: #ff3377;
     color: #fff;
@@ -2098,7 +2125,7 @@ section#main-body {
 }
 .landing-page.sitebuilder .templates {
     padding: 60px 0;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #ddd;
 }
 .landing-page.sitebuilder .templates .previews {
     padding: 50px 0;
@@ -2180,6 +2207,7 @@ section#main-body {
     padding: 0;
     background-color: #fff;
     font-weight: bold;
+    font-size: 0.92em;
     border: 1px solid #eee;
     border-radius: 6px;
     overflow: auto;
@@ -2268,9 +2296,6 @@ section#main-body {
 .wp-toolkit {
     background-color: #fff;
 }
-.wp-toolkit .justify-content-center {
-    justify-content: center !important;
-}
 .wp-toolkit .hero-cta {
     padding: 30px 0;
     text-align: center;
@@ -2292,9 +2317,6 @@ section#main-body {
     max-height: 45px;
     vertical-align: middle;
     margin-bottom: -2px;
-}
-.wp-toolkit .hero-cta p {
-    padding-top: 1rem;
 }
 .wp-toolkit .btn-cta {
     margin-top: 25px;
@@ -2609,40 +2631,6 @@ section#main-body {
     }
 }
 
-.landing-page.xovinow {
-    background-color: #f1f1f1;
-}
-.landing-page.xovinow h1,
-.landing-page.xovinow .h1 {
-    font-size: 2.5em;
-}
-.landing-page.xovinow h2,
-.landing-page.xovinow .h2 {
-    font-size: 2em;
-}
-.landing-page.xovinow h3,
-.landing-page.xovinow .h3 {
-    font-size: 1.75em;
-}
-.landing-page.xovinow .text-left {
-    text-align: left !important;
-}
-.landing-page.xovinow .container:after,
-.landing-page.xovinow .container:before {
-    content: none;
-}
-.landing-page.xovinow .d-none {
-    display: none;
-}
-.landing-page.xovinow .mb-4,
-.landing-page.xovinow .my-4 {
-    margin-bottom: 1.5em !important;
-}
-.landing-page.xovinow .mt-4,
-.landing-page.xovinow .my-4 {
-    margin-top: 1.5em !important;
-}
-
 .landing-page.xovinow .content-block {
     margin: 20px 0;
     padding: 20px 0;
@@ -2661,7 +2649,7 @@ section#main-body {
 @media (min-width: 1200px) {
     .landing-page.xovinow .header-img {
         max-width: 60% !important;
-        margin-top: -100px;
+        margin-top: -60px;
     }
 }
 .landing-page.xovinow .header h1 {
@@ -2702,59 +2690,12 @@ section#main-body {
     color: #fff;
     font-size: 20px;
     text-align: center;
-    opacity: 100%;
-    background-image: none;
-    text-shadow: none;
-    position: initial;
 }
 .landing-page.xovinow .feature-carousel .carousel-control.right {
     left: auto;
     right: -70px;
 }
-.landing-page.xovinow .bg-white {
-    background-color: white;
-}
-@media (min-width: 576px) {
-    .landing-page.xovinow .mt-sm-3,
-    .landing-page.xovinow .my-sm-3 {
-        margin-top: 1em !important;
-    }
-    .landing-page.xovinow .mb-sm-5,
-    .landing-page.xovinow .my-sm-5 {
-        margin-bottom: 3em !important;
-    }
-    .landing-page.xovinow .mt-sm-5,
-    .landing-page.xovinow .my-sm-5 {
-        margin-top: 3em !important;
-    }
-}
 @media (min-width: 768px) {
-    .landing-page.xovinow .justify-content-md-center {
-        display: flex;
-        justify-content: center;
-    }
-    .landing-page.xovinow .d-md-none {
-        display: none !important;
-    }
-    .landing-page.xovinow .d-md-inline {
-        display: inline !important;
-    }
-    .landing-page.xovinow .d-md-block {
-        display: block !important;;
-    }
-    .landing-page.xovinow .mt-md-4,
-    .landing-page.xovinow .my-md-4 {
-        margin-top: 1.5em !important;
-    }
-    .landing-page.xovinow .mb-md-5,
-    .landing-page.xovinow .my-md-5 {
-        margin-bottom: 3em !important;
-    }
-    .landing-page.xovinow .mt-md-5,
-    .landing-page.xovinow .my-md-5 {
-        margin-top: 3em !important;
-    }
-
     .landing-page.xovinow .carousel-container {
         margin: 0 100px;
         max-width: 950px;
@@ -2773,27 +2714,9 @@ section#main-body {
         right: -70px;
     }
 }
-@media (min-width: 992px) {
-    .landing-page.xovinow .text-lg-left {
-        text-align: left !important;
-    }
-    .landing-page.xovinow .d-lg-inline {
-        display: inline !important;
-    }
-    .landing-page.xovinow .mt-lg-3,
-    .landing-page.xovinow .my-lg-3 {
-        margin-top: 1em !important;
-    }
-}
 @media (min-width: 1150px) {
     .landing-page.xovinow .carousel-container {
         margin: 0 auto;
-    }
-}
-@media (min-width: 1200px) {
-    .landing-page.xovinow .mb-xl-5,
-    .landing-page.xovinow .my-xl-5 {
-        margin-bottom: 3em !important;
     }
 }
 
@@ -2828,9 +2751,9 @@ section#main-body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.landing-page.xovinow .feature-tabs .nav-tabs > li.active > a,
-.landing-page.xovinow .feature-tabs .nav-tabs > li.active > a:focus,
-.landing-page.xovinow .feature-tabs .nav-tabs > li.active > a:hover {
+.landing-page.xovinow .feature-tabs .nav-tabs > li > a.active,
+.landing-page.xovinow .feature-tabs .nav-tabs > li > a.active:focus,
+.landing-page.xovinow .feature-tabs .nav-tabs > li > a.active:hover {
     background-color: #10069F;
     color: #fff;
     border: 0;
@@ -2914,19 +2837,16 @@ section#main-body {
     border-color: #10069F;
 }
 
-.landing-page.xovinow .faq .panel p {
-    font-size: 1em;
-}
-.landing-page.xovinow .faq .panel-group > .panel {
+.landing-page.xovinow .faq .accordion > .card {
     border: 0;
     border-radius: 5px;
 }
-.landing-page.xovinow .faq .panel-group > .panel > .panel-heading {
+.landing-page.xovinow .faq .accordion > .card > .card-header {
     background-color: #10069F;
     border: 0;
     border-radius: 5px;
 }
-.landing-page.xovinow .faq .panel-heading .btn {
+.landing-page.xovinow .faq .card-header .btn {
     color: #fff;
 }
 .landing-page.xovinow .faq img {
@@ -2935,9 +2855,11 @@ section#main-body {
 }
 
 .landing-page.nordvpn p {
+    font-size: 1.1rem;
     font-weight: lighter;
 }
 .landing-page.nordvpn h1 {
+    font-size: 2rem;
     font-weight: bold;
 }
 .landing-page.nordvpn h3 {
@@ -2962,7 +2884,7 @@ section#main-body {
 .landing-page.nordvpn .btn-get-monthly,
 .landing-page.nordvpn .btn-get-annually {
     font-weight: 500;
-    font-size: 2rem;
+    font-size: 1.4rem;
     padding: .8rem 4rem;
     background: #4580ff;
     color: white;
@@ -2986,6 +2908,7 @@ section#main-body {
     margin: 1.25rem 0;
 }
 .landing-page.nordvpn .hero h1 {
+    font-size: 2.125rem;
     font-weight: bold;
 }
 .landing-page.nordvpn .hero h2 {
@@ -3025,7 +2948,7 @@ section#main-body {
 .landing-page.nordvpn .feature.use h3 {
     margin-bottom: 1.4rem;
 }
-.landing-page.nordvpn .feature.icon .col-xs-3 {
+.landing-page.nordvpn .feature.icon .col-3 {
     padding: 0 3rem;
 }
 .landing-page.nordvpn .feature.device p,
@@ -3042,9 +2965,10 @@ section#main-body {
 .landing-page.nordvpn .feature.comparison td {
     padding: 1rem 0;
     font-weight: lighter;
+    font-size: 1.1rem;
 }
 .landing-page.nordvpn .feature.comparison .comparison-note {
-    font-size: 1rem;
+    font-size: 0.75rem;
     text-align: center;
 }
 .landing-page.nordvpn .feature.comparison .comparison-note a {
@@ -3068,7 +2992,7 @@ section#main-body {
 }
 .landing-page.nordvpn .feature.world .world-image,
 .landing-page.nordvpn .feature.world .world-tagline,
-.landing-page.nordvpn .feature.world .world-data .col-xs-6 {
+.landing-page.nordvpn .feature.world .world-data .col-6 {
     margin-bottom: 2rem;
 }
 .landing-page.nordvpn .feature.world .world-data p:first-of-type {
@@ -3089,9 +3013,6 @@ section#main-body {
 .landing-page.nordvpn .feature.logo img {
     margin: 0.75rem 0;
 }
-.landing-page.nordvpn .feature.logo .row div {
-    height: 55px;
-}
 .landing-page.nordvpn .feature.security .row.h-100 {
     margin: 4rem 0 8rem;
 }
@@ -3105,14 +3026,14 @@ section#main-body {
     padding-top: 1.6rem;
     padding-bottom: 0;
 }
-.landing-page.nordvpn .feature.use .col-xs-4 p {
+.landing-page.nordvpn .feature.use .col-4 p {
     text-align: left;
 }
-.landing-page.nordvpn .feature.threat .col-xs-4,
-.landing-page.nordvpn .feature.use .col-xs-4{
+.landing-page.nordvpn .feature.threat .col-4,
+.landing-page.nordvpn .feature.use .col-4{
     padding: 1.6rem 2rem;
 }
-.landing-page.nordvpn .feature.threat .col-xs-4 {
+.landing-page.nordvpn .feature.threat .col-4 {
     padding: 0 2rem;
 }
 .landing-page.nordvpn .feature.pricing .billing-cycle {
@@ -3128,107 +3049,97 @@ section#main-body {
 .landing-page.nordvpn .feature.faq h1 {
     margin-bottom: 2.5rem;
 }
-.landing-page.nordvpn .feature.faq h1 {
-    margin: 5rem 0;
-}
-.landing-page.nordvpn .feature.faq .panel {
+.landing-page.nordvpn .feature.faq .card {
     margin-bottom: 1.5rem;
     border:0;
     border-radius:0;
 }
-.landing-page.nordvpn .feature.faq .panel-heading {
+.landing-page.nordvpn .feature.faq .card-header {
     padding: 0;
     background:#1b325a;
 }
-.landing-page.nordvpn .feature.faq .panel-heading .btn {
+.landing-page.nordvpn .feature.faq .card-header .btn {
     padding: 0.5rem 2rem;
     color:white;
     display: flex;
     justify-content: space-between;
     text-decoration: none;
 }
-.landing-page.nordvpn .feature.faq .panel-heading .btn i {
+.landing-page.nordvpn .feature.faq .card-header .btn i {
     align-self: center;
-}
-
-.landing-page.nordvpn .d-none {
-    display: none;
-}
-.landing-page.nordvpn .d-block {
-    display: block;
 }
 .landing-page.nordvpn .comparison {
     text-align: center;
 }
-.landing-page.nordvpn .comparison .col-xs-2:first-of-type {
+.landing-page.nordvpn .comparison .col-2:first-of-type {
     text-align: left;
 }
-.landing-page.nordvpn .comparison .col-xs-2 {
+.landing-page.nordvpn .comparison .col-2 {
     min-height: 4rem;
     padding: 0 1rem;
     border: 1px solid #e7e7e8;
     border-bottom: none;
 }
-.landing-page.nordvpn .comparison .col-xs-12:first-of-type .col-xs-2 {
+.landing-page.nordvpn .comparison .col-12:first-of-type .col-2 {
     min-height: 1.5rem;
 }
-.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(7) .col-xs-2:not(:nth-of-type(2)),
-.landing-page.nordvpn .comparison .col-xs-12:last-of-type .col-xs-2:nth-of-type(2){
+.landing-page.nordvpn .comparison .col-12:nth-of-type(7) .col-2:not(:nth-of-type(2)),
+.landing-page.nordvpn .comparison .col-12:last-of-type .col-2:nth-of-type(2){
     border-bottom: 1px solid #e7e7e8;
 }
-.landing-page.nordvpn .comparison .col-xs-12:first-of-type .col-xs-2:not(:nth-of-type(2)),
-.landing-page.nordvpn .comparison .col-xs-12:last-of-type .col-xs-2:not(:nth-of-type(2)) {
+.landing-page.nordvpn .comparison .col-12:first-of-type .col-2:not(:nth-of-type(2)),
+.landing-page.nordvpn .comparison .col-12:last-of-type .col-2:not(:nth-of-type(2)) {
     border: none;
 }
-.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(2) .col-xs-2:nth-of-type(2),
-.landing-page.nordvpn .comparison .col-xs-12:last-of-type .col-xs-2:nth-of-type(2) {
+.landing-page.nordvpn .comparison .col-12:nth-of-type(2) .col-2:nth-of-type(2),
+.landing-page.nordvpn .comparison .col-12:last-of-type .col-2:nth-of-type(2) {
     border-top: none;
 }
-.landing-page.nordvpn .comparison .col-xs-2:first-of-type {
+.landing-page.nordvpn .comparison .col-2:first-of-type {
     border-right: none;
 }
-.landing-page.nordvpn .comparison .col-xs-2:not(:first-of-type):not(:nth-of-type(2)) {
+.landing-page.nordvpn .comparison .col-2:not(:first-of-type):not(:nth-of-type(2)) {
     border-left: none;
 }
-.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(2) .col-xs-2:first-of-type {
+.landing-page.nordvpn .comparison .col-12:nth-of-type(2) .col-2:first-of-type {
     border-top-left-radius: 4px;
 }
-.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(7) .col-xs-2:first-of-type {
+.landing-page.nordvpn .comparison .col-12:nth-of-type(7) .col-2:first-of-type {
     border-bottom-left-radius: 4px;
 }
-.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(2) .col-xs-2:last-of-type {
+.landing-page.nordvpn .comparison .col-12:nth-of-type(2) .col-2:last-of-type {
     border-top-right-radius: 4px;
 }
-.landing-page.nordvpn .comparison .col-xs-12:nth-of-type(7) .col-xs-2:last-of-type {
+.landing-page.nordvpn .comparison .col-12:nth-of-type(7) .col-2:last-of-type {
     border-bottom-right-radius: 4px;
 }
-.landing-page.nordvpn .comparison .col-xs-12:first-of-type .col-xs-2:nth-of-type(2) {
+.landing-page.nordvpn .comparison .col-12:first-of-type .col-2:nth-of-type(2) {
     border-radius: 4px 4px 0 0;
 }
-.landing-page.nordvpn .comparison .col-xs-12:last-of-type .col-xs-2:nth-of-type(2) {
+.landing-page.nordvpn .comparison .col-12:last-of-type .col-2:nth-of-type(2) {
     border-radius: 0 0 4px 4px;
 }
-.landing-page.nordvpn .comparison .col-xs-2 {
+.landing-page.nordvpn .comparison .col-2 {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 }
-.landing-page.nordvpn .comparison .col-xs-12 .col-xs-2:nth-of-type(2) {
+.landing-page.nordvpn .comparison .col-12 .col-2:nth-of-type(2) {
     border-left-color: #bed4fe;
     border-right-color: #bed4fe;
     background: #ecf3ff;
 }
-.landing-page.nordvpn .comparison .col-xs-12:first-of-type .col-xs-2:nth-of-type(2) {
+.landing-page.nordvpn .comparison .col-12:first-of-type .col-2:nth-of-type(2) {
     border-top-color: #bed4fe;
 }
-.landing-page.nordvpn .comparison .col-xs-12:last-of-type .col-xs-2:nth-of-type(2) {
+.landing-page.nordvpn .comparison .col-12:last-of-type .col-2:nth-of-type(2) {
     border-bottom-color: #bed4fe;
 }
-.landing-page.nordvpn .comparison .col-xs-2 span {
+.landing-page.nordvpn .comparison .col-2 span {
     width: 100%;
 }
 .landing-page.nordvpn .comparison .btn-get-deal {
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding: 0.5rem 1.5rem;
 }
 .landing-page.nordvpn .comparison-container {
@@ -3236,7 +3147,7 @@ section#main-body {
     margin-bottom: 2.5rem;
 }
 .landing-page.nordvpn .comparison-container > .row {
-    min-width: 1170px;
+    min-width: 1110px;
 }
 @media (max-width: 575px) {
     .landing-page.nordvpn .feature.pricing h1 {
@@ -3247,6 +3158,9 @@ section#main-body {
     }
     .landing-page.nordvpn .hero .guarantee {
         font-size: 1.4rem;
+    }
+    .landing-page.nordvpn p {
+        font-size: 1rem;
     }
     .landing-page.nordvpn .feature.world .world-data p:nth-of-type(2) {
         font-size: 3.75rem;
@@ -3279,7 +3193,7 @@ section#main-body {
         content: " ";
     }
 }
-@media (min-width : 768px) {
+@media (min-width: 768px) {
     .landing-page.nordvpn .br-md-reg {
         content: initial;
     }
@@ -3288,12 +3202,6 @@ section#main-body {
     }
     .landing-page.nordvpn .br-md-space:after {
         content: " ";
-    }
-    .landing-page.nordvpn .d-sm-block {
-        display: block;
-    }
-    .landing-page.nordvpn .d-sm-none {
-        display: none;
     }
 }
 @media (min-width: 992px) {
@@ -3310,19 +3218,10 @@ section#main-body {
     .landing-page.nordvpn .br-lg-space:after {
         content: " ";
     }
-    .landing-page.nordvpn .d-md-block {
-        display: block;
-    }
-    .landing-page.nordvpn .d-md-none {
-        display: none;
-    }
 }
-@media (min-width : 1200px) {
+@media (min-width: 1200px) {
     .landing-page.nordvpn .feature.world {
         text-align: left;
-    }
-    .landing-page.nordvpn .feature.world .container > .row {
-        min-height: 470px;
     }
     .landing-page.nordvpn .feature.world .world-desc {
         position: initial;
@@ -3342,17 +3241,11 @@ section#main-body {
     .landing-page.nordvpn .br-xl-space:after {
         content: " ";
     }
-    .landing-page.nordvpn .d-lg-block {
-        display: block;
-    }
-    .landing-page.nordvpn .d-lg-none {
-        display: none;
-    }
 }
 
 .landing-page.threesixtymonitoring {
     font-family: "Open Sans", sans-serif;
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #42535e;
 }
 .landing-page.threesixtymonitoring h1,
@@ -3363,48 +3256,48 @@ section#main-body {
     color: #222;
 }
 .landing-page.threesixtymonitoring h1 {
-    font-size: 40px;
-    margin-bottom: 32px;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
 }
 .landing-page.threesixtymonitoring h2 {
-    font-size: 34px;
-    margin-bottom: 32px;
+    font-size: 2.125rem;
+    margin-bottom: 2rem;
 }
 .landing-page.threesixtymonitoring h3 {
-    font-size: 28px;
+    font-size: 1.75rem;
 }
 .landing-page.threesixtymonitoring .p-tagline {
-    font-size: 16px;
-    margin-bottom: 32px;
+    font-size: 1rem;
+    margin-bottom: 2rem;
 }
 .landing-page.threesixtymonitoring .section-header .tab-server .p-tagline {
-    font-size: 34px;
+    font-size: 2.125rem;
     font-weight: 600;
 }
 .landing-page.threesixtymonitoring section {
-    padding: 80px 0;
+    padding: 5rem 0;
     text-align: center;
 }
 .landing-page.threesixtymonitoring .section-discover,
 .landing-page.threesixtymonitoring .section-features {
-    padding: 120px 0;
+    padding: 7.5rem 0;
 }
 .landing-page.threesixtymonitoring .section-features .tab-content {
-    padding-bottom: 16px;
+    padding-bottom: 1rem;
 }
 .landing-page.threesixtymonitoring .section-notifications,
 .landing-page.threesixtymonitoring .section-monitoring,
 .landing-page.threesixtymonitoring .section-features .row-features {
-    padding: 48px 0;
+    padding: 3rem 0;
 }
 .landing-page.threesixtymonitoring .nav-secondary {
-    padding-top: 88px;
+    padding-top: 5.5rem;
 }
 .landing-page.threesixtymonitoring .section-discover .row-features {
-    margin: 80px 0;
+    margin: 5rem 0;
 }
 .landing-page.threesixtymonitoring .section-header .tab-server h2 {
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
 }
 .landing-page.threesixtymonitoring .modal-results .modal-body,
 .landing-page.threesixtymonitoring .section-header,
@@ -3417,20 +3310,20 @@ section#main-body {
 .landing-page.threesixtymonitoring .btn-primary {
     background-color: #8952cb !important;
     border-color: #8952cb !important;
-    border-radius: 40px;
+    border-radius: 2.5rem;
     color: #fff !important;
     font-weight: 600;
-    padding: 18px;
+    padding: 1.125rem;
     text-transform: uppercase;
     width: 100%;
-    max-width: 400px;
+    max-width: 25rem;
 }
 .landing-page.threesixtymonitoring .btn:disabled {
     opacity: initial;
 }
 .landing-page.threesixtymonitoring .btn-search {
     background-color: #000;
-    border-radius: 4px;
+    border-radius: 0.25rem;
     color: #fff;
     width: 100%;
 }
@@ -3447,7 +3340,7 @@ section#main-body {
 .landing-page.threesixtymonitoring .img-logo,
 .landing-page.threesixtymonitoring .img-full,
 .landing-page.threesixtymonitoring .tab-website h1 {
-    margin-bottom: 32px;
+    margin-bottom: 2rem;
 }
 .landing-page.threesixtymonitoring .modal-results .modal-header {
     background: linear-gradient(to right, #902a6d, #ce3b56);
@@ -3457,38 +3350,38 @@ section#main-body {
     max-width: 970px;
 }
 .landing-page.threesixtymonitoring .modal-results .modal-body > div {
-    margin: 0 16px;
+    margin: 0 1rem;
 }
 .landing-page.threesixtymonitoring .modal-results .modal-body p {
     text-transform: uppercase;
-    font-size: 28px;
+    font-size: 1.75rem;
     font-weight: 600;
-    margin: 24px 0;
+    margin: 1.5rem 0;
 }
 .landing-page.threesixtymonitoring .modal-results .modal-body .btn {
-    margin: 24px 0;
+    margin: 1.5rem 0;
 }
 .landing-page.threesixtymonitoring .modal-results .div-results {
-    margin-bottom: 64px;
+    margin-bottom: 4rem;
 }
 .landing-page.threesixtymonitoring .modal-results .div-results > div:first-child {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 4px;
+    margin-bottom: 0.25rem;
 }
 .landing-page.threesixtymonitoring .modal-results .div-results > div:nth-child(2) {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 600;
-    margin-bottom: 12px;
+    margin-bottom: 0.75rem;
 }
 .landing-page.threesixtymonitoring .modal-results .div-results [data-metric="host_status"] {
     text-transform: uppercase;
 }
 .landing-page.threesixtymonitoring .modal-results .row-legend i {
-    margin: 0 16px;
+    margin: 0 1rem;
 }
 .landing-page.threesixtymonitoring .modal-results .row-legend {
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 600;
 }
 .landing-page.threesixtymonitoring .modal-results .result-positive {
@@ -3503,16 +3396,7 @@ section#main-body {
 .landing-page.threesixtymonitoring .modal-results .div-modal-border {
     width: 100%;
     border-bottom: solid 1px #b8d2ff;
-    margin: 32px 0;
-}
-.landing-page.threesixtymonitoring .nav-tabs > li,
-.landing-page.threesixtymonitoring .nav-tabs > li > a {
-    margin: 0;
-}
-.landing-page.threesixtymonitoring .nav-tabs > li.active > a,
-.landing-page.threesixtymonitoring .nav-tabs > li.active > a:focus,
-.landing-page.threesixtymonitoring .nav-tabs > li.active > a:hover {
-    border: 0;
+    margin: 2rem 0;
 }
 .landing-page.threesixtymonitoring .nav-item {
     width: 50%;
@@ -3527,37 +3411,30 @@ section#main-body {
 }
 .landing-page.threesixtymonitoring .nav-primary .nav-link {
     background-color: #f1f7ff;
-    border-radius: 0 0 4px 4px;
-    padding: 30px;
-    font-size: 20px;
+    border-radius: 0 0 0.25rem 0.25rem;
+    padding: 1.875rem;
+    font-size: 1.25rem;
 }
 .landing-page.threesixtymonitoring .modal-results .modal-header,
-.landing-page.threesixtymonitoring .nav-primary .nav-item.active > .nav-link {
+.landing-page.threesixtymonitoring .nav-primary .nav-link.active {
     background: linear-gradient(to right, #902a6d, #ce3b56);
     color: #fff;
 }
 .landing-page.threesixtymonitoring .nav-secondary .nav-link {
     background-color: #d9e8ff;
-    border-radius: 4px 4px 0 0;
-    padding: 30px;
+    border-radius: 0.25rem 0.25rem 0 0;
+    padding: 1.875rem;
 }
-.landing-page.threesixtymonitoring .nav-secondary .nav-item > .nav-link,
-.landing-page.threesixtymonitoring .nav-secondary .nav-item > .nav-link:focus ,
-.landing-page.threesixtymonitoring .nav-secondary .nav-item > .nav-link:hover {
-    border-radius: 0;
-    border-top: solid #d9e8ff 3px;
-}
-.landing-page.threesixtymonitoring .nav-secondary .nav-item.active > .nav-link,
-.landing-page.threesixtymonitoring .nav-secondary .nav-item.active > .nav-link:focus ,
-.landing-page.threesixtymonitoring .nav-secondary .nav-item.active > .nav-link:hover {
+.landing-page.threesixtymonitoring .nav-secondary .nav-link.active {
     background-color: #fff;
-    border-color: #9b65db;
+    border-radius: 0;
+    border-top: solid #9b65db 3px;
 }
 .landing-page.threesixtymonitoring .tab-content {
     padding: initial;
 }
 .landing-page.threesixtymonitoring .div-heading-text {
-    margin-top: -112px;
+    margin-top: -7rem;
 }
 .landing-page.threesixtymonitoring .section-features {
     background: linear-gradient(#dce9ff, #ffffff);
@@ -3567,53 +3444,53 @@ section#main-body {
 }
 .landing-page.threesixtymonitoring .row-features span {
     display: block;
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 600;
     text-transform: uppercase;
-    margin-bottom: 32px;
+    margin-bottom: 2rem;
 }
 .landing-page.threesixtymonitoring .row-features img {
-    margin: 32px 0;
+    margin: 2rem 0;
     width: 7.5rem;
 }
 .landing-page.threesixtymonitoring .row-features p {
-    margin-bottom: 32px;
+    margin-bottom: 2rem;
 }
 .landing-page.threesixtymonitoring .row-notifications {
-    font-size: 12px;
+    font-size: 0.75rem;
 }
 .landing-page.threesixtymonitoring .row-notifications > div {
-    margin: 16px 0;
+    margin: 1rem 0;
 }
 .landing-page.threesixtymonitoring .col-brand-img {
     height: 92px;
 }
 .landing-page.threesixtymonitoring .section-monitoring {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 1.875rem;
+    padding-bottom: 1.875rem;
 }
 .landing-page.threesixtymonitoring .tab-server .section-monitoring {
-    margin-bottom: 80px;
+    margin-bottom: 5rem;
 }
 .landing-page.threesixtymonitoring .section-monitoring .container > .row {
     align-items: center;
 }
 .landing-page.threesixtymonitoring .row-revenue {
     color: #fff;
-    font-size: 20px;
-    margin: 36px 0;
+    font-size: 1.25rem;
+    margin: 2.25rem 0;
 }
 .landing-page.threesixtymonitoring .row-revenue .row div:first-child,
 .landing-page.threesixtymonitoring .row-revenue .row div:nth-child(4) {
-    font-size: 40px;
+    font-size: 2.5rem;
 }
 .landing-page.threesixtymonitoring .row-revenue > div {
     padding: 15px;
 }
 .landing-page.threesixtymonitoring .row-revenue > div .row {
-    border-radius: 8px;
+    border-radius: 0.5rem;
     margin: auto;
-    padding: 30px 0;
+    padding: 1.875rem 0;
 }
 .landing-page.threesixtymonitoring .row-revenue > div:first-child .row {
     background-color: #ac86da;
@@ -3628,55 +3505,55 @@ section#main-body {
     background-color: #8952cb;
 }
 .landing-page.threesixtymonitoring .div-pricing-container {
-    margin-bottom: 48px;
+    margin-bottom: 3rem;
 }
 .landing-page.threesixtymonitoring .div-pricing {
     min-width: 930px;
 }
 .landing-page.threesixtymonitoring .div-pricing .col-4 > div,
 .landing-page.threesixtymonitoring .div-pricing .row:not(.row-order) .col-2 > div {
-    padding: 8px;
+    padding: 0.5rem;
 }
 .landing-page.threesixtymonitoring .div-pricing .row-order {
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
 }
 .landing-page.threesixtymonitoring .row-amount {
-    margin-top: 32px;
-    margin-bottom: 16px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 .div-pricing > div:nth-child(2) > div {
     border-top: solid #f8fafc 3px;
 }
 .landing-page.threesixtymonitoring .div-heading-border {
     border-bottom: solid #9b65db 3px;
-    margin: 8px;
+    margin: 0.5rem;
 }
 .landing-page.threesixtymonitoring .div-pricing-container ul {
     list-style: none;
     padding: 0;
 }
 .landing-page.threesixtymonitoring .div-pricing-container li {
-    height: 40px;
-    line-height: 40px;
+    height: 2.5rem;
+    line-height: 2.5rem;
 }
 .landing-page.threesixtymonitoring .div-pricing-container .div-feature-labels li,
 .landing-page.threesixtymonitoring .div-pricing-container .div-feature-label-starting {
-    padding-left: 8px;
+    padding-left: 0.5rem;
 }
 .landing-page.threesixtymonitoring .header {
-    height: 100px;
+    height: 6.25rem;
 }
 .landing-page.threesixtymonitoring .div-feature-price {
-    margin: 0 16px;
+    margin: 0 1rem;
 }
 .landing-page.threesixtymonitoring .div-feature-label-starting,
 .landing-page.threesixtymonitoring .div-feature-price {
-    margin-top: 40px;
-    line-height: 40px;
+    margin-top: 2.5rem;
+    line-height: 2.5rem;
 }
 .landing-page.threesixtymonitoring .div-feature-order {
-    margin: 16px;
-    margin-bottom: 48px;
+    margin: 1rem;
+    margin-bottom: 3rem;
 }
 .landing-page.threesixtymonitoring .div-feature-labels {
     text-align: left;
@@ -3722,13 +3599,13 @@ section#main-body {
     font-weight: 600;
     text-transform: uppercase;
     text-align: left;
-    font-size: 14px;
+    font-size: 0.9rem;
 }
-.landing-page.threesixtymonitoring .section-faq .panel {
+.landing-page.threesixtymonitoring .section-faq .card {
     border: 0;
     margin: 0;
 }
-.landing-page.threesixtymonitoring .section-faq .panel-heading {
+.landing-page.threesixtymonitoring .section-faq .card-header {
     background-color: #fff;
     border-bottom: solid #f6f9ff 3px;
     border-radius: 0;
@@ -3736,7 +3613,7 @@ section#main-body {
     justify-content: space-between;
     align-items: center;
 }
-.landing-page.threesixtymonitoring .section-faq .panel-body {
+.landing-page.threesixtymonitoring .section-faq .card-body {
     font-weight: 600;
     text-align: left;
 }
@@ -3745,24 +3622,18 @@ section#main-body {
     color: #2ea2e2;
     cursor: pointer;
 }
-.landing-page.threesixtymonitoring .d-none {
-    display: none;
-}
-.landing-page.threesixtymonitoring .d-block {
-    display: block;
-}
 @media (min-width: 768px) {
     .landing-page.threesixtymonitoring .modal-results .row-legend i {
-        margin: 0 8px;
+        margin: 0 0.5rem;
     }
     .landing-page.threesixtymonitoring .modal-results .div-results > div:nth-child(2) {
-        font-size: 28px;
+        font-size: 1.75rem;
     }
     .landing-page.threesixtymonitoring .div-feature-labels,
     .landing-page.threesixtymonitoring .div-plan-name,
     .landing-page.threesixtymonitoring .div-feature-price {
         font-weight: 600;
-        font-size: 16px;
+        font-size: 1rem;
     }
     .landing-page.threesixtymonitoring .div-feature-labels.feature-count-2 {
         width: 50%;
@@ -3804,7 +3675,7 @@ section#main-body {
     .landing-page.threesixtymonitoring .div-plan-name,
     .landing-page.threesixtymonitoring .div-feature-price {
         font-weight: 600;
-        font-size: 18px;
+        font-size: 1.125rem;
     }
     .landing-page.threesixtymonitoring .div-feature-labels.feature-count-4 {
         width: 40%;
@@ -3815,16 +3686,10 @@ section#main-body {
     .landing-page.threesixtymonitoring .div-pricing-container > .div-feature-labels.feature-count-4:not(:first-child) {
         display: none;
     }
-    .landing-page.threesixtymonitoring .d-lg-none {
-        display: none;
-    }
-    .landing-page.threesixtymonitoring .d-lg-block {
-        display: block
-    }
 }
 
 .landing-page.ssl .secure-wildcard p {
-   margin-top: 28px;
+    margin-top: 28px;
     margin-bottom: 0;
 }
 
@@ -3862,4 +3727,8 @@ section#main-body {
     font-size: 28px;
     font-weight: bolder;
     font-style: italic;
+}
+
+#nav-ssl {
+    white-space: nowrap;
 }

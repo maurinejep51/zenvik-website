@@ -2,17 +2,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title">{$metric.displayName} {lang key='metrics.pricing'}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">{$metric.displayName} {$LANG.metrics.pricing}</h4>
             </div>
             <div class="modal-body">
                 <p>{$metric.pricingSchema.info}<br/>
                     {$metric.pricingSchema.detail}
                 </p>
-                <table class="table table-condensed table-striped">
+                <table class="table table-sm table-striped">
                     <tr>
-                        <th class="text-center">{$LANG.metrics.startingQuantity}</th>
-                        <th class="text-center">{$LANG.metrics.pricePer} {if $metric.unitName}{$metric.unitName}{else}{$LANG.metrics.unit}{/if}</th>
+                        <th class="text-center">{lang key='metrics.startingQuantity'}</th>
+                        <th class="text-center">{lang key='metrics.pricePer'} {if $metric.unitName}{$metric.unitName}{else}{lang key='metrics.unit'}{/if}</th>
                     </tr>
                     {foreach $metric.pricing as $pricing}
                         <tr>
@@ -22,11 +22,11 @@
                     {/foreach}
                 </table>
                 {if $metric.includedQuantity}
-                    <p>{$metric.includedQuantity} {$metric.includedQuantityUnits} {$LANG.metrics.includedInBase}</p>
+                    <p>{$metric.includedQuantity} {$metric.includedQuantityUnits} {lang key='metrics.includedInBase'}</p>
                 {/if}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">{$LANG.close}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{lang key='close'}</button>
             </div>
         </div>
     </div>

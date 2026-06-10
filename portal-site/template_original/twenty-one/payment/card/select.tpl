@@ -46,7 +46,7 @@
             <div class="paymethod-info" data-paymethod-id="{$cardInfo.paymethodid}">
                 <label for="existingCard{$cardInfo.paymethodid}">
                     {$expiryDate}
-                    {if $payMethodExpired}<br><small>{$LANG.clientareaexpired}</small>{/if}
+                    {if $payMethodExpired}<br><small>{lang key='clientareaexpired'}</small>{/if}
                 </label>
             </div>
         {/foreach}
@@ -54,6 +54,6 @@
 {/if}
 <div class="paymethod-info">
     <label>
-        <input id="newCCInfo" type="radio" class="icheck-button" name="ccinfo" value="new" {if $payMethodId eq "new" || !$cardOnFile} checked{/if} /> {$LANG.creditcardenternewcard}
+        <input id="newCCInfo" type="radio" class="icheck-button" name="ccinfo" value="new" {if $payMethodId eq "new" || !$cardOnFile} checked{/if} /> {lang key='creditcardenternewcard'}
     </label>
 </div>

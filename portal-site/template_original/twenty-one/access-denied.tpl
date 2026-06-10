@@ -1,29 +1,27 @@
-<div class="error-container">
-    <h1>{$LANG.oops}!</h1>
-    <p>{$LANG.subaccountpermissiondenied}</p>
-    {if !empty($allowedpermissions)}
-        <p>{$LANG.subaccountallowedperms}</p>
-        <div class="row">
-            <div class="col-sm-6 col-sm-offset-3">
-                <div class="well text-left">
-                    <ul>
-                        {foreach $allowedpermissions as $permission}
-                            <li>{$permission}</li>
-                        {/foreach}
-                    </ul>
+<div class="text-center">
+    <div class="card py-3">
+        <div class="card-body">
+            <h1>{lang key='oops'}!</h1>
+            <div class="pb-2">{lang key='subaccountpermissiondenied'}</div>
+            {if !empty($allowedpermissions)}
+                <div>{lang key='subaccountallowedperms'}</div>
+                <div class="list-group list-group-flush">
+                    {foreach $allowedpermissions as $permission}
+                        <div class="list-group-item">{$permission}</div>
+                    {/foreach}
                 </div>
-            </div>
+            {/if}
+            <div>{lang key='subaccountcontactmaster'}</div>
         </div>
-    {/if}
-    <p>{$LANG.subaccountcontactmaster}</p>
-    <div class="buttons">
-        <a href="javascript:history.go(-1)" class="btn btn-primary btn-lg">
-            <i class="fas fa-arrow-circle-left"></i>
-            {$LANG.goback}
-        </a>
-        <a href="index.php" class="btn btn-default btn-lg">
-            <i class="fas fa-home"></i>
-            {$LANG.returnhome}
-        </a>
+        <div class="buttons pt-2 pb-4">
+            <a href="javascript:history.go(-1)" class="btn btn-primary">
+                <i class="fas fa-arrow-circle-left"></i>
+                {lang key='goback'}
+            </a>
+            <a href="index.php" class="btn btn-default">
+                <i class="fas fa-home"></i>
+                {lang key='returnhome'}
+            </a>
+        </div>
     </div>
 </div>

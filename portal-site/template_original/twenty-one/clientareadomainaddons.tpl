@@ -1,68 +1,93 @@
-<form method="post" action="{$smarty.server.PHP_SELF}?action=domainaddons" class="form-horizontal">
-    <input type="hidden" name="{$action}" value="{$addon}">
-    <input type="hidden" name="id" value="{$domainid}">
-    <input type="hidden" name="confirm" value="1">
-    <input type="hidden" name="token" value="{$token}">
+<div class="card">
+    <div class="card-body">
 
-    {if $action eq "buy"}
-        <input type="hidden" name="buy" value="{$addon}">
-        {if $addon eq "dnsmanagement"}
-            {include file="$template/includes/pageheader.tpl" title=$LANG.domainaddonsdnsmanagement}
-            {include file="$template/includes/alert.tpl" type="info" msg="Domain: <strong>{$domain}</strong>" textcenter=true}
+        <form method="post" action="{$smarty.server.PHP_SELF}?action=domainaddons">
+            <input type="hidden" name="{$action}" value="{$addon}">
+            <input type="hidden" name="id" value="{$domainid}">
+            <input type="hidden" name="confirm" value="1">
+            <input type="hidden" name="token" value="{$token}">
 
-            <p>{$LANG.domainaddonsdnsmanagementinfo}</p>
+            {if $action eq "buy"}
+                <input type="hidden" name="buy" value="{$addon}">
 
-            <p align="center">
-                <input type="submit" name="enable" value="{$LANG.domainaddonsbuynow} {$addonspricing.dnsmanagement}{$LANG.domainaddonsperyear}" class="btn btn-success btn-lg" />
-            </p>
-        {elseif $addon eq "emailfwd"}
+                {if $addon eq "dnsmanagement"}
 
-            {include file="$template/includes/pageheader.tpl" title=$LANG.domainemailforwarding}
-            {include file="$template/includes/alert.tpl" type="info" msg="Domain: <strong>{$domain}</strong>" textcenter=true}
+                    <h3 class="card-title">{lang key='domainaddonsdnsmanagement'}</h3>
 
-            <p>{$LANG.domainaddonsemailforwardinginfo}</p>
+                    {include file="$template/includes/alert.tpl" type="info" msg="Domain: <strong>{$domain}</strong>" textcenter=true}
 
-            <p align="center">
-                <input type="submit" name="enable" value="{$LANG.domainaddonsbuynow} {$addonspricing.emailforwarding}{$LANG.domainaddonsperyear}" class="btn btn-success btn-lg" />
-            </p>
-        {elseif $addon eq "idprotect"}
+                    <p>{lang key='domainaddonsdnsmanagementinfo'}</p>
 
-            {include file="$template/includes/pageheader.tpl" title=$LANG.domainidprotection}
-            {include file="$template/includes/alert.tpl" type="info" msg="Domain: <strong>{$domain}</strong>" textcenter=true}
+                    <p class="text-center">
+                        <button type="submit" name="enable" class="btn btn-success btn-lg">
+                            {lang key='domainaddonsbuynow'} {$addonspricing.dnsmanagement}{lang key='domainaddonsperyear'}
+                        </button>
+                    </p>
 
-            <p>{$LANG.domainaddonsidprotectioninfo}</p>
+                {elseif $addon eq "emailfwd"}
 
-            <p align="center">
-                <input type="submit" name="enable" value="{$LANG.domainaddonsbuynow} {$addonspricing.idprotection}{$LANG.domainaddonsperyear}" class="btn btn-success btn-lg" />
-            </p>
-        {/if}
-    {elseif $action eq "disable"}
-        <input type="hidden" name="disable" value="{$addon}">
-        {if $addon eq "dnsmanagement"}
-            {include file="$template/includes/pageheader.tpl" title=$LANG.domainaddonsdnsmanagement}
-        {elseif $addon eq "emailfwd"}
-            {include file="$template/includes/pageheader.tpl" title=$LANG.domainemailforwarding}
-        {elseif $addon eq "idprotect"}
-            {include file="$template/includes/pageheader.tpl" title=$LANG.domainidprotection}
-        {/if}
+                    <h3 class="card-title">{lang key='domainemailforwarding'}</h3>
 
-        {include file="$template/includes/alert.tpl" type="info" msg="Domain: <strong>{$domain}</strong>" textcenter=true}
+                    {include file="$template/includes/alert.tpl" type="info" msg="Domain: <strong>{$domain}</strong>" textcenter=true}
 
-        {if $success}
-            {include file="$template/includes/alert.tpl" type="success" msg=$LANG.domainaddonscancelsuccess textcenter=true}
-        {elseif $error}
-            {include file="$template/includes/alert.tpl" type="error" msg=$LANG.domainaddonscancelfailed textcenter=true}
-        {else}
-            <p class="text-center">
-                {$LANG.domainaddonscancelareyousure}
-            </p>
+                    <p>{lang key='domainaddonsemailforwardinginfo'}</p>
 
-            <p class="text-center">
-                <input type="submit" name="enable" value="{$LANG.domainaddonsconfirm}" class="btn btn-danger btn-lg" />
-            </p>
-        {/if}
-    {/if}
+                    <p class="text-center">
+                        <button type="submit" name="enable" class="btn btn-success btn-lg">
+                            {lang key='domainaddonsbuynow'} {$addonspricing.emailforwarding}{lang key='domainaddonsperyear'}
+                        </button>
+                    </p>
 
-    <p><a href="clientarea.php?action=domaindetails&id={$domainid}" class="btn btn-default">{$LANG.clientareabacklink}</a></p>
+                {elseif $addon eq "idprotect"}
 
-</form>
+                    <h3 class="card-title">{lang key='domainidprotection'}</h3>
+
+                    {include file="$template/includes/alert.tpl" type="info" msg="Domain: <strong>{$domain}</strong>" textcenter=true}
+
+                    <p>{lang key='domainaddonsidprotectioninfo'}</p>
+
+                    <p class="text-center">
+                        <button type="submit" name="enable" class="btn btn-success btn-lg">
+                            {lang key='domainaddonsbuynow'} {$addonspricing.idprotection}{lang key='domainaddonsperyear'}
+                        </button>
+                    </p>
+                {/if}
+            {elseif $action eq "disable"}
+                <input type="hidden" name="disable" value="{$addon}">
+                <h3 class="card-title">
+                    {if $addon eq "dnsmanagement"}
+                        {lang key='domainaddonsdnsmanagement'}
+                    {elseif $addon eq "emailfwd"}
+                        {lang key='domainemailforwarding'}
+                    {elseif $addon eq "idprotect"}
+                        {lang key='domainidprotection'}
+                    {/if}
+                </h3>
+
+                {include file="$template/includes/alert.tpl" type="info" msg="Domain: <strong>{$domain}</strong>" textcenter=true}
+
+                {if $success}
+                    {include file="$template/includes/alert.tpl" type="success" msg="{lang key='domainaddonscancelsuccess'}" textcenter=true}
+                {elseif $error}
+                    {include file="$template/includes/alert.tpl" type="error" msg="{lang key='domainaddonscancelfailed'}" textcenter=true}
+                {else}
+                    <p class="text-center">
+                        {lang key='domainaddonscancelareyousure'}
+                    </p>
+
+                    <p class="text-center">
+                        <button type="submit" name="enable" class="btn btn-danger btn-lg">
+                            {lang key='domainaddonsconfirm'}
+                        </button>
+                    </p>
+                {/if}
+            {/if}
+
+        </form>
+
+    </div>
+</div>
+
+<a href="clientarea.php?action=domaindetails&id={$domainid}" class="btn btn-default">
+    {lang key='clientareabacklink'}
+</a>

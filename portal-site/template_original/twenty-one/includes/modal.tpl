@@ -2,13 +2,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="modal{$name}Title">
                     {$title}
                 </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
-            <div class="modal-body text-center hidden" id="modal{$name}Loader">
-                <p><i class="fas fa-spinner fa-spin"></i> {$LANG.loading}</p>
+            <div class="modal-body text-center w-hidden" id="modal{$name}Loader">
+                <p><i class="fas fa-spinner fa-spin"></i> {lang key='loading'}</p>
             </div>
             <div class="modal-body" id="modal{$name}Body">
                 {if isset($content)}
@@ -20,7 +20,7 @@
                     {if isset($closeLabel)}
                         {$closeLabel}
                     {else}
-                        {$LANG.closewindow}
+                        {lang key='closewindow'}
                     {/if}
                 </button>
                 {if isset($submitAction)}
@@ -28,11 +28,11 @@
                         {if isset($submitLabel)}
                             {$submitLabel}
                         {else}
-                            {$LANG.clientareasavechanges}
+                            {lang key='clientareasavechanges'}
                         {/if}
                     </button>
                 {/if}
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+    </div>
+</div>

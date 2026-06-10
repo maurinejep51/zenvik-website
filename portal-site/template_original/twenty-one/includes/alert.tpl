@@ -1,6 +1,6 @@
-<div class="alert alert-{if $type eq "error"}danger{elseif $type}{$type}{else}info{/if}{if $textcenter} text-center{/if}{if $hide} hidden{/if}{if $additionalClasses} {$additionalClasses}{/if}"{if $idname} id="{$idname}"{/if}>
+<div class="alert alert-{if $type eq "error"}danger{elseif $type}{$type}{else}info{/if}{if $textcenter} text-center{/if}{if $additionalClasses} {$additionalClasses}{/if}{if $hide} w-hidden{/if}"{if $idname} id="{$idname}"{/if}>
 {if $errorshtml}
-    <strong>{$LANG.clientareaerrors}</strong>
+    <strong>{lang key='clientareaerrors'}</strong>
     <ul>
         {$errorshtml}
     </ul>

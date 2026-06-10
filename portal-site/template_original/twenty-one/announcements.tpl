@@ -1,3 +1,62 @@
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">{lang key="announcementstitle"}</h3>
+
+        <div class="announcements">
+            {foreach $announcements as $announcement}
+                <div class="announcement">
+                    <h1>
+                        <a href="{routePath('announcement-view', $announcement.id, $announcement.urlfriendlytitle)}">
+                            {$announcement.title}
+                        </a>
+                        {if $announcement.editLink}
+                            <a href="{$announcement.editLink}" class="btn btn-default btn-sm show-on-hover">
+                                <i class="fas fa-pencil-alt fa-fw"></i>
+                                {lang key='edit'}
+                            </a>
+                        {/if}
+                    </h1>
+
+                    <ul class="list-inline">
+                        <li class="list-inline-item text-muted pr-3">
+                            <i class="far fa-calendar-alt fa-fw"></i>
+                            {$carbon->createFromTimestamp($announcement.timestamp)->format('jS F Y')}
+                        </li>
+                    </ul>
+
+                    <article>
+                        {if $announcement.text|strip_tags|strlen < 350}
+                            {$announcement.text}
+                        {else}
+                            {$announcement.summary}
+                        {/if}
+                    </article>
+
+                    <a href="{routePath('announcement-view', $announcement.id, $announcement.urlfriendlytitle)}" class="btn btn-default btn-sm">
+                        {lang key="announcementscontinue"}
+                        <i class="far fa-arrow-right"></i>
+                    </a>
+                </div>
+            {foreachelse}
+                {include file="$template/includes/alert.tpl" type="info" msg="{lang key='noannouncements'}" textcenter=true}
+            {/foreach}
+        </div>
+
+    </div>
+</div>
+
+{if $prevpage || $nextpage}
+    <nav aria-label="Announcements navigation">
+        <ul class="pagination">
+            {foreach $pagination as $item}
+                <li class="page-item{if $item.disabled} disabled{/if}{if $item.active} active{/if}">
+                    <a class="page-link" href="{$item.link}">{$item.text}</a>
+                </li>
+            {/foreach}
+        </ul>
+    </nav>
+{/if}
+
 {if $announcementsFbRecommend}
     <script>
         (function(d, s, id) {
@@ -6,64 +65,8 @@
                 return;
             }
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/{$LANG.locale}/all.js#xfbml=1";
+            js.src = "//connect.facebook.net/{lang key='locale'}/all.js#xfbml=1";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
-{/if}
-{foreach from=$announcements item=announcement}
-
-    <div class="announcement-single">
-
-        <a href="{routePath('announcement-view', $announcement.id, $announcement.urlfriendlytitle)}" class="title">
-            {$announcement.title}
-        </a>
-
-        {if $announcement.text|strip_tags|strlen < 350}
-            <p>{$announcement.text}</p>
-        {else}
-            <p>{$announcement.summary}
-            <a href="{routePath('announcement-view', $announcement.id, $announcement.urlfriendlytitle)}" class="label label-warning">{$LANG.readmore} &raquo;</a>
-            </p>
-        {/if}
-
-        <div class="article-items">
-            <i class="fas fa-calendar-alt fa-fw"></i>
-            {$carbon->createFromTimestamp($announcement.timestamp)->format('jS M Y')}
-            {if $announcement.editLink}
-                <a href="{$announcement.editLink}" class="admin-inline-edit">
-                    <i class="fas fa-pencil-alt fa-fw"></i>
-                    {$LANG.edit}
-                </a>
-            {/if}
-        </div>
-
-        {if $announcementsFbRecommend}
-            <div class="fb-like hidden-sm hidden-xs" data-layout="standard" data-href="{fqdnRoutePath('announcement-view', $announcement.id, $announcement.urlfriendlytitle)}" data-send="true" data-width="450" data-show-faces="true" data-action="recommend"></div>
-            <div class="fb-like hidden-lg hidden-md" data-layout="button_count" data-href="{fqdnRoutePath('announcement-view', $announcement.id, $announcement.urlfriendlytitle)}" data-send="true" data-width="450" data-show-faces="true" data-action="recommend"></div>
-        {/if}
-
-    </div>
-
-{foreachelse}
-
-    {include file="$template/includes/alert.tpl" type="info" msg="{$LANG.noannouncements}" textcenter=true}
-
-{/foreach}
-
-{if $prevpage || $nextpage}
-    <div class="col-xs-12 margin-bottom">
-        <form class="form-inline" role="form">
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="btn-group">
-                        {foreach $pagination as $item}
-                            <a href="{$item.link}" class="btn btn-default{if $item.active} active{/if}"{if $item.disabled} disabled="disabled"{/if}>{$item.text}</a>
-                        {/foreach}
-                    </span>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="clearfix"></div>
 {/if}

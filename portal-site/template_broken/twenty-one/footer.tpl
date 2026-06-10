@@ -68,10 +68,6 @@
                 <ul class="zt-footer-social">
                     {include file="$template/includes/social-accounts.tpl"}
                 </ul>
-                <ul class="zt-footer-legal-links">
-                    <li><a href="{$WEB_ROOT}/privacy.php">Privacy Policy</a></li>
-                    <li><a href="{$WEB_ROOT}/terms.php">Terms &amp; Conditions</a></li>
-                </ul>
             </div>
         </div>
     </footer>

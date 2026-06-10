@@ -1,21 +1,20 @@
-<script type="text/javascript" src="{$BASE_PATH_JS}/PasswordStrength.js"></script>
+<script src="{$BASE_PATH_JS}/PasswordStrength.js"></script>
 <script>
     window.langPasswordStrength = "{lang key="pwstrength"}";
     window.langPasswordWeak = "{lang key="pwstrengthweak"}";
     window.langPasswordModerate = "{lang key="pwstrengthmoderate"}";
     window.langPasswordStrong = "{lang key="pwstrengthstrong"}";
-    jQuery(document).ready(function()
-    {
+    jQuery(document).ready(function() {
         jQuery("#inputPassword").keyup(registerFormPasswordStrengthFeedback);
     });
 </script>
 
-<div class="row">
-    <div class="col-md-10 col-md-offset-1 text-center">
+<div class="card{if $loggedin || !$invite} mw-750{/if} mb-md-4 mt-md-4">
+    <div class="card-body px-sm-5 py-5 text-center">
         {if $invite}
             <h2>
-                <i class="fas fa-info fa-2x text-primary"></i>
-                <br><br>
+                <i class="fas fa-info fa-2x text-primary pb-4"></i>
+                <br>
                 {lang key="accountInvite.youHaveBeenInvited" clientName=$invite->getClientName()}
             </h2>
 
@@ -39,7 +38,7 @@
                 </form>
             {else}
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-lg-6">
                         <div class="invite-box">
                             <h2>{lang key="login"}</h2>
                             <form method="post" action="{routePath('login-validate')}" class="text-left">
@@ -60,7 +59,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-lg-6">
                         <div class="invite-box">
                             <h2>{lang key="register"}</h2>
                             <form method="post" action="{routePath('invite-validate', $invite->token)}" class="text-left">
@@ -80,16 +79,16 @@
                                     <label for="inputPassword">{lang key="loginpassword"}</label>
                                     <div class="input-group">
                                         <input type="password" class="form-control" name="password" id="inputPassword" data-error-threshold="{$pwStrengthErrorThreshold}" data-warning-threshold="{$pwStrengthWarningThreshold}" placeholder="{lang key="loginpassword"}" autocomplete="off" />
-                                        <span class="input-group-btn">
+                                        <div class="input-group-append">
                                             <button type="button" class="btn btn-default generate-password" data-targetfields="inputPassword">
                                                 {lang key="generatePassword.btnShort"}
                                             </button>
-                                        </span>
+                                        </div>
                                     </div>
 
                                     <div class="password-strength-meter">
-                                        <div class="progress" style="height: 10px; margin-top: 10px">
-                                            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="passwordStrengthMeterBar">
+                                        <div class="progress mt-3" style="height: 10px;">
+                                            <div class="progress-bar bg-success bg-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="passwordStrengthMeterBar">
                                             </div>
                                         </div>
                                         <p class="text-center small text-muted" id="passwordStrengthTextLabel">{lang key="pwstrength"}: {lang key="pwstrengthenter"}</p>
@@ -97,8 +96,8 @@
                                 </div>
                                 {if $accept_tos}
                                     <div class="form-group text-center">
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" name="accept" id="accept" />
+                                        <label class="form-check form-check-inline">
+                                            <input type="checkbox" class="form-check-input" name="accept" id="accept" />
                                             &nbsp;
                                             {lang key='ordertosagreement'}
                                             <a href="{$tos_url}" target="_blank">{lang key='ordertos'}</a>
@@ -118,11 +117,11 @@
             {/if}
         {else}
             <h2>
-                <i class="fas fa-times fa-2x text-danger"></i><br>
+                <i class="fas fa-times fa-2x text-danger pb-4"></i><br>
                 {lang key="accountInvite.notFound"}
             </h2>
 
-            <p>{lang key="accountInvite.contactAdministrator"}</p>
+            <p class="pt-4">{lang key="accountInvite.contactAdministrator"}</p>
         {/if}
     </div>
 </div>

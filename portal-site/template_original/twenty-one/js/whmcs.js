@@ -1,50 +1,57 @@
-/**
- * Javascript functions utilised by the client area templates.
- *
- * @file WHMCS Six Theme Javascript Library
- * @copyright Copyright 2015 WHMCS Limited
+/*!
+ * WHMCS Twenty-One Theme
+ * Global Javascript
+ * Copyright (c) 2020 WHMCS Limited
+ * https://www.whmcs.com/license/
  */
 
 jQuery(document).ready(function() {
+
+    // when the page loads
+    autoCollapse('#nav', 30);
 
     if (jQuery('#lightbox').length === 0) {
         lightbox.init();
     }
 
-    // Language chooser popover
-    jQuery('#languageChooser').popover({
-        container: 'body',
-        placement: 'bottom',
-        template: '<div class="popover language-popover" role="tooltip"><div class="arrow"></div><div class="popover-content"></div></div>',
-        html: true,
-        content: function() {
-            return jQuery("#languageChooserContent").html();
-        },
+    // when the window is resized
+    jQuery(window).on('resize', function () {
+        if (jQuery('button[data-target="#mainNavbar"], button[data-toggle="collapse"]').is(':visible')) {
+            return;
+        }
+        autoCollapse('#nav', 30);
     });
 
-    // Login or register popover
-    jQuery('#loginOrRegister').popover({
-        container: 'body',
-        placement: 'bottom',
-        template: '<div class="popover login-popover" role="tooltip"><div class="arrow"></div><div class="popover-content"></div></div>',
-        html: true,
-        content: function() {
-            return jQuery("#loginOrRegisterContent").html();
-        },
+    // Item selector
+    jQuery('.item-selector .item').click(function(e) {
+        e.preventDefault();
+        jQuery(this).closest('.item-selector').find('.item').removeClass('active').end()
+            .find('input').val(jQuery(this).data('value'));
+        jQuery(this).addClass('active');
+    });
+
+    // Password reveal
+    jQuery(document).on('click', '.btn-reveal-pw', function (e) {
+      $targetField = jQuery(this).closest('.input-group').find('.pw-input');
+      if ($targetField.attr('type') == 'password') {
+        $targetField.attr('type', 'text');
+      } else {
+        $targetField.attr('type', 'password');
+      }
     });
 
     // Account notifications popover
     jQuery("#accountNotifications").popover({
         container: 'body',
         placement: 'bottom',
-        template: '<div class="popover popover-user-notifications" role="tooltip"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>',
+        template: '<div class="popover popover-user-notifications" role="tooltip"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-header"></h3><div class="popover-body"><p></p></div></div></div>',
         html: true,
         content: function() {
             return jQuery("#accountNotificationsContent").html();
         },
     });
 
-    jQuery('.panel-sidebar .truncate').each(function () {
+    jQuery('.card-sidebar .truncate').each(function () {
         jQuery(this).attr('title', jQuery(this).text())
             .attr('data-toggle', 'tooltip')
             .attr('data-placement', 'bottom');
@@ -77,8 +84,6 @@ jQuery(document).ready(function() {
         if (jQuery(this).hasClass('disabled')) {
             return false;
         }
-        jQuery(".list-group-tab-nav a").removeClass('active');
-        jQuery(this).addClass('active');
         var urlFragment = this.href.split('#')[1];
         if (urlFragment) {
             // set the fragment in the URL bar for bookmarking and such.
@@ -87,36 +92,48 @@ jQuery(document).ready(function() {
     });
 
     // Sidebar minimise/maximise
-    jQuery('.panel-minimise').click(function(e) {
+    jQuery('.card-minimise').click(function(e) {
         e.preventDefault();
+        var collapsableBody = jQuery(this).closest('.card').find('.collapsable-card-body');
         if (jQuery(this).hasClass('minimised')) {
-            jQuery(this).parents('.panel').find('.panel-body, .list-group').slideDown();
+            collapsableBody.slideDown();
             jQuery(this).removeClass('minimised');
         } else {
-            jQuery(this).parents('.panel').find('.panel-body, .list-group').slideUp();
+            collapsableBody.slideUp();
             jQuery(this).addClass('minimised');
         }
     });
 
     // Minimise sidebar panels by default on small devices
     if (jQuery('.container').width() <= 720) {
-        jQuery('.panel-sidebar').find('.panel-body, .list-group').hide();
-        jQuery('.panel-sidebar').find('.panel-minimise').addClass('minimised');
+        jQuery('.card-sidebar').find('.collapsable-card-body').hide().end()
+            .find('.card-minimise').addClass('minimised');
     }
 
     // Internal page tab selection handling via location hash
-    if (jQuery(location).attr('hash').substr(1) != "") {
-        var activeTab = jQuery(location).attr('hash');
-        jQuery(".tab-pane").removeClass('active');
-        jQuery(activeTab).removeClass('fade').addClass('active');
-        jQuery(".list-group-tab-nav a").removeClass('active');
-        jQuery('a[href="' + activeTab + '"]').addClass('active');
-        setTimeout(function() {
-            // Browsers automatically scroll on page load with a fragment.
-            // This scrolls back to the top right after page complete, but
-            // just before render (no perceptible scroll).
-            window.scrollTo(0, 0);
-        }, 1);
+    var internalSelectionDisabled = false;
+    if (
+        typeof(disableInternalTabSelection) !== 'undefined'
+        &&
+        disableInternalTabSelection
+    ) {
+        internalSelectionDisabled = true;
+    }
+
+    if (!internalSelectionDisabled) {
+        if (jQuery(location).attr('hash').substr(1) !== "") {
+            var activeTab = jQuery(location).attr('hash');
+            jQuery(".primary-content > .tab-content > .tab-pane").removeClass('active');
+            jQuery(activeTab).removeClass('fade').addClass('active');
+            jQuery(".list-group-tab-nav a").removeClass('active');
+            jQuery('a[href="' + activeTab + '"]').addClass('active');
+            setTimeout(function() {
+                // Browsers automatically scroll on page load with a fragment.
+                // This scrolls back to the top right after page complete, but
+                // just before render (no perceptible scroll).
+                window.scrollTo(0, 0);
+            }, 1);
+        }
     }
 
     // Enable Switches for Checkboxes
@@ -127,13 +144,13 @@ jQuery(document).ready(function() {
     }
 
     // Collapsable Panels
-    jQuery(".panel-collapsable .panel-heading").click(function(e) {
+    jQuery(".panel-collapsable .card-header").click(function(e) {
         var $this = jQuery(this);
-        if (!$this.parents('.panel').hasClass('panel-collapsed')) {
-            $this.parents('.panel').addClass('panel-collapsed').find('.panel-body').slideUp();
+        if (!$this.closest('.card').hasClass('panel-collapsed')) {
+            $this.closest('.card').addClass('panel-collapsed').find('.card-body').slideUp();
             $this.find('.collapse-icon i').removeClass('fa-minus').addClass('fa-plus');
         } else {
-            $this.parents('.panel').removeClass('panel-collapsed').find('.panel-body').slideDown();
+            $this.closest('.card').removeClass('panel-collapsed').find('.card-body').slideDown();
             $this.find('.collapse-icon i').removeClass('fa-plus').addClass('fa-minus');
         }
     });
@@ -149,9 +166,9 @@ jQuery(document).ready(function() {
     // Sub-Account Activation Toggle
     jQuery("#inputSubaccountActivate").click(function () {
         if (jQuery("#inputSubaccountActivate:checked").val() != null) {
-            jQuery("#subacct-container").removeClass('hidden');
+            jQuery("#subacct-container").show();
         } else {
-            jQuery("#subacct-container").addClass('hidden');
+            jQuery("#subacct-container").hide();
         }
     });
 
@@ -207,8 +224,7 @@ jQuery(document).ready(function() {
             success: function (data) {
                 if (data.success) {
                     self.closest('.ticket-cc-email').parent('div').slideUp('fast').remove();
-                    feedback.slideUp('fast')
-                        .removeClass('alert-danger hidden')
+                    feedback.removeClass('alert-danger')
                         .addClass('alert-success')
                         .html(data.message)
                         .slideDown('fast');
@@ -216,8 +232,7 @@ jQuery(document).ready(function() {
             },
             error: function (error) {
                 if (error) {
-                    feedback.slideUp('fast')
-                        .removeClass('alert-success hidden')
+                    feedback.removeClass('alert-success')
                         .addClass('alert-danger')
                         .html(error)
                         .slideDown('fast');
@@ -245,7 +260,7 @@ jQuery(document).ready(function() {
                         .data('email', email.val())
                         .end();
 
-                    cloneRow.removeClass('hidden')
+                    cloneRow.show()
                         .appendTo(jQuery('#sidebarTicketCc').find('.list-group'));
                     email.val('');
                     feedback.slideUp('fast')
@@ -291,10 +306,10 @@ jQuery(document).ready(function() {
     // Handle Single Sign-On Toggle Setting
     jQuery("#inputAllowSso").on('switchChange.bootstrapSwitch', function(event, isChecked) {
         if (isChecked) {
-            jQuery("#ssoStatusTextEnabled").removeClass('hidden').show();
+            jQuery("#ssoStatusTextEnabled").show();
             jQuery("#ssoStatusTextDisabled").hide();
         } else {
-            jQuery("#ssoStatusTextDisabled").removeClass('hidden').show();
+            jQuery("#ssoStatusTextDisabled").show();
             jQuery("#ssoStatusTextEnabled").hide();
         }
         WHMCS.http.jqClient.post("clientarea.php", jQuery("#frmSingleSignOn").serialize());
@@ -305,7 +320,7 @@ jQuery(document).ready(function() {
         e.preventDefault();
         var button = jQuery(this);
 
-        var form = button.parents('form');
+        var form = button.closest('form');
 
         if (form.length === 0) {
             form = button.find('form');
@@ -319,7 +334,7 @@ jQuery(document).ready(function() {
         }
 
         button.attr('disabled', 'disabled').addClass('disabled');
-        jQuery('.loading', button).removeClass('hidden').show().end();
+        jQuery('.loading', button).show().end();
         jQuery('.login-feedback', form).slideUp();
         WHMCS.http.jqClient.post(
             url,
@@ -337,17 +352,17 @@ jQuery(document).ready(function() {
             'json'
         ).always(function() {
             button.removeAttr('disabled').removeClass('disabled');
-            jQuery('.loading', button).hide().end();
+            button.find('.loading').hide().end();
         });
     });
     jQuery('.btn-sidebar-form-submit').on('click', function(e) {
         e.preventDefault();
-        jQuery(this).find('.loading').removeClass('hidden').show().end()
+        jQuery(this).find('.loading').show().end()
             .attr('disabled', 'disabled');
 
-        var form = jQuery(this).parents('form');
+        var form = jQuery(this).closest('form');
 
-        if (form.length == 0) {
+        if (form.length === 0) {
             form = jQuery(this).find('form');
         }
 
@@ -372,6 +387,24 @@ jQuery(document).ready(function() {
     // Activate copy to clipboard functionality
     jQuery('.copy-to-clipboard').click(WHMCS.ui.clipboard.copy);
 
+    // Handle Language Chooser modal
+    jQuery('#modalChooseLanguage button[type=submit]').click(function(e) {
+        e.preventDefault();
+        var form = jQuery(this).closest('form');
+        var currency = form.find('input[name="currency"]');
+        var language = form.find('input[name="language"]');
+        var fields = [];
+
+        if (language.data('current') != language.val()) {
+            fields.push('language=' + language.val());
+        }
+        if (currency.data('current') != currency.val() && currency.val() != "") {
+            fields.push('currency=' + currency.val());
+        }
+
+        window.location.replace(form.attr('action') + fields.join('&'));
+    });
+
     // Password Generator
     jQuery('.generate-password').click(function(e) {
         jQuery('#frmGeneratePassword').submit();
@@ -385,7 +418,7 @@ jQuery(document).ready(function() {
 
         // Check length
         if (length < 8 || length > 64) {
-            jQuery('#generatePwLengthError').removeClass('hidden').show();
+            jQuery('#generatePwLengthError').show();
             return;
         }
 
@@ -395,16 +428,36 @@ jQuery(document).ready(function() {
         .click(WHMCS.ui.clipboard.copy)
         .click(function(e) {
             jQuery(this).closest('.modal').modal('hide');
-            var targetFields = jQuery(this).closest('.modal').data('targetfields');
+            var targetFields = jQuery(this).closest('.modal').data('targetfields'),
+                generatedPassword = jQuery('#inputGeneratePasswordOutput');
             targetFields = targetFields.split(',');
             for(var i = 0; i < targetFields.length; i++) {
-                jQuery('#' + targetFields[i]).val(jQuery('#inputGeneratePasswordOutput').val())
+                jQuery('#' + targetFields[i]).val(generatedPassword.val())
                     .trigger('keyup');
             }
             // Remove the generated password.
-            jQuery('#inputGeneratePasswordOutput').val('');
+            generatedPassword.val('');
         });
 
+    /**
+     * If we are logged into the admin area and can edit a category and click edit,
+     * we need to stop the default and click the edit instead since its nested.
+     */
+    jQuery('a.card-body').click(function(e) {
+        if (e.target.id.includes('btnEditCategory')) {
+            e.preventDefault();
+            var editUrl = jQuery('#btnEditCategory-' + jQuery(this).data('id')).data('url');
+            window.location.href = editUrl;
+        }
+    });
+
+    jQuery('.kb-article-item').click(function(e) {
+        if (e.target.id.includes('btnEditArticle')) {
+            e.preventDefault();
+            var editUrl = jQuery('#btnEditArticle-' + jQuery(this).data('id')).data('url');
+            window.location.href = editUrl;
+        }
+    });
     /**
      * Code will loop through each element that has the class markdown-editor and
      * enable the Markdown editor.
@@ -425,7 +478,7 @@ jQuery(document).ready(function() {
             autofocus: false,
             savable: false,
             resize: 'vertical',
-            iconlibrary: 'glyph',
+            iconlibrary: 'fa-5',
             language: locale,
             onShow: function(e){
                 var content = '',
@@ -478,7 +531,8 @@ jQuery(document).ready(function() {
                         icon: {
                             glyph: 'fas fa-question-circle',
                             fa: 'fas fa-question-circle',
-                            'fa-3': 'icon-question-sign'
+                            'fa-3': 'icon-question-sign',
+                            'fa-5': 'fas fa-question-circle',
                         },
                         callback: function(e) {
                             e.$editor.removeClass("md-fullscreen-mode");
@@ -507,7 +561,7 @@ jQuery(document).ready(function() {
     // Email verification
     var btnResendEmail = jQuery('.btn-resend-verify-email');
     jQuery(btnResendEmail).click(function() {
-        $(this).prop('disabled', true).find('.loader').removeClass('hidden').show();
+        $(this).prop('disabled', true).find('.loader').show();
         WHMCS.http.jqClient.post(
             jQuery(this).data('uri'),
             {
@@ -529,7 +583,6 @@ jQuery(document).ready(function() {
             });
         jQuery('.verification-banner.email-verification').hide();
     });
-
     jQuery('#btnUserValidationClose').click(function(e) {
         e.preventDefault();
         WHMCS.http.jqClient.post(jQuery(this).data('uri'),
@@ -585,7 +638,7 @@ jQuery(document).ready(function() {
     function doCountdown()
     {
         if (counter >= 0) {
-            if (counter == 0) {
+            if (counter === 0) {
                 jQuery("span.markdown-save").html(saved);
             }
             counter--;
@@ -601,12 +654,12 @@ jQuery(document).ready(function() {
     });
 
     $.fn.setInputError = function(error) {
-        this.parents('.form-group').addClass('has-error').find('.field-error-msg').text(error);
+        this.closest('.form-group').addClass('has-error').find('.field-error-msg').text(error);
         return this;
     };
 
     jQuery.fn.showInputError = function () {
-        this.parents('.form-group').addClass('has-error').find('.field-error-msg').show();
+        this.closest('.form-group').addClass('has-error').find('.field-error-msg').show();
         return this;
     };
 
@@ -625,10 +678,10 @@ jQuery(document).ready(function() {
                 serviceId: jQuery(this).data('serviceid'),
             },
             function(data) {
-                if (data.success == true) {
-                    jQuery('.alert-table-ssl-manage').addClass('alert-success').text('Approver Email Resent').removeClass('hidden');
+                if (data.success === true) {
+                    jQuery('.alert-table-ssl-manage').addClass('alert-success').text('Approver Email Resent').show();
                 } else {
-                    jQuery('.alert-table-ssl-manage').addClass('alert-danger').text('Error: ' + data.message).removeClass('hidden');
+                    jQuery('.alert-table-ssl-manage').addClass('alert-danger').text('Error: ' + data.message).show();
                 }
             }
         );
@@ -675,6 +728,13 @@ jQuery(document).ready(function() {
 
     WHMCS.ui.jsonForm.initAll();
 
+    jQuery(document).on('click', '#btnTicketAttachmentsAdd', function() {
+        jQuery('#fileUploadsContainer').append(jQuery('.file-upload').html());
+    });
+    jQuery(document).on('change', '.custom-file-input', function() {
+        var fileName = jQuery(this).val().split('\\').pop();
+        jQuery(this).siblings('.custom-file-label').text(fileName);
+    });
     jQuery('#frmReply').submit(function(e) {
         jQuery('#frmReply').find('input[type="submit"]').addClass('disabled').prop('disabled', true);
     });
@@ -721,7 +781,7 @@ jQuery(document).ready(function() {
                         statusDisplayLabel = ' ' + data.statusDisplayLabel;
                     }
                     self.replaceWith(
-                        '<img src="' + data.image + '" data-toggle="tooltip" title="' + data.tooltip + '" class="' + data.class + '"' + width + '>'
+                        '<img src="' + data.image + '" data-toggle="tooltip" alt="' + data.tooltip + '" title="' + data.tooltip + '" class="' + data.class + '"' + width + '>'
                     );
                     if (data.ssl.status === 'active') {
                         jQuery('#ssl-startdate').text(data.ssl.startDate);
@@ -752,7 +812,7 @@ jQuery(document).ready(function() {
 
     var frmDomainHomepage = jQuery('#frmDomainHomepage');
 
-    jQuery(frmDomainHomepage).find('#btnTransfer').click(function () {
+    jQuery(frmDomainHomepage).find('button[data-domain-action="transfer"]').click(function () {
         jQuery(frmDomainHomepage).find('input[name="transfer"]').val('1');
     });
 
@@ -780,7 +840,6 @@ jQuery(document).ready(function() {
                 captcha.tooltip('show');
 
                 e.preventDefault();
-                return;
             }
         });
     }
@@ -824,6 +883,8 @@ jQuery(document).ready(function() {
         );
         confirmationModal.modal('toggle');
     });
+    hideOverlay();
+
     jQuery('input[name="approval_method"]').on('ifChecked', function(event) {
         var fileMethod = $('#containerApprovalMethodFile'),
             emailMethod = $('#containerApprovalMethodEmail'),
@@ -866,11 +927,11 @@ jQuery(document).ready(function() {
             .css('border-bottom', '1px solid #ddd');
     })
     jQuery('div[menuitemname="Service Details Actions"] a[data-identifier][data-serviceid][data-active="1"]').on('click', function(event) {
-        return customActionAjaxCall(event, jQuery(event.target))
+        return customActionAjaxCall(event, jQuery(event.target).closest('a'));
     });
     jQuery('.div-service-item').on('click', function (event) {
         var element = jQuery(event.target);
-        if (element.is('.dropdown-toggle, .dropdown-menu, .caret')) {
+        if (element.is('.dropdown-toggle, .dropdown-menu')) {
             return true;
         }
         if (element.hasClass('btn-custom-action')) {
@@ -896,7 +957,7 @@ jQuery(document).ready(function() {
  * @param {bool} disabledState   Whether the elements should be disabled or not.
  */
 function disableFields(className, disabledState) {
-    if (className[0] != '.') {
+    if (className[0] !== '.') {
         className = '.' + className;
     }
     var elements = jQuery(className);
@@ -912,10 +973,10 @@ function disableFields(className, disabledState) {
  * Check all checkboxes with a given class.
  *
  * @param {string} className         Common class name.
- * @param {domElement} masterControl Parent checkbox to which the other checkboxes should mirror.
+ * @param {Element} masterControl Parent checkbox to which the other checkboxes should mirror.
  */
 function checkAll(className, masterControl) {
-    if (className[0] != '.') {
+    if (className[0] !== '.') {
         className = '.' + className;
     }
     // In jQuery, if you set the checked attribute directly, the dom
@@ -950,8 +1011,8 @@ function clickableSafeRedirect(clickEvent, target, newWindow) {
     if (eventSource === 'i' && jQuery(clickEvent.target).hasClass('ssl-required')) {
         return false;
     }
-    if(eventSource != 'button' && eventSource != 'a') {
-        if(eventParent != 'button' && eventParent != 'a') {
+    if(eventSource !== 'button' && eventSource !== 'a') {
+        if(eventParent !== 'button' && eventParent !== 'a') {
             if (newWindow) {
                 window.open(target);
             } else {
@@ -971,10 +1032,15 @@ function clickableSafeRedirect(clickEvent, target, newWindow) {
  * @param {string} features Any additional settings to apply
  */
 function popupWindow(addr, popname, w, h, features) {
-    var winl = (screen.width-w) / 2;
-    var wint = (screen.height-h) / 2;
-    if (winl < 0) winl = 0;
-    if (wint < 0) wint = 0;
+    var winl = (screen.width-w) / 2,
+        wint = (screen.height-h) / 2,
+        win;
+    if (winl < 0) {
+        winl = 0;
+    }
+    if (wint < 0) {
+        wint = 0;
+    }
     var settings = 'height=' + h + ',';
     settings += 'width=' + w + ',';
     settings += 'top=' + wint + ',';
@@ -985,35 +1051,13 @@ function popupWindow(addr, popname, w, h, features) {
 }
 
 /**
- * Add domain renewal to shopping cart.
- *
- * @param {number} renewalID    The domain ID to be added
- * @param {domElement} selfThis The object triggering the add
- */
-function addRenewalToCart(renewalID, selfThis) {
-    jQuery("#domainRow" + renewalID).attr('disabled', 'disabled');
-    jQuery("#domainRow" + renewalID).find("select,button").attr("disabled", "disabled");
-    jQuery(selfThis).html('<span class="glyphicon glyphicon-shopping-cart"></span> Adding...');
-    var renewalPeriod = jQuery("#renewalPeriod" + renewalID).val();
-    WHMCS.http.jqClient.post(
-        "clientarea.php",
-        "addRenewalToCart=1&token=" + csrfToken + "&renewID="+ renewalID + "&period=" + renewalPeriod,
-        function( data ) {
-            jQuery("#cartItemCount").html(((jQuery("#cartItemCount").html() * 1) + 1));
-            jQuery(selfThis).html('<span class="glyphicon glyphicon-shopping-cart"></span> Added');
-            jQuery("#btnCheckout").fadeIn();
-        }
-    );
-}
-
-/**
  * Navigate to a page on dropdown change.
  *
  * This is implemented onblur() for a dropdown.  When the dropdown
  * changes state, the value is pulled and the browser navigated to
  * the selected page.
  *
- * @param {domElement} select The dropdown triggering the event
+ * @param {Element} select The dropdown triggering the event
  */
 function selectChangeNavigate(select) {
     const url = $(select).val();
@@ -1025,14 +1069,7 @@ function selectChangeNavigate(select) {
         }
     }
 
-    window.location.href = $(select).val();
-}
-
-/**
- * Append additional file upload input field.
- */
-function extraTicketAttachment() {
-    jQuery("#fileUploadsContainer").append('<input type="file" name="attachments[]" class="form-control" />');
+    window.location.href = url;
 }
 
 /**
@@ -1062,14 +1099,15 @@ function checkPort(num, port) {
 /**
  * Fetch automated knowledgebase suggestions for ticket content.
  */
+var currentcheckcontent,
+    lastcheckcontent;
 function getticketsuggestions() {
     currentcheckcontent = jQuery("#message").val();
-    if (currentcheckcontent != lastcheckcontent && currentcheckcontent != "") {
+    if (currentcheckcontent !== lastcheckcontent && currentcheckcontent !== "") {
         WHMCS.http.jqClient.post("submitticket.php", { action: "getkbarticles", text: currentcheckcontent },
             function(data){
             if (data) {
-                jQuery("#searchresults").html(data);
-                jQuery("#searchresults").hide().removeClass('hidden').slideDown();
+                jQuery("#searchresults").html(data).slideDown();
             }
         });
         lastcheckcontent = currentcheckcontent;
@@ -1080,7 +1118,7 @@ function getticketsuggestions() {
 /**
  * Update custom fields upon department change.
  *
- * @param {domElement} input The department selector dropdown object
+ * @param {Element} input The department selector dropdown object
  */
 function refreshCustomFields(input) {
     jQuery("#customFieldsContainer").load(
@@ -1123,11 +1161,11 @@ function useCustomWhois(regType) {
 }
 
 function showNewBillingAddressFields() {
-    jQuery('#newBillingAddress').slideDown();
+    jQuery('#newBillingAddress').parent('div').slideDown();
 }
 
 function hideNewBillingAddressFields() {
-    jQuery('#newBillingAddress').slideUp();
+    jQuery('#newBillingAddress').parent('div').slideUp();
 }
 
 /**
@@ -1136,14 +1174,20 @@ function hideNewBillingAddressFields() {
 function showNewCardInputFields() {
     var ccDetails = jQuery('.cc-details'),
         ccNumber = jQuery('#inputCardNumber'),
-        billAddress = jQuery('#billingAddressChoice');
+        billAddress = jQuery('#billingAddressChoice'),
+        container;
 
-    if (ccDetails.hasClass("hidden")) {
-        ccDetails.hide().removeClass("hidden");
+    container = ccDetails.parent('div');
+    if (container.not(':visible')) {
+        container.show();
     }
-    ccDetails.slideDown();
+    jQuery('.cc-details').slideDown();
     ccNumber.focus();
 
+    container = billAddress.parent('div');
+    if (container.not(':visible')) {
+        container.show();
+    }
     billAddress.slideDown()
         .find('input[name="billingcontact"]')
         .first()
@@ -1154,12 +1198,13 @@ function showNewCardInputFields() {
  * Show new bank account input fields.
  */
 function showNewAccountInputFields() {
-    if (jQuery(".bank-details").hasClass("hidden")) {
-        jQuery(".bank-details").hide().removeClass("hidden");
+    var bankDetails = jQuery('.bank-details').parent('div');
+    if (bankDetails.not(':visible')) {
+        bankDetails.slideDown();
     }
-    jQuery(".bank-details").slideDown();
 
     jQuery("#billingAddressChoice")
+        .parent('div')
         .slideDown()
         .find('input[name="billingcontact"]')
         .first()
@@ -1187,8 +1232,8 @@ function hideNewCardInputFields() {
 function hideNewAccountInputFields() {
     hideNewBillingAddressFields();
 
-    jQuery(".bank-details").slideUp();
-    jQuery("#billingAddressChoice").slideUp();
+    jQuery(".bank-details").parent('div').slideUp();
+    jQuery("#billingAddressChoice").parent('div').slideUp();
 
     var selectedAccount = jQuery('input[name="paymethod"]:checked'),
         selectedContactId = jQuery(selectedAccount).data('billing-contact-id'),
@@ -1206,13 +1251,14 @@ function hideNewAccountInputFields() {
 var lastTicketMsg;
 function getTicketSuggestions() {
     var userMsg = jQuery("#inputMessage").val();
-    if (userMsg != lastTicketMsg && userMsg != '') {
+    if (userMsg !== lastTicketMsg && userMsg !== '') {
         WHMCS.http.jqClient.post("submitticket.php", { action: "getkbarticles", text: userMsg },
             function (data) {
+                var suggestions = jQuery("#autoAnswerSuggestions");
                 if (data) {
-                    jQuery("#autoAnswerSuggestions").html(data);
-                    if (!jQuery("#autoAnswerSuggestions").is(":visible")) {
-                        jQuery("#autoAnswerSuggestions").hide().removeClass('hidden').slideDown();
+                    suggestions.html(data);
+                    if (suggestions.not(":visible")) {
+                        suggestions.slideDown();
                     }
                 }
             });
@@ -1229,7 +1275,7 @@ function smoothScroll(element) {
         scrollTop: $(element).offset().top
     }, 500);
 }
-
+var allowSubmit = false;
 function irtpSubmit() {
     allowSubmit = true;
     var optOut = 0,
@@ -1248,7 +1294,7 @@ function irtpSubmit() {
 
 function showOverlay(msg) {
     jQuery('#fullpage-overlay .msg').html(msg);
-    jQuery('#fullpage-overlay').removeClass('hidden').show();
+    jQuery('#fullpage-overlay').show();
 }
 
 function hideOverlay() {
@@ -1260,6 +1306,41 @@ function getSslAttribute(element, attribute) {
         return element.data(attribute);
     }
     return element.parent('td').data(attribute);
+}
+
+function removeRetweets() {
+    jQuery('#twitter-widget-0')
+        .contents()
+        .find('.timeline-Tweet--isRetweet')
+        .parent('li')
+        .remove();
+}
+function addTwitterWidgetObserverWhenNodeAvailable() {
+    if (elementsWaitTimeout) {
+        clearTimeout(elementsWaitTimeout);
+    }
+
+    var targetTwitterWidget = document.getElementById('twitter-widget-0');
+    if (!targetTwitterWidget) {
+        elementsWaitTimeout = window.setTimeout(addTwitterWidgetObserverWhenNodeAvailable, 500);
+        return;
+    }
+
+    var targetTimelineTweets = targetTwitterWidget
+        .contentWindow
+        .document
+        .getElementsByClassName('timeline-TweetList')[0];
+    if (!targetTimelineTweets) {
+        elementsWaitTimeout = window.setTimeout(addTwitterWidgetObserverWhenNodeAvailable, 500);
+        return;
+    }
+
+    jQuery('#twitter-widget-0')
+        .contents()
+        .find('head')
+        .append("<style>.timeline-Tweet-text { font-size: 18px !important; line-height: 25px !important; margin-bottom: 0px !important; }</style>");
+    removeRetweets();
+    observerTwitterWidget.observe(targetTimelineTweets, observerConfig);
 }
 
 function openValidationSubmitModal(caller)
@@ -1294,6 +1375,55 @@ function completeValidationComClientWorkflow()
     return false;
 }
 
+var autoCollapse = function (menu, maxHeight) {
+
+    var continueLoop = true,
+        nav = jQuery(menu),
+        navHeight = nav.innerHeight();
+    if (navHeight >= maxHeight) {
+
+        jQuery(menu + ' .collapsable-dropdown').removeClass('d-none');
+        jQuery(".navbar-nav").removeClass('w-auto').addClass("w-100");
+
+        while (navHeight > maxHeight && continueLoop) {
+            //  add child to dropdown
+            var children = nav.children(menu + ' li:not(:last-child):not(".no-collapse")'),
+                count = children.length;
+            if (!count) {
+                continueLoop = false;
+            } else {
+                children.data('original-classes', children.attr('class'));
+                var child = jQuery(children[count - 1]);
+                child.removeClass().addClass('dropdown-item');
+                child.prependTo(menu + ' .collapsable-dropdown-menu');
+            }
+            navHeight = nav.innerHeight();
+        }
+        jQuery(".navbar-nav").addClass("w-auto").removeClass('w-100');
+
+    } else {
+
+        var collapsed = jQuery(menu + ' .collapsable-dropdown-menu').children(menu + ' li');
+
+        if (collapsed.length === 0) {
+            jQuery(menu + ' .collapsable-dropdown').addClass('d-none');
+        }
+
+        while (navHeight < maxHeight && (nav.children(menu + ' li').length > 0) && collapsed.length > 0) {
+            //  remove child from dropdown
+            collapsed = jQuery(menu + ' .collapsable-dropdown-menu').children('li');
+            var child = jQuery(collapsed[0]);
+            child.removeClass().addClass(child.data('original-classes'));
+            child.insertBefore(nav.children(menu + ' li:last-child'));
+            navHeight = nav.innerHeight();
+        }
+
+        if (navHeight > maxHeight) {
+            autoCollapse(menu, maxHeight);
+        }
+    }
+}
+
 /**
  * Perform the AjaxCall for a CustomAction.
  *
@@ -1312,6 +1442,11 @@ function customActionAjaxCall(event, element) {
     element.attr('disabled', 'disabled').addClass('disabled');
     loadingIcon.show();
     standardIcon.hide();
+
+    const redirectFn = ((jQuery(element).data('ca-target') === '_self') || (jQuery(element).attr('target') === '_self'))
+        ? function(url) { window.location.href = url; }
+        : window.open;
+
     WHMCS.http.jqClient.jsonPost({
         url: WHMCS.utils.getRouteUrl(
             '/clientarea/service/' + element.data('serviceid') + '/custom-action/' + element.data('identifier')
@@ -1321,16 +1456,16 @@ function customActionAjaxCall(event, element) {
         },
         success: function(data) {
             if (data.success) {
-                window.open(data.redirectTo);
+                redirectFn(data.redirectTo);
             } else {
-                window.open('clientarea.php?action=productdetails&id=' + element.data('serviceid') + '&customaction_error=1');
+                redirectFn('clientarea.php?action=productdetails&id=' + element.data('serviceid') + '&customaction_error=1');
             }
         },
         fail: function () {
-            window.open('clientarea.php?action=productdetails&id=' + element.data('serviceid') + '&customaction_ajax_error=1');
+            redirectFn('clientarea.php?action=productdetails&id=' + element.data('serviceid') + '&customaction_ajax_error=1');
         },
         error: function () {
-            window.open('clientarea.php?action=productdetails&id=' + element.data('serviceid') + '&customaction_ajax_error=1');
+            redirectFn('clientarea.php?action=productdetails&id=' + element.data('serviceid') + '&customaction_ajax_error=1');
         },
         always: function() {
             loadingIcon.hide();

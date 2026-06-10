@@ -1,58 +1,65 @@
-{if empty($dlcats) }
-    {include file="$template/includes/alert.tpl" type="info" msg=$LANG.downloadsnone textcenter=true}
-{else}
-    <form role="form" method="post" action="{routePath('download-search')}">
-        <div class="input-group input-group-lg kb-search margin-bottom">
-            <input type="text" name="search" id="inputDownloadsSearch" class="form-control" placeholder="{$LANG.downloadssearch}" />
-            <span class="input-group-btn">
-                <input type="submit" id="btnDownloadsSearch" class="btn btn-primary btn-input-padded-responsive" value="{$LANG.search}" />
-            </span>
+<form role="form" method="post" action="{routePath('download-search')}">
+    <div class="input-group input-group-lg kb-search margin-bottom">
+        <input type="text" name="search" id="inputDownloadsSearch" class="form-control font-weight-light" placeholder="{lang key='downloadssearch'}" />
+        <div class="input-group-append">
+            <button type="submit" id="btnDownloadsSearch" class="btn btn-primary btn-input-padded-responsive">
+                {lang key='search'}
+            </button>
         </div>
-    </form>
+    </div>
+</form>
 
-    <p>{$LANG.downloadsintrotext}</p>
-
-    <h2>{$LANG.downloadscategories}</h2>
-
+{if $dlcats}
     <div class="row">
-        {foreach $dlcats as $dlcat}
-            <div class="col-sm-6">
-                <a href="{routePath('download-by-cat', $dlcat.id, $dlcat.urlfriendlyname)}">
-                    <i class="far fa-folder-open"></i>
-                    <strong>{$dlcat.name}</strong>
-                </a>
-                ({$dlcat.numarticles})
-                <br>
-                {$dlcat.description}
-            </div>
-        {foreachelse}
-            <div class="col-sm-12">
-                <p class="text-center fontsize3">{$LANG.downloadsnone}</p>
+        {foreach $dlcats as $category}
+            <div class="col-xl-6">
+                <div class="card kb-category mb-4">
+                    <a href="{routePath('download-by-cat', {$category.id}, {$category.urlfriendlyname})}" class="card-body">
+                        <span class="h5 m-0">
+                            <i class="fal fa-folder fa-fw"></i>
+                            {$category.name}
+                            <span class="badge badge-info float-right">
+                                {lang key="downloads.numDownload{if $kbcat.numarticles != 1}s{/if}" num=$category.numarticles}
+                            </span>
+                        </span>
+                        <p class="m-0 text-muted"><small>{$category.description}</small></p>
+                    </a>
+                </div>
             </div>
         {/foreach}
     </div>
+{else}
+    {include file="$template/includes/alert.tpl" type="info" msg="{lang key='downloadsnone'}" textcenter=true}
+{/if}
 
-    <h2>{$LANG.downloadspopular}</h2>
-
-    <div class="list-group">
-        {foreach $mostdownloads as $download}
-            <a href="{$download.link}" class="list-group-item">
-                <strong>
-                    <i class="fas fa-download"></i>
+{if $mostdownloads}
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title m-0">
+                <i class="fal fa-star fa-fw"></i>
+                {lang key='downloadspopular'}
+            </h3>
+        </div>
+        <div class="list-group list-group-flush">
+            {foreach $mostdownloads as $download}
+                <a href="{$download.link}" class="list-group-item kb-article-item">
+                    {$download.type|replace:'alt':' class="pr-1" alt'}
                     {$download.title}
                     {if $download.clientsonly}
-                        <i class="fas fa-lock text-muted"></i>
+                        <div class="float-md-right">
+                            <span class="label label-danger">
+                                <i class="fas fa-lock fa-fw"></i>
+                                {lang key='restricted'}
+                            </span>
+                        </div>
                     {/if}
-                </strong>
-                <br>
-                {$download.description}
-                <br>
-                <small>{$LANG.downloadsfilesize}: {$download.filesize}</small>
-            </a>
-        {foreachelse}
-            <span class="list-group-item text-center">
-                {$LANG.downloadsnone}
-            </span>
-        {/foreach}
+                    <small>
+                        {$download.description}
+                        <br>
+                        <strong>{lang key='downloadsfilesize'}: {$download.filesize}</strong>
+                    </small>
+                </a>
+            {/foreach}
+        </div>
     </div>
 {/if}

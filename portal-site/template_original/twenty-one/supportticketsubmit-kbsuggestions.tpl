@@ -1,14 +1,15 @@
-<h3>{$LANG.kbsuggestions}</h3>
+<h3 class="card-title">{lang key='kbsuggestions'}</h3>
 
-<p>{$LANG.kbsuggestionsexplanation}</p>
+<p>{lang key='kbsuggestionsexplanation'}</p>
 
-<div class="kbarticles">
-    {foreach from=$kbarticles item=kbarticle}
-        <p>
+<div class="kbarticles list-group mb-3">
+    {foreach $kbarticles as $kbarticle}
+        <div class="list-group-item kb-article-item">
             <a href="knowledgebase.php?action=displayarticle&id={$kbarticle.id}" target="_blank">
-                <span class="glyphicon glyphicon-file"></span>
+                <i class="fal fa-file-alt fa-fw text-black-50"></i>
                 {$kbarticle.title}
-            </a> - {$kbarticle.article}...
-        </p>
+                <small>{$kbarticle.article}...</small>
+            </a>
+        </div>
     {/foreach}
 </div>

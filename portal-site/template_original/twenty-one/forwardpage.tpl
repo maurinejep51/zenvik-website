@@ -1,16 +1,16 @@
-<br />
+<div class="my-2">
+    {include file="$template/includes/alert.tpl" type="info" msg=$message textcenter=true}
+</div>
 
-{include file="$template/includes/alert.tpl" type="info" msg=$message textcenter=true}
+<div class="mb-5 d-flex flex-column justify-content-center align-items-center">
 
-<br />
+    <div class="progress w-25 my-4">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-color-blue w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+            <span class="sr-only">{lang key='loading'}</span>
+        </div>
+    </div>
 
-<div class="text-center">
-
-    <img src="{$BASE_PATH_IMG}/loading.gif" alt="Loading" border="0" />
-
-    <br /><br /><br />
-
-    <div id="frmPayment" align="center">
+    <div id="frmPayment">
 
         {$code}
 
@@ -21,8 +21,6 @@
 
 </div>
 
-<br /><br /><br />
-
-<script language="javascript">
+<script>
     setTimeout("autoSubmitFormByContainer('frmPayment')", 5000);
 </script>

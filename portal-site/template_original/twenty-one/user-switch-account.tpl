@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
+<div class="card mw-540">
+    <div class="card-body">
         {include file="$template/includes/flashmessage.tpl"}
 
         {if $accounts->count() == 0}

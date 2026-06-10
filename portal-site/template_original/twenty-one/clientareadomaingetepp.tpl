@@ -1,15 +1,16 @@
-<h3>{$LANG.domaingeteppcode}</h3>
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">{lang key='domaingeteppcode'}</h3>
 
-<p>
-    {$LANG.domaingeteppcodeexplanation}
-</p>
+        <p>{lang key='domaingeteppcodeexplanation'}</p>
 
-<br />
+        {if $error}
+            {include file="$template/includes/alert.tpl" type="error" msg="<i class='fas fa-exclamation-triangle fa-fw'></i> {lang key='domaingeteppcodefailure'}"|cat:" $error"}
+        {elseif $eppcode}
+            {include file="$template/includes/alert.tpl" type="info" msg="<i class='fas fa-info-circle fa-fw'></i> {lang key='domaingeteppcodeis'}"|cat:" $eppcode"}
+        {else}
+            {include file="$template/includes/alert.tpl" type="success" msg="<i class='fas fa-check fa-fw'></i> {lang key='domaingeteppcodeemailconfirmation'}"}
+        {/if}
 
-{if $error}
-    {include file="$template/includes/alert.tpl" type="error" msg=$LANG.domaingeteppcodefailure|cat:" $error"}
-{elseif $eppcode}
-    {include file="$template/includes/alert.tpl" type="warning" msg=$LANG.domaingeteppcodeis|cat:" $eppcode"}
-{else}
-    {include file="$template/includes/alert.tpl" type="warning" msg=$LANG.domaingeteppcodeemailconfirmation}
-{/if}
+    </div>
+</div>

@@ -1,109 +1,140 @@
-{if $twitterusername}
+{if !empty($productGroups) || $registerdomainenabled || $transferdomainenabled}
+    <h2 class="text-center m-4">{lang key='clientHomePanels.productsAndServices'}</h2>
 
-    <h2>{$LANG.twitterlatesttweets}</h2>
+    <div class="card-columns home">
+        {foreach $productGroups as $productGroup}
 
-    <div id="twitterFeedOutput">
-        <p class="text-center"><img src="{$BASE_PATH_IMG}/loading.gif" /></p>
-    </div>
+            <div class="card mb-3">
+                <div class="card-body p-lg-4 p-xl-5 text-center">
+                    <h3 class="card-title pricing-card-title">
+                        {$productGroup->name}
+                    </h3>
+                    <p>{$productGroup->tagline}</p>
+                    <a href="{$productGroup->getRoutePath()}" class="btn btn-block btn-outline-primary">
+                        {lang key='browseProducts'}
+                    </a>
+                </div>
+            </div>
 
-    <script type="text/javascript" src="{assetPath file='twitter.js'}"></script>
+        {/foreach}
 
-{elseif $announcements}
-
-    <h2>{$LANG.news}</h2>
-
-    {foreach $announcements as $announcement}
-        {if $announcement@index < 2}
-            <div class="announcement-single">
-                <h3>
-                    <span class="label label-default">
-                        {$carbon->translatePassedToFormat($announcement.rawDate, 'M jS')}
-                    </span>
-                    <a href="{routePath('announcement-view', $announcement.id, $announcement.urlfriendlytitle)}">{$announcement.title}</a>
-                </h3>
-
-                <blockquote>
-                    <p>
-                        {if $announcement.text|strip_tags|strlen < 350}
-                            {$announcement.text}
-                        {else}
-                            {$announcement.summary}
-                            <a href="{routePath('announcement-view', $announcement.id, $announcement.urlfriendlytitle)}" class="label label-warning">{$LANG.readmore} &raquo;</a>
-                        {/if}
-                    </p>
-                </blockquote>
-
-                {if $announcementsFbRecommend}
-                    <script>
-                        (function(d, s, id) {
-                            var js, fjs = d.getElementsByTagName(s)[0];
-                            if (d.getElementById(id)) {
-                                return;
-                            }
-                            js = d.createElement(s); js.id = id;
-                            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }(document, 'script', 'facebook-jssdk'));
-                    </script>
-                    <div class="fb-like hidden-sm hidden-xs" data-layout="standard" data-href="{fqdnRoutePath('announcement-view', $announcement.id, $announcement.urlfriendlytitle)}" data-send="true" data-width="450" data-show-faces="true" data-action="recommend"></div>
-                    <div class="fb-like hidden-lg hidden-md" data-layout="button_count" data-href="{fqdnRoutePath('announcement-view', $announcement.id, $announcement.urlfriendlytitle)}" data-send="true" data-width="450" data-show-faces="true" data-action="recommend"></div>
-                {/if}
+        {if $registerdomainenabled}
+            <div class="card mb-3">
+                <div class="card-body p-lg-4 p-xl-5 text-center">
+                    <h3 class="card-title pricing-card-title">
+                        {lang key='orderregisterdomain'}
+                    </h3>
+                    <p>{lang key='secureYourDomain'}</p>
+                    <a href="{$WEB_ROOT}/cart.php?a=add&domain=register" class="btn btn-block btn-outline-primary">
+                        {lang key='navdomainsearch'}
+                    </a>
+                </div>
             </div>
         {/if}
-    {/foreach}
+        {if $transferdomainenabled}
+            <div class="card mb-3">
+                <div class="card-body p-lg-4 p-xl-5 text-center">
+                    <h3 class="card-title pricing-card-title">
+                        {lang key='transferYourDomain'}
+                    </h3>
+                    <p>{lang key='transferExtend'}</p>
+                    <a href="{$WEB_ROOT}/cart.php?a=add&domain=transfer" class="btn btn-block btn-outline-primary">
+                        {lang key='transferYourDomain'}
+                    </a>
+                </div>
+            </div>
+        {/if}
+    </div>
 {/if}
 
-<section class="zt-original-home">
-    <div class="zt-home-section zt-services-overview">
-        <div class="zt-section-heading">
-            <span>Services Overview</span>
-            <h2>One technology partner for launch, hosting, and growth</h2>
-            <p>Bring your website, infrastructure, brand, and digital operations under a single professional support team.</p>
-        </div>
-        <div class="zt-service-grid">
-            <article><i class="fas fa-code"></i><h3>Web &amp; Software Development</h3><p>Business websites, portals, dashboards, and custom software built around practical operations.</p></article>
-            <article><i class="fas fa-server"></i><h3>Hosting &amp; Domain Services</h3><p>Reliable hosting, domain registration, transfers, DNS guidance, and SSL setup.</p></article>
-            <article><i class="fas fa-envelope"></i><h3>Email Hosting</h3><p>Professional mailbox setup and email hosting support for teams and growing companies.</p></article>
-            <article><i class="fas fa-bullhorn"></i><h3>Digital Marketing</h3><p>Campaign-ready digital presence support across search, content, and conversion journeys.</p></article>
-            <article><i class="fas fa-pen-nib"></i><h3>Creative &amp; Branding</h3><p>Brand identity, visual systems, and design support for polished customer touchpoints.</p></article>
-            <article><i class="fas fa-cloud"></i><h3>Cloud &amp; Business Solutions</h3><p>Cloud hosting, VPS readiness, ICT services, and business technology support.</p></article>
-        </div>
-    </div>
+<h2 class="text-center m-4">{lang key='howCanWeHelp'}</h2>
 
-    <div class="zt-home-section zt-why-section">
-        <div class="zt-section-heading">
-            <span>Why Choose Zenvik</span>
-            <h2>Built for dependable business hosting</h2>
-        </div>
-        <div class="zt-feature-grid">
-            <article><i class="fas fa-bolt"></i><h3>Fast Hosting Performance</h3><p>Optimized hosting foundations for fast websites and dependable daily traffic.</p></article>
-            <article><i class="fas fa-shield-alt"></i><h3>Secure Infrastructure</h3><p>Security-first hosting with SSL support, updates, and resilient server practices.</p></article>
-            <article><i class="fas fa-headset"></i><h3>Support Ready</h3><p>Access tickets, knowledgebase resources, and direct support when you need help.</p></article>
-            <article><i class="fas fa-route"></i><h3>Migration Guidance</h3><p>Move websites, email, DNS, and SSL settings with practical guidance from the Zenvik team.</p></article>
-        </div>
+<div class="row my-5 action-icon-btns">
+    <div class="col-6 col-md-4 col-lg">
+        <a href="{routePath('announcement-index')}" class="card-accent-teal">
+            <figure class="ico-container">
+                <i class="fal fa-bullhorn"></i>
+            </figure>
+            {lang key='announcementstitle'}
+        </a>
     </div>
+    <div class="col-6 col-md-4 col-lg">
+        <a href="serverstatus.php" class="card-accent-pomegranate">
+            <figure class="ico-container">
+                <i class="fal fa-server"></i>
+            </figure>
+            {lang key='networkstatustitle'}
+        </a>
+    </div>
+    <div class="col-6 col-md-4 col-lg">
+        <a href="{routePath('knowledgebase-index')}" class="card-accent-sun-flower">
+            <figure class="ico-container">
+                <i class="fal fa-book"></i>
+            </figure>
+            {lang key='knowledgebasetitle'}
+        </a>
+    </div>
+    <div class="col-6 col-md-4 offset-md-2 offset-lg-0 col-lg">
+        <a href="{routePath('download-index')}" class="card-accent-asbestos">
+            <figure class="ico-container">
+                <i class="fal fa-download"></i>
+            </figure>
+            {lang key='downloadstitle'}
+        </a>
+    </div>
+    <div class="col-6 offset-3 offset-md-0 col-md-4 col-lg">
+        <a href="submitticket.php" class="card-accent-green">
+            <figure class="ico-container">
+                <i class="fal fa-life-ring"></i>
+            </figure>
+            {lang key='homepage.submitTicket'}
+        </a>
+    </div>
+</div>
 
-    <div class="zt-home-section zt-trust-section">
-        <div class="zt-section-heading">
-            <span>Trusted Readiness</span>
-            <h2>Prepared for local teams and international projects</h2>
-            <p>Kenya-based support with hosting practices, communication, and service standards suitable for clients beyond one market.</p>
-        </div>
-        <div class="zt-trust-strip">
-            <span>Startups</span>
-            <span>SMEs</span>
-            <span>Online Stores</span>
-            <span>Agencies</span>
-            <span>Institutions</span>
-        </div>
-    </div>
+<h2 class="text-center m-4">{lang key='homepage.yourAccount'}</h2>
 
-    <div class="zt-final-cta">
-        <h2>Ready to host, launch, or improve your digital presence?</h2>
-        <p>Talk to Zenvik about hosting, domains, email, software, branding, or managed support.</p>
-        <div class="zt-home-actions">
-            <a href="{$WEB_ROOT}/cart.php" class="zt-btn zt-btn-primary">Explore Hosting</a>
-            <a href="{$WEB_ROOT}/submitticket.php" class="zt-btn zt-btn-secondary">Contact Support</a>
-        </div>
+<div class="row my-5 action-icon-btns">
+    <div class="col-6 col-md-4 col-lg">
+        <a href="clientarea.php" class="card-accent-midnight-blue">
+            <figure class="ico-container">
+                <i class="fal fa-home"></i>
+            </figure>
+            {lang key='homepage.yourAccount'}
+        </a>
     </div>
-</section>
+    <div class="col-6 col-md-4 col-lg">
+        <a href="clientarea.php?action=services" class="card-accent-midnight-blue">
+            <figure class="ico-container">
+                <i class="far fa-cubes"></i>
+            </figure>
+            {lang key='homepage.manageServices'}
+        </a>
+    </div>
+    {if $registerdomainenabled || $transferdomainenabled || $numberOfDomains}
+        <div class="col-6 col-md-4 col-lg">
+            <a href="clientarea.php?action=domains" class="card-accent-midnight-blue">
+                <figure class="ico-container">
+                    <i class="fal fa-globe"></i>
+                </figure>
+                {lang key='homepage.manageDomains'}
+            </a>
+        </div>
+    {/if}
+    <div class="col-6 col-md-4 offset-md-2 offset-lg-0 col-lg">
+        <a href="supporttickets.php" class="card-accent-midnight-blue">
+            <figure class="ico-container">
+                <i class="fal fa-comments"></i>
+            </figure>
+            {lang key='homepage.supportRequests'}
+        </a>
+    </div>
+    <div class="col-6 offset-3 offset-md-0 col-md-4 col-lg">
+        <a href="clientarea.php?action=masspay&all=true" class="card-accent-midnight-blue">
+            <figure class="ico-container">
+                <i class="fal fa-credit-card"></i>
+            </figure>
+            {lang key='homepage.makeAPayment'}
+        </a>
+    </div>
+</div>

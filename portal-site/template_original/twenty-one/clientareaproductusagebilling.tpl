@@ -1,10 +1,10 @@
-<p>{$LANG.metrics.explanation}</p>
-<table class="table table-striped" style="margin-bottom:5px;border-bottom:1px solid #ddd;">
+<p>{lang key='metrics.explanation'}</p>
+<table class="table table-striped mb-1 table-solid-bottom-border-light-gray">
     <tr>
-        <th>{$LANG.metrics.metric}</th>
-        <th>{$LANG.metrics.currentUsage}</th>
-        <th>{$LANG.metrics.pricing}</th>
-        <th>{$LANG.metrics.lastUpdated}</th>
+        <th>{lang key='metrics.metric'}</th>
+        <th>{lang key='metrics.currentUsage'}</th>
+        <th>{lang key='metrics.pricing'}</th>
+        <th>{lang key='metrics.lastUpdated'}</th>
     </tr>
     {foreach $metricStats as $metric}
         <tr>
@@ -12,14 +12,14 @@
             <td>{$metric.currentValue}</td>
             <td>
                 {if count($metric.pricing) > 1}
-                    {$LANG.metrics.startingFrom} {$metric.lowestPrice} / {if $metric.unitName}{$metric.unitName}{else}{$LANG.metrics.unit}{/if}
+                    {lang key='metrics.startingFrom'} {$metric.lowestPrice} / {if $metric.unitName}{$metric.unitName}{else}{lang key='metrics.unit'}{/if}
                     <br>
                     <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalMetricPricing-{$metric.systemName}">
-                        {$LANG.metrics.viewPricing}
+                        {lang key='metrics.viewPricing'}
                     </button>
                 {elseif count($metric.pricing) == 1}
-                    {$metric.lowestPrice} / {if $metric.unitName}{$metric.unitName}{else}{$LANG.metrics.unit}{/if}
-                    {if $metric.includedQuantity > 0} ({$metric.includedQuantity} {$LANG.metrics.includedNotCounted}){/if}
+                    {$metric.lowestPrice} / {if $metric.unitName}{$metric.unitName}{else}{lang key='metrics.unit'}{/if}
+                    {if $metric.includedQuantity > 0} ({$metric.includedQuantity} {lang key='metrics.includedNotCounted'}){/if}
                 {else}
                     &mdash;
                 {/if}

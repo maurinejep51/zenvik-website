@@ -7,21 +7,25 @@
     <title>{$requestedAction} - {$companyname}</title>
 
     <link href="{assetPath file='all.min.css'}" rel="stylesheet">
+    <link href="{assetPath file='theme.min.css'}?v={$versionHash}" rel="stylesheet">
     {assetExists file="custom.css"}
     <link href="{$__assetPath__}" rel="stylesheet">
     {/assetExists}
     <link href="{assetPath file='oauth.css'}" rel="stylesheet">
 
-    <script>
-        var whmcsBaseUrl = "{\WHMCS\Utility\Environment\WebHelper::getBaseUrl()}";
-    </script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
   <body>
 
     <section id="header">
-        <div class="container">
+        <div class="container clearfix">
             <img src="{$logo}" />
-            <div class="pull-right text-right">
+            <div class="float-right text-right">
                 {if $loggedin}
                     <form method="post" action="{$issuerurl}oauth/authorize.php" id="frmLogout">
                         <input type="hidden" name="logout" value="1"/>

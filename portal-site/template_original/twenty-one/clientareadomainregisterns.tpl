@@ -1,91 +1,113 @@
-<h3>{$LANG.domainregisterns}</h3>
-
-{include file="$template/includes/alert.tpl" type="info" msg=$LANG.domainregisternsexplanation}
-
 {if $result}
     {include file="$template/includes/alert.tpl" type="warning" msg=$result textcenter=true}
 {/if}
 
-<form class="form-horizontal" role="form" method="post" action="{$smarty.server.PHP_SELF}?action=domainregisterns">
-    <input type="hidden" name="sub" value="register" />
-    <input type="hidden" name="domainid" value="{$domainid}" />
+{include file="$template/includes/alert.tpl" type="info" msg="{lang key='domainregisternsexplanation'}"}
 
-    <h4>{$LANG.domainregisternsreg}</h4>
+<div class="card">
+    <div class="card-body">
+        <form role="form" method="post" action="{$smarty.server.PHP_SELF}?action=domainregisterns">
+            <input type="hidden" name="sub" value="register" />
+            <input type="hidden" name="domainid" value="{$domainid}" />
 
-    <div class="form-group">
-        <label for="inputNs1" class="col-xs-4 control-label">{$LANG.domainregisternsns}</label>
-        <div class="col-xs-3">
-            <input type="text" class="form-control" id="inputNs1" name="ns" />
-        </div>
-        <div class="col-xs-5">
-            . {$domain}
-        </div>
+            <h3 class="card-title">{lang key='domainregisternsreg'}</h3>
+
+            <div class="form-group row">
+                <label for="inputNs1" class="col-md-4 col-form-label">{lang key='domainregisternsns'}</label>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="inputNs1" name="ns" />
+                        <div class="input-group-append">
+                            <span class="input-group-text">. {$domain}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputIp1" class="col-md-4 col-form-label">{lang key='domainregisternsip'}</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="inputIp1" name="ipaddress" />
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">
+                    {lang key='clientareasavechanges'}
+                </button>
+            </div>
+
+        </form>
     </div>
-    <div class="form-group">
-        <label for="inputIp1" class="col-xs-4 control-label">{$LANG.domainregisternsip}</label>
-        <div class="col-xs-6 col-sm-5">
-            <input type="text" class="form-control" id="inputIp1" name="ipaddress" />
-        </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form role="form" method="post" action="{$smarty.server.PHP_SELF}?action=domainregisterns">
+            <input type="hidden" name="sub" value="modify" />
+            <input type="hidden" name="domainid" value="{$domainid}" />
+
+            <h3 class="card-title">{lang key='domainregisternsmod'}</h3>
+
+            <div class="form-group row">
+                <label for="inputNs2" class="col-md-4 col-form-label">{lang key='domainregisternsns'}</label>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="inputNs2" name="ns" />
+                        <div class="input-group-append">
+                            <span class="input-group-text">. {$domain}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputIp2" class="col-md-4 col-form-label">{lang key='domainregisternscurrentip'}</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="inputIp2" name="currentipaddress" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputIp3" class="col-md-4 col-form-label">{lang key='domainregisternsnewip'}</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="inputIp3" name="newipaddress" />
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">
+                    {lang key='clientareasavechanges'}
+                </button>
+            </div>
+
+        </form>
     </div>
+</div>
 
-    <p class="text-center">
-        <input type="submit" value="{$LANG.clientareasavechanges}" class="btn btn-primary" />
-    </p>
+<div class="card">
+    <div class="card-body">
+        <form role="form" method="post" action="{$smarty.server.PHP_SELF}?action=domainregisterns">
+            <input type="hidden" name="sub" value="delete" />
+            <input type="hidden" name="domainid" value="{$domainid}" />
 
-</form>
+            <h3 class="card-title">{lang key='domainregisternsdel'}</h3>
 
-<form class="form-horizontal" role="form" method="post" action="{$smarty.server.PHP_SELF}?action=domainregisterns">
-    <input type="hidden" name="sub" value="modify" />
-    <input type="hidden" name="domainid" value="{$domainid}" />
+            <div class="form-group row">
+                <label for="inputNs3" class="col-md-4 col-form-label">{lang key='domainregisternsns'}</label>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="inputNs3" name="ns" />
+                        <div class="input-group-append">
+                            <span class="input-group-text">.{$domain}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <h4>{$LANG.domainregisternsmod}</h4>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">
+                    {lang key='clientareasavechanges'}
+                </button>
+            </div>
 
-    <div class="form-group">
-        <label for="inputNs2" class="col-xs-4 control-label">{$LANG.domainregisternsns}</label>
-        <div class="col-xs-3">
-            <input type="text" class="form-control" id="inputNs2" name="ns" />
-        </div>
-        <div class="col-xs-5">
-            . {$domain}
-        </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="inputIp2" class="col-xs-4 control-label">{$LANG.domainregisternscurrentip}</label>
-        <div class="col-xs-6 col-sm-5">
-            <input type="text" class="form-control" id="inputIp2" name="currentipaddress" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputIp3" class="col-xs-4 control-label">{$LANG.domainregisternsnewip}</label>
-        <div class="col-xs-6 col-sm-5">
-            <input type="text" class="form-control" id="inputIp3" name="newipaddress" />
-        </div>
-    </div>
-
-    <p class="text-center">
-        <input type="submit" value="{$LANG.clientareasavechanges}" class="btn btn-primary" />
-    </p>
-
-</form>
-
-<form class="form-horizontal" role="form" method="post" action="{$smarty.server.PHP_SELF}?action=domainregisterns">
-    <input type="hidden" name="sub" value="delete" />
-    <input type="hidden" name="domainid" value="{$domainid}" />
-
-    <h4>{$LANG.domainregisternsdel}</h4>
-
-    <div class="form-group">
-        <label for="inputNs3" class="col-xs-4 control-label">{$LANG.domainregisternsns}</label>
-        <div class="col-xs-3">
-            <input type="text" class="form-control" id="inputNs3" name="ns" />
-        </div>
-        <div class="col-xs-5">
-            . {$domain}
-        </div>
-    </div>
-
-    <p class="text-center">
-        <input type="submit" value="{$LANG.clientareasavechanges}" class="btn btn-primary" />
-    </p>
-
-</form>
+</div>

@@ -12,26 +12,26 @@
         <div class="content-padded">
 
             {if $incorrect}
-                {include file="$template/includes/alert.tpl" type="error" msg=$LANG.loginincorrect textcenter=true}
+                {include file="$template/includes/alert.tpl" type="error" msg="{lang key='loginincorrect'}" textcenter=true}
             {/if}
 
             <div class="form-group">
-                <label for="inputEmail">{$LANG.clientareaemail}</label>
-                <input type="email" name="username" class="form-control" id="inputEmail" placeholder="{$LANG.enteremail}" autofocus>
+                <label for="inputEmail">{lang key='clientareaemail'}</label>
+                <input type="email" name="username" class="form-control" id="inputEmail" placeholder="{lang key='enteremail'}" autofocus>
             </div>
 
             <div class="form-group">
-                <label for="inputPassword">{$LANG.clientareapassword}</label>
-                <input type="password" name="password" class="form-control" id="inputPassword" placeholder="{$LANG.clientareapassword}" autocomplete="off" >
+                <label for="inputPassword">{lang key='clientareapassword'}</label>
+                <input type="password" name="password" class="form-control" id="inputPassword" placeholder="{lang key='clientareapassword'}" autocomplete="off" >
             </div>
 
         </div>
 
         <div class="action-buttons">
-            <div class="pull-left">
-                <div class="checkbox">
+            <div class="float-left">
+                <div class="form-check">
                     <label>
-                        <input type="checkbox" name="rememberme" /> {$LANG.loginrememberme}
+                        <input type="checkbox" class="form-check-input" name="rememberme" /> {lang key='loginrememberme'}
                     </label>
                     &bull;
                     <a href="{routePath('password-reset-begin')}">{lang key='forgotpw'}</a>

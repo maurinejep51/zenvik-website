@@ -1,120 +1,148 @@
-
-                </div><!-- /.main-content -->
-                {if !$inShoppingCart && $secondarySidebar->hasChildren()}
-                    <div class="col-md-3 pull-md-left sidebar sidebar-secondary">
-                        {include file="$template/includes/sidebar.tpl" sidebar=$secondarySidebar}
                     </div>
+
+                    </div>
+                    {if !$inShoppingCart && $secondarySidebar->hasChildren()}
+                        <div class="d-lg-none sidebar sidebar-secondary">
+                            {include file="$template/includes/sidebar.tpl" sidebar=$secondarySidebar}
+                        </div>
+                    {/if}
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer" class="footer">
+        <div class="container">
+            <ul class="list-inline mb-7 text-center float-lg-right">
+                {include file="$template/includes/social-accounts.tpl"}
+
+                {if $languagechangeenabled && count($locales) > 1 || $currencies}
+                    <li class="list-inline-item">
+                        <button type="button" class="btn" data-toggle="modal" data-target="#modalChooseLanguage">
+                            <div class="d-inline-block align-middle">
+                                <div class="iti-flag {if $activeLocale.countryCode === '001'}us{else}{$activeLocale.countryCode|lower}{/if}"></div>
+                            </div>
+                            {$activeLocale.localisedName}
+                            /
+                            {$activeCurrency.prefix}
+                            {$activeCurrency.code}
+                        </button>
+                    </li>
                 {/if}
-            <div class="clearfix"></div>
+            </ul>
+
+            <ul class="nav justify-content-center justify-content-lg-start mb-7">
+                <li class="nav-item">
+                    <a class="nav-link" href="{$WEB_ROOT}/contact.php">
+                        {lang key='contactus'}
+                    </a>
+                </li>
+                {if $acceptTOS}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{$tosURL}" target="_blank">{lang key='ordertos'}</a>
+                    </li>
+                {/if}
+            </ul>
+
+            <p class="copyright mb-0">
+                {lang key="copyrightFooterNotice" year=$date_year company=$companyname}
+            </p>
+        </div>
+    </footer>
+
+    <div id="fullpage-overlay" class="w-hidden">
+        <div class="outer-wrapper">
+            <div class="inner-wrapper">
+                <img src="{$WEB_ROOT}/assets/img/overlay-spinner.svg" alt="">
+                <br>
+                <span class="msg"></span>
+            </div>
         </div>
     </div>
-</section>
 
-<section id="footer" class="zt-template-footer">
-    <div class="container">
-        <div class="zt-footer-grid">
-            <div class="zt-footer-column zt-footer-brand-block">
-                <a href="{$WEB_ROOT}/index.php" class="zt-footer-brand">
-                    <img src="{$WEB_ROOT}/templates/{$template}/img/logo.png" alt="{$companyname}">
-                </a>
-                <p>Zenvik Technologies Ltd delivers hosting, domains, software, websites, branding, and ICT support for growing businesses.</p>
-                <p class="zt-footer-readiness">Kenya-based support. International-ready standards.</p>
-                <a class="zt-whatsapp-btn" href="https://wa.me/254717990272" target="_blank" rel="noopener">
-                    <i class="fab fa-whatsapp"></i>
-                    WhatsApp Support
-                </a>
-            </div>
-            <div class="zt-footer-column">
-                <h3>Services</h3>
-                <ul>
-                    <li><a href="{$WEB_ROOT}/cart.php">Hosting &amp; Cloud</a></li>
-                    <li><a href="{$WEB_ROOT}/contact.php">Software Development</a></li>
-                    <li><a href="{$WEB_ROOT}/contact.php">Website Development</a></li>
-                    <li><a href="{$WEB_ROOT}/contact.php">Marketing &amp; Branding</a></li>
-                    <li><a href="{$WEB_ROOT}/contact.php">ICT Services</a></li>
-                </ul>
-                <h3 class="zt-footer-subheading">Hosting</h3>
-                <ul>
-                    <li><a href="{$WEB_ROOT}/cart.php">Web Hosting</a></li>
-                    <li><a href="{$WEB_ROOT}/cart.php">VPS Hosting</a></li>
-                    <li><a href="{$WEB_ROOT}/cart.php">Email Hosting</a></li>
-                    <li><a href="{$WEB_ROOT}/cart.php">Reseller Hosting</a></li>
-                    <li><a href="{$WEB_ROOT}/store/ssl">SSL Certificates</a></li>
-                </ul>
-            </div>
-            <div class="zt-footer-column">
-                <h3>Company</h3>
-                <ul>
-                    <li><a href="{$WEB_ROOT}/index.php">Home</a></li>
-                    <li><a href="{$WEB_ROOT}/contact.php">Our Services</a></li>
-                    <li><a href="https://zenviktechnologies.com/#portfolio">Portfolio</a></li>
-                    <li><a href="{$WEB_ROOT}/clientarea.php">Client Portal</a></li>
-                    <li><a href="{$WEB_ROOT}/contact.php">Contact</a></li>
-                    <li><a href="{routePath('knowledgebase-index')}">Knowledgebase</a></li>
-                    <li><a href="{$WEB_ROOT}/submitticket.php">Open Ticket</a></li>
-                </ul>
-            </div>
-            <div class="zt-footer-column">
-                <h3>Get In Touch</h3>
-                <ul class="zt-footer-contact">
-                    <li><span>Phone</span><a href="tel:+254717990272">+254 717 990 272</a></li>
-                    <li><span>WhatsApp</span><a href="https://wa.me/254717990272" target="_blank" rel="noopener">+254 717 990 272</a></li>
-                    <li><span>Email</span><a href="mailto:info@zenviktechnologies.com">info@zenviktechnologies.com</a></li>
-                    <li><span>Support</span><a href="mailto:support@zenviktechnologies.com">support@zenviktechnologies.com</a></li>
-                    <li><span>Hosting</span><a href="mailto:hosting@zenviktechnologies.com">hosting@zenviktechnologies.com</a></li>
-                </ul>
-                <ul class="zt-footer-social">
-                    <li><a href="https://www.facebook.com/zenviktechnologies/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="https://www.linkedin.com/company/zenvik-technologies-ltd/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
-                    <li><a href="https://www.instagram.com/zenviktechnologies/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                    <li><a href="https://x.com/ZenvikTech" target="_blank" rel="noopener" aria-label="X/Twitter"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="https://www.tiktok.com/@zenviktechnologies" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="zt-footer-bottom">
-            <p>&copy; 2026 Zenvik Technologies Ltd. All Rights Reserved.</p>
-            <div class="zt-footer-legal">
-                <a href="https://zenviktechnologies.com/privacy-policy">Privacy Policy</a>
-                <a href="https://zenviktechnologies.com/terms-and-conditions">Terms &amp; Conditions</a>
-            </div>
-            <a href="#" class="back-to-top"><i class="fas fa-chevron-up"></i></a>
-        </div>
-    </div>
-</section>
-
-<div class="modal system-modal fade" id="modalAjax" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content panel-primary">
-            <div class="modal-header panel-heading">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">{$LANG.close}</span>
-                </button>
-                <h4 class="modal-title"></h4>
-            </div>
-            <div class="modal-body panel-body">
-                {$LANG.loading}
-            </div>
-            <div class="modal-footer panel-footer">
-                <div class="pull-left loader">
-                    <i class="fas fa-circle-notch fa-spin"></i>
-                    {$LANG.loading}
+    <div class="modal system-modal fade" id="modalAjax" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">{lang key='close'}</span>
+                    </button>
                 </div>
-                <button type="button" class="btn btn-default" data-dismiss="modal">
-                    {$LANG.close}
-                </button>
-                <button type="button" class="btn btn-primary modal-submit">
-                    {$LANG.submit}
-                </button>
+                <div class="modal-body">
+                    {lang key='loading'}
+                </div>
+                <div class="modal-footer">
+                    <div class="float-left loader">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                        {lang key='loading'}
+                    </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        {lang key='close'}
+                    </button>
+                    <button type="button" class="btn btn-primary modal-submit">
+                        {lang key='submit'}
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-{include file="$template/includes/generate-password.tpl"}
+    <form method="get" action="{$currentpagelinkback}">
+        <div class="modal modal-localisation" id="modalChooseLanguage" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
 
-{$footeroutput}
+                        {if $languagechangeenabled && count($locales) > 1}
+                            <h5 class="h5 pt-5 pb-3">{lang key='chooselanguage'}</h5>
+                            <div class="row item-selector">
+                                <input type="hidden" name="language" data-current="{$language}" value="{$language}" />
+                                {foreach $locales as $locale}
+                                    <div class="col-4">
+                                        <a href="#" class="item{if $language == $locale.language} active{/if}" data-value="{$locale.language}">
+                                            {$locale.localisedName}
+                                        </a>
+                                    </div>
+                                {/foreach}
+                            </div>
+                        {/if}
+                        {if !$loggedin && $currencies}
+                            <p class="h5 pt-5 pb-3">{lang key='choosecurrency'}</p>
+                            <div class="row item-selector">
+                                <input type="hidden" name="currency" data-current="{$activeCurrency.id}" value="">
+                                {foreach $currencies as $selectCurrency}
+                                    <div class="col-4">
+                                        <a href="#" class="item{if $activeCurrency.id == $selectCurrency.id} active{/if}" data-value="{$selectCurrency.id}">
+                                            {$selectCurrency.prefix} {$selectCurrency.code}
+                                        </a>
+                                    </div>
+                                {/foreach}
+                            </div>
+                        {/if}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">{lang key='apply'}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    {if !$loggedin && $adminLoggedIn}
+        <a href="{$WEB_ROOT}/logout.php?returntoadmin=1" class="btn btn-return-to-admin" data-toggle="tooltip" data-placement="bottom" title="{if $adminMasqueradingAsClient}{lang key='adminmasqueradingasclient'} {lang key='logoutandreturntoadminarea'}{else}{lang key='adminloggedin'} {lang key='returntoadminarea'}{/if}">
+            <i class="fas fa-redo-alt"></i>
+            <span class="d-none d-md-inline-block">{lang key="admin.returnToAdmin"}</span>
+        </a>
+    {/if}
+
+    {include file="$template/includes/generate-password.tpl"}
+
+    {$footeroutput}
 
 </body>
 </html>

@@ -1,86 +1,126 @@
-{foreach from=$issues item=issue}
-
-    <div class="panel {if $issue.clientaffected}panel-warning{else}panel-info{/if}">
-        <div class="panel-heading">
-            {$issue.title} ({$issue.status})
-        </div>
-        <ul class="list-group">
-            <li id="issuePriorityLabel" class="list-group-item {if $issue.rawPriority == 'Critical'}list-group-item-danger{elseif $issue.rawPriority == 'High'}list-group-item-warning{elseif $issue.rawPriority == 'Low'}list-group-item-success{else}list-group-item-info{/if}"><strong>{$LANG.networkissuespriority}</strong> - {$issue.priority}</li>
-            {if $issue.server or $issue.affecting}<li class="list-group-item"><strong>{$LANG.networkissuesaffecting} {$issue.type}</strong> - {if $issue.type eq $LANG.networkissuestypeserver}{$issue.server}{else}{$issue.affecting}{/if}</li>{/if}
-            <li class="list-group-item">
-                <p>
-                    {$issue.description}
-                </p>
-            </li>
-            <li class="list-group-item"><strong>{$LANG.networkissuesdate}</strong> - {$issue.startdate}{if $issue.enddate} - {$issue.enddate}{/if}</li>
-            <li class="list-group-item"><strong>{$LANG.networkissueslastupdated}</strong> - {$issue.lastupdate}</li>
-        </ul>
+{if $opencount == 0}
+    <div class="alert alert-success">
+        <i class="fas fa-check fa-fw"></i>
+        {"{lang key='networkstatusnone'}"|sprintf:"{lang key='networkissuesstatusopen'}"}
     </div>
+{/if}
 
-{foreachelse}
-    {include file="$template/includes/alert.tpl" type="success" msg=$noissuesmsg textcenter=true}
-{/foreach}
-
-<div class="btn-group">
-    <a href="{if $prevpage}{$smarty.server.PHP_SELF}?{if $view}view={$view}&amp;{/if}page={$prevpage}{else}#{/if}" class="btn btn-default {if !$prevpage}disabled{/if}">&lt; {$LANG.previouspage}</a>
-    <a href="{if $nextpage}{$smarty.server.PHP_SELF}?{if $view}view={$view}&amp;{/if}page={$nextpage}{else}#{/if}" class="btn btn-default {if !$nextpage}disabled{/if}">{$LANG.nextpage} &gt;</a>
-</div>
+{if $scheduledcount > 0}
+    <div class="alert alert-info">
+        <i class="fas fa-exclamation-triangle fa-fw"></i>
+        {lang key='networkIssues.scheduled' count=$scheduledcount}
+        <a href="serverstatus.php?view=scheduled" class="alert-link">{lang key='learnmore'}...</a>
+    </div>
+{/if}
 
 {if $servers}
+    <div class="card">
+        <div class="card-body">
+            <h3>{lang key='serverstatustitle'}</h3>
 
-    {include file="$template/includes/subheader.tpl" title=$LANG.serverstatustitle}
+            <p>{lang key='serverstatusheadingtext'}</p>
 
-    <p>{$LANG.serverstatusheadingtext}</p>
-
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>{$LANG.servername}</th>
-                    <th class="text-center">HTTP</th>
-                    <th class="text-center">FTP</th>
-                    <th class="text-center">POP3</th>
-                    <th class="text-center">{$LANG.serverstatusphpinfo}</th>
-                    <th class="text-center">{$LANG.serverstatusserverload}</th>
-                    <th class="text-center">{$LANG.serverstatusuptime}</th>
-                </tr>
-            </thead>
-            <tbody>
-                {foreach from=$servers key=num item=server}
-                    <tr>
-                        <td>{$server.name}</td>
-                        <td class="text-center" id="port80_{$num}">
-                            <span class="fas fa-spinner fa-spin"></span>
-                        </td>
-                        <td class="text-center" id="port21_{$num}">
-                            <span class="fas fa-spinner fa-spin"></span>
-                        </td>
-                        <td class="text-center" id="port110_{$num}">
-                            <span class="fas fa-spinner fa-spin"></span>
-                        </td>
-                        <td class="text-center"><a href="{$server.phpinfourl}" target="_blank">{$LANG.serverstatusphpinfo}</a></td>
-                        <td class="text-center" id="load{$num}">
-                            <span class="fas fa-spinner fa-spin"></span>
-                        </td>
-                        <td class="text-center" id="uptime{$num}">
-                            <span class="fas fa-spinner fa-spin"></span>
-                            <script>
-                            jQuery(document).ready(function() {
-                                checkPort({$num}, 80);
-                                checkPort({$num}, 21);
-                                checkPort({$num}, 110);
-                                getStats({$num});
-                            });
-                            </script>
-                        </td>
-                    </tr>
-                {foreachelse}
-                    <tr>
-                        <td colspan="7">{$LANG.serverstatusnoservers}</td>
-                    </tr>
-                {/foreach}
-            </tbody>
-        </table>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>{lang key='servername'}</th>
+                            <th class="text-center">{lang key='networkIssues.http'}</th>
+                            <th class="text-center">{lang key='networkIssues.ftp'}</th>
+                            <th class="text-center">{lang key='networkIssues.pop3'}</th>
+                            <th class="text-center">{lang key='serverstatusphpinfo'}</th>
+                            <th class="text-center">{lang key='serverstatusserverload'}</th>
+                            <th class="text-center">{lang key='serverstatusuptime'}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {foreach $servers as $num => $server}
+                            <tr>
+                                <td>{$server.name}</td>
+                                <td class="text-center" id="port80_{$num}">
+                                    <span class="fas fa-spinner fa-spin"></span>
+                                </td>
+                                <td class="text-center" id="port21_{$num}">
+                                    <span class="fas fa-spinner fa-spin"></span>
+                                </td>
+                                <td class="text-center" id="port110_{$num}">
+                                    <span class="fas fa-spinner fa-spin"></span>
+                                </td>
+                                <td class="text-center"><a href="{$server.phpinfourl}" target="_blank">{lang key='serverstatusphpinfo'}</a></td>
+                                <td class="text-center" id="load{$num}">
+                                    <span class="fas fa-spinner fa-spin"></span>
+                                </td>
+                                <td class="text-center" id="uptime{$num}">
+                                    <span class="fas fa-spinner fa-spin"></span>
+                                    <script>
+                                    jQuery(document).ready(function() {
+                                        checkPort({$num}, 80);
+                                        checkPort({$num}, 21);
+                                        checkPort({$num}, 110);
+                                        getStats({$num});
+                                    });
+                                    </script>
+                                </td>
+                            </tr>
+                        {foreachelse}
+                            <tr>
+                                <td colspan="7">{lang key='serverstatusnoservers'}</td>
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-
 {/if}
+
+{foreach $issues as $issue}
+    <div class="card">
+        <div class="card-header">
+            {$issue.title}
+            ({$issue.status})
+            <span id="issuePriorityLabel" class="badge badge-{if $issue.rawPriority == 'Critical'}danger{elseif $issue.rawPriority == 'High'}warning{elseif $issue.rawPriority == 'Low'}success{else}info{/if} float-md-right">{$issue.priority}</span>
+        </div>
+        <div class="card-body">
+            {if $issue.server || $issue.affecting}
+                <p class="h5">
+                    <strong>{lang key='networkissuesaffecting'} {$issue.type}</strong>
+                    -
+                    {if $issue.type eq "{lang key='networkissuestypeserver'}"}
+                        {$issue.server}
+                    {else}
+                        {$issue.affecting}
+                    {/if}
+                </p>
+            {/if}
+            <ul class="list-inline">
+                <li class="list-inline-item pr-3">
+                    <i class="far fa-calendar-alt fa-fw"></i>
+                    {$issue.startdate}
+                    {if $issue.enddate} - {$issue.enddate}{/if}
+                </li>
+                <li class="list-inline-item pr-3">
+                    <i class="far fa-clock fa-fw"></i>
+                    {lang key='networkissueslastupdated'}</strong> {$issue.lastupdate}
+                </li>
+            </ul>
+            {if $issue.clientaffected}
+                <div class="alert alert-warning p-1 text-center">
+                    {lang key='networkIssues.affectingYou'}
+                </div>
+            {/if}
+            <p>
+                {$issue.description}
+            </p>
+        </div>
+    </div>
+{foreachelse}
+    <p>{$noissuesmsg}</p>
+{/foreach}
+
+<nav aria-label="Network issues navigation">
+    <ul class="pagination">
+        <li class="page-item{if !$prevpage} disabled{/if}"><a class="page-link" href="?{if $view}view={$view}&amp;{/if}page={$prevpage}">{lang key='previouspage'}</a></li>
+        <li class="page-item{if !$nextpage} disabled{/if}"><a class="page-link" href="?{if $view}view={$view}&amp;{/if}page={$nextpage}">{lang key='nextpage'}</a></li>
+    </ul>
+</nav>

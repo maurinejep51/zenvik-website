@@ -43,19 +43,19 @@
                 </ul>
             </div>
             {foreach $accentPrimaryServiceBtns as $accentPrimaryServiceBtn}
-                <div class="btn-group btn-group-sm btn-group-secondary" role="group">
-                    <button class="btn btn-primary btn-sm btn-custom-action{if !$accentPrimaryServiceBtn['active']} disabled{/if}"
-                            data-serviceid="{$accentPrimaryServiceBtn['serviceid']}"
-                            data-identifier="{$accentPrimaryServiceBtn['identifier']}"
-                            data-active="{$accentPrimaryServiceBtn['active']}"
-                            {if !$accentPrimaryServiceBtn['active']}disabled="disabled"{/if}
-                    >
-                        <span class="loading" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i>
-                        </span>
-                        {$accentPrimaryServiceBtn['display']}
-                    </button>
-                </div>
+            <div class="btn-group btn-group-sm btn-group-secondary" role="group">
+                <button class="btn btn-primary btn-sm btn-custom-action{if !$accentPrimaryServiceBtn['active']} disabled{/if}"
+                        data-serviceid="{$accentPrimaryServiceBtn['serviceid']}"
+                        data-identifier="{$accentPrimaryServiceBtn['identifier']}"
+                        data-active="{$accentPrimaryServiceBtn['active']}"
+                        {if !$accentPrimaryServiceBtn['active']}disabled="disabled"{/if}
+                >
+                            <span class="loading" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </span>
+                    {$accentPrimaryServiceBtn['display']}
+                </button>
+            </div>
             {/foreach}
             {if $primaryServiceBtn}
                 <div class="btn-group btn-group-sm btn-group-secondary" role="group">
@@ -80,7 +80,7 @@
                             >
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu dropdown-menu-right">
                                 {foreach $secondaryButtons as $secondaryButton}
                                     <li class="dropdown-item btn-custom-action{if !$secondaryButton['active']} disabled{/if}"
                                         data-serviceid="{$secondaryButton['serviceid']}"
