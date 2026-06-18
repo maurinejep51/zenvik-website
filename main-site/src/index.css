@@ -56,3 +56,652 @@
     text-decoration: none;
   }
 }
+
+@layer components {
+  .partners-blueprint {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    color: #043a7e;
+  }
+
+  .partners-blueprint::before,
+  .partners-blueprint::after {
+    content: "";
+    position: absolute;
+    width: 21rem;
+    height: 21rem;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(4, 58, 126, 0.078), transparent 68%);
+  }
+
+  .partners-blueprint::before {
+    right: 2%;
+    top: -6%;
+  }
+
+  .partners-blueprint::after {
+    left: -4%;
+    bottom: -10%;
+  }
+
+  .blueprint-line,
+  .blueprint-node,
+  .blueprint-pulse {
+    position: absolute;
+    display: block;
+  }
+
+  .blueprint-line {
+    background: currentColor;
+    opacity: 0.085;
+  }
+
+  .blueprint-line-top-a {
+    right: 3%;
+    top: 9%;
+    width: 15rem;
+    height: 1px;
+    opacity: 0.115;
+  }
+
+  .blueprint-line-top-b {
+    right: 12%;
+    top: 9%;
+    width: 1px;
+    height: 4.25rem;
+    opacity: 0.105;
+  }
+
+  .blueprint-line-top-c {
+    right: 12%;
+    top: calc(9% + 4.25rem);
+    width: 7.5rem;
+    height: 1px;
+    opacity: 0.09;
+  }
+
+  .blueprint-line-top-d {
+    right: calc(12% + 7.5rem);
+    top: calc(9% + 2rem);
+    width: 1px;
+    height: 2.25rem;
+    opacity: 0.065;
+  }
+
+  .blueprint-line-top-e {
+    right: calc(12% + 7.5rem);
+    top: calc(9% + 2rem);
+    width: 5rem;
+    height: 1px;
+    opacity: 0.055;
+  }
+
+  .blueprint-line-bottom-a {
+    left: 3%;
+    bottom: 8%;
+    width: 16rem;
+    height: 1px;
+    opacity: 0.115;
+  }
+
+  .blueprint-line-bottom-b {
+    left: 13%;
+    bottom: 8%;
+    width: 1px;
+    height: 4.5rem;
+    opacity: 0.105;
+  }
+
+  .blueprint-line-bottom-c {
+    left: 13%;
+    bottom: calc(8% + 4.5rem);
+    width: 8rem;
+    height: 1px;
+    opacity: 0.09;
+  }
+
+  .blueprint-line-bottom-d {
+    left: calc(13% + 8rem);
+    bottom: calc(8% + 2rem);
+    width: 1px;
+    height: 2.5rem;
+    opacity: 0.065;
+  }
+
+  .blueprint-line-bottom-e {
+    left: calc(13% + 8rem);
+    bottom: calc(8% + 2rem);
+    width: 5rem;
+    height: 1px;
+    opacity: 0.055;
+  }
+
+  .blueprint-node {
+    width: 4px;
+    height: 4px;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: 0.12;
+  }
+
+  .blueprint-node-top-a {
+    right: calc(12% - 2px);
+    top: calc(9% - 2px);
+    width: 8px;
+    height: 8px;
+    right: calc(12% - 4px);
+    top: calc(9% - 4px);
+    opacity: 0.13;
+  }
+
+  .blueprint-node-top-b {
+    right: calc(12% + 7.5rem - 5px);
+    top: calc(9% + 4.25rem - 5px);
+    width: 10px;
+    height: 10px;
+    background: #043a7e;
+    opacity: 0.14;
+    box-shadow:
+      0 0 0 5px rgba(4, 58, 126, 0.06),
+      0 0 24px rgba(4, 58, 126, 0.12);
+  }
+
+  .blueprint-node-top-c {
+    right: calc(12% + 7.5rem - 2px);
+    top: calc(9% + 2rem - 2px);
+    opacity: 0.1;
+  }
+
+  .blueprint-node-top-d {
+    right: calc(12% + 12.5rem - 2px);
+    top: calc(9% + 2rem - 2px);
+    background: #dfa408;
+    opacity: 0.12;
+  }
+
+  .blueprint-node-bottom-a {
+    left: calc(13% - 5px);
+    bottom: calc(8% - 5px);
+    width: 10px;
+    height: 10px;
+    background: #043a7e;
+    opacity: 0.14;
+    box-shadow:
+      0 0 0 5px rgba(4, 58, 126, 0.06),
+      0 0 24px rgba(4, 58, 126, 0.12);
+  }
+
+  .blueprint-node-bottom-b {
+    left: calc(13% + 8rem - 2px);
+    bottom: calc(8% + 4.5rem - 2px);
+    width: 8px;
+    height: 8px;
+    left: calc(13% + 8rem - 4px);
+    bottom: calc(8% + 4.5rem - 4px);
+    opacity: 0.13;
+  }
+
+  .blueprint-node-bottom-c {
+    left: calc(13% + 8rem - 2px);
+    bottom: calc(8% + 2rem - 2px);
+    opacity: 0.1;
+  }
+
+  .blueprint-node-bottom-d {
+    left: calc(13% + 13rem - 2px);
+    bottom: calc(8% + 2rem - 2px);
+    background: #dfa408;
+    opacity: 0.12;
+  }
+
+  .blueprint-pulse {
+    width: 2.6rem;
+    height: 1px;
+    opacity: 0;
+    background: linear-gradient(90deg, transparent, rgba(223, 164, 8, 0.16), transparent);
+    animation: background-network-pulse 14s ease-in-out infinite;
+  }
+
+  .blueprint-pulse-top {
+    right: 10%;
+    top: 9%;
+  }
+
+  .blueprint-pulse-bottom {
+    left: 8%;
+    bottom: 8%;
+    animation-delay: 7s;
+  }
+
+  .partners-ecosystem-group {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .tech-strip {
+    position: relative;
+    display: flex;
+    min-height: 5rem;
+    align-items: center;
+    justify-content: center;
+    padding-block: 0.8rem;
+  }
+
+  .tech-strip-signal,
+  .tech-strip-idle-pulse,
+  .tech-strip-signal-node {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    top: 50%;
+    height: 1px;
+    transform-origin: left center;
+    background: #dfa408;
+    pointer-events: none;
+  }
+
+  .tech-strip-idle-pulse {
+    right: auto;
+    width: 5rem;
+    opacity: 0;
+    z-index: 2;
+    background: linear-gradient(90deg, transparent, rgba(223, 164, 8, 0.24), transparent);
+    transform: translateX(0);
+  }
+
+  .tech-strip-signal-node {
+    right: auto;
+    width: 0.58rem;
+    height: 0.58rem;
+    margin-top: -0.27rem;
+    border-radius: 999px;
+    background: #dfa408;
+    border: 1px solid rgba(255, 255, 255, 0.86);
+    box-shadow:
+      0 0 0 4px rgba(223, 164, 8, 0.12),
+      0 0 18px rgba(223, 164, 8, 0.38);
+    opacity: 0;
+    z-index: 3;
+    transform: translateX(0);
+  }
+
+  .tech-strip.is-signaling .tech-strip-idle-pulse {
+    animation: strip-idle-pulse 8s ease-in-out both;
+  }
+
+  .tech-strip.is-signaling .tech-strip-signal-node {
+    animation: strip-idle-node 8s ease-in-out both;
+  }
+
+  .tech-strip-logos {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.35rem, 3vw, 2.9rem);
+    min-height: 3.25rem;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
+
+  .tech-logo {
+    --logo-color: #043a7e;
+    position: relative;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.7rem;
+    color: #475569;
+    opacity: 1;
+    cursor: default;
+    transition:
+      color 260ms ease,
+      text-shadow 260ms ease,
+      transform 260ms ease;
+  }
+
+  .tech-logo::before,
+  .tech-logo::after {
+    position: absolute;
+    left: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transition:
+      opacity 220ms ease,
+      transform 220ms ease;
+  }
+
+  .tech-logo::before {
+    content: "";
+    bottom: -0.55rem;
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 999px;
+    background: #dfa408;
+    border: 1px solid rgba(255, 255, 255, 0.88);
+    box-shadow:
+      -0.95rem 0 0 -1px #dfa408,
+      0.95rem 0 0 -1px #dfa408,
+      -0.95rem 0 0 0 rgba(255, 255, 255, 0.88),
+      0.95rem 0 0 0 rgba(255, 255, 255, 0.88),
+      -0.95rem 0 12px rgba(223, 164, 8, 0.22),
+      0.95rem 0 12px rgba(223, 164, 8, 0.22),
+      0 0 0 4px rgba(223, 164, 8, 0.1),
+      0 0 14px rgba(223, 164, 8, 0.32);
+    transform: translate(-50%, 0.35rem);
+  }
+
+  .tech-strip.is-signaling .tech-logo {
+    animation: tech-logo-shell-signal 8s ease-in-out both;
+    animation-delay: var(--logo-delay, 0s);
+  }
+
+  .tech-strip.is-signaling .tech-logo-name {
+    animation: tech-logo-name-signal 8s ease-in-out both;
+    animation-delay: var(--logo-delay, 0s);
+  }
+
+  .tech-strip.is-signaling .tech-logo-mark {
+    animation: tech-mark-signal 8s ease-in-out both;
+    animation-delay: var(--logo-delay, 0s);
+  }
+
+  .tech-strip.is-signaling .tech-logo::before {
+    animation: tech-connector-signal 8s ease-in-out both;
+    animation-delay: var(--logo-delay, 0s);
+  }
+
+  .tech-logo::after {
+    content: attr(data-tooltip);
+    bottom: calc(100% + 0.7rem);
+    width: max-content;
+    max-width: 13rem;
+    transform: translate(-50%, 0.45rem);
+    border-radius: 0.5rem;
+    background: #043a7e;
+    color: #ffffff;
+    padding: 0.42rem 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
+    box-shadow: 0 12px 28px rgba(4, 58, 126, 0.14);
+    white-space: nowrap;
+    z-index: 8;
+  }
+
+  .tech-logo:hover {
+    animation: none;
+    opacity: 1;
+    color: var(--logo-color);
+    text-shadow: none;
+    transform: scale(1.055);
+  }
+
+  .tech-strip.is-signaling .tech-logo:hover .tech-logo-mark,
+  .tech-logo:hover .tech-logo-mark {
+    animation: none;
+    color: var(--logo-color);
+    filter: grayscale(0);
+    opacity: 1;
+    text-shadow: 0 8px 22px color-mix(in srgb, var(--logo-color) 24%, transparent);
+  }
+
+  .tech-logo:hover .tech-logo-name {
+    animation: none;
+    color: #043a7e;
+    text-shadow: none;
+  }
+
+  .tech-logo:hover::before,
+  .tech-logo:hover::after {
+    animation: none;
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  .tech-logo-mark {
+    display: flex;
+    width: clamp(2rem, 3.3vw, 2.8rem);
+    height: clamp(2rem, 3.3vw, 2.8rem);
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    filter: grayscale(1);
+    opacity: 0.74;
+    transition:
+      color 220ms ease,
+      filter 220ms ease,
+      opacity 220ms ease,
+      text-shadow 220ms ease;
+  }
+
+  .tech-logo-mark svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .tech-logo-name {
+    position: relative;
+    white-space: nowrap;
+    color: #475569;
+    font-size: clamp(1.02rem, 1.65vw, 1.34rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    transition:
+      color 220ms ease,
+      text-shadow 220ms ease;
+  }
+
+  @keyframes tech-mark-signal {
+    0%,
+    6%,
+    15%,
+    100% {
+      color: inherit;
+      filter: grayscale(1);
+      opacity: 0.82;
+      text-shadow: none;
+    }
+
+    8%,
+    12% {
+      color: var(--logo-color);
+      filter: grayscale(0);
+      opacity: 1;
+      text-shadow: 0 8px 22px color-mix(in srgb, var(--logo-color) 20%, transparent);
+    }
+  }
+
+  @keyframes tech-logo-shell-signal {
+    0%,
+    6%,
+    15%,
+    100% {
+      opacity: 0.58;
+    }
+
+    8%,
+    12% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes tech-logo-name-signal {
+    0%,
+    6%,
+    15%,
+    100% {
+      color: #475569;
+    }
+
+    8%,
+    12% {
+      color: var(--logo-color);
+    }
+  }
+
+  @keyframes background-network-pulse {
+    0%,
+    12%,
+    100% {
+      opacity: 0;
+      transform: translateX(0);
+    }
+
+    24%,
+    42% {
+      opacity: 1;
+    }
+
+    56% {
+      opacity: 0;
+      transform: translateX(8rem);
+    }
+  }
+
+  @keyframes strip-idle-pulse {
+    0%,
+    2%,
+    90%,
+    100% {
+      opacity: 0;
+      transform: translateX(0);
+    }
+
+    5%,
+    10% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    18%,
+    24% {
+      opacity: 1;
+      transform: translateX(min(9vw, 7rem));
+    }
+
+    31%,
+    37% {
+      opacity: 1;
+      transform: translateX(min(20vw, 14rem));
+    }
+
+    44%,
+    50% {
+      opacity: 1;
+      transform: translateX(min(32vw, 23rem));
+    }
+
+    57%,
+    63% {
+      opacity: 1;
+      transform: translateX(min(44vw, 32rem));
+    }
+
+    76%,
+    82% {
+      opacity: 0.85;
+      transform: translateX(min(58vw, 43rem));
+    }
+  }
+
+  @keyframes strip-idle-node {
+    0%,
+    2%,
+    90%,
+    100% {
+      opacity: 0;
+      transform: translateX(0) scale(0.7);
+    }
+
+    5%,
+    10% {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+
+    18%,
+    24% {
+      opacity: 1;
+      transform: translateX(min(9vw, 7rem)) scale(1);
+    }
+
+    31%,
+    37% {
+      opacity: 1;
+      transform: translateX(min(20vw, 14rem)) scale(1);
+    }
+
+    44%,
+    50% {
+      opacity: 1;
+      transform: translateX(min(32vw, 23rem)) scale(1);
+    }
+
+    57%,
+    63% {
+      opacity: 1;
+      transform: translateX(min(44vw, 32rem)) scale(1);
+    }
+
+    76%,
+    82% {
+      opacity: 0;
+      transform: translateX(min(58vw, 43rem)) scale(0.8);
+    }
+  }
+
+  @keyframes tech-connector-signal {
+    0%,
+    6%,
+    15%,
+    100% {
+      opacity: 0;
+      transform: translate(-50%, 0.35rem);
+    }
+
+    8%,
+    12% {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .partners-blueprint {
+      opacity: 0.75;
+    }
+
+    .blueprint-line-top-c,
+    .blueprint-node-top-b,
+    .blueprint-line-top-d,
+    .blueprint-line-top-e,
+    .blueprint-node-top-c,
+    .blueprint-node-top-d {
+      display: none;
+    }
+
+    .tech-strip {
+      padding-block: 0.65rem;
+    }
+
+    .tech-strip-logos {
+      gap: 1.25rem 1.45rem;
+    }
+
+    .tech-logo {
+      gap: 0.55rem;
+    }
+
+    .tech-logo::after {
+      max-width: 10rem;
+      white-space: normal;
+    }
+  }
+}

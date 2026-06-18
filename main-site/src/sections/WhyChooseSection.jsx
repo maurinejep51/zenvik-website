@@ -12,16 +12,16 @@ const reasons = [
 
 function WhyChooseSection() {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-white py-16 lg:py-20">
       <Container>
-        <div className="grid items-center gap-12 lg:gap-16 xl:grid-cols-[minmax(0,1.05fr)_minmax(380px,0.95fr)]">
+        <div className="grid items-center gap-8 lg:gap-10 xl:grid-cols-[minmax(0,1.05fr)_minmax(380px,0.95fr)]">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-gold">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-gold">
               Why Choose Us
             </p>
 
@@ -29,12 +29,12 @@ function WhyChooseSection() {
               Built For Businesses That Want Technology To Work Better
             </h2>
 
-            <p className="mt-6 text-lg leading-relaxed text-slate-600">
+            <p className="mt-4 text-lg leading-relaxed text-slate-600">
               Zenvik Technologies combines infrastructure, software, websites,
               branding, marketing, and ICT support under one professional
               technology partner.
             </p>
-            <p className="mt-4 text-sm font-medium text-slate-500">
+            <p className="mt-3 text-sm font-medium text-slate-500">
               Local insight, global standards.
             </p>
           </motion.div>

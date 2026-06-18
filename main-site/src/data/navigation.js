@@ -7,7 +7,7 @@ export const navigationLinks = [
 ]
 
 export const servicesMenuLinks = [
-  { label: "Hosting & Cloud", href: "https://portal.zenviktechnologies.com/" },
+  { label: "Hosting & Cloud services", href: "https://hosting.zenviktechnologies.com" },
   { label: "Software Development", href: "/software-development" },
   { label: "Website Development", href: "/website-development" },
   { label: "Marketing & Branding", href: "/marketing-branding" },

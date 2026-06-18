@@ -10,7 +10,7 @@ function SectionHeader({
   return (
     <div className={`max-w-3xl ${alignment}`}>
       {eyebrow && (
-        <p className={`mb-4 text-sm font-semibold uppercase tracking-[0.3em] ${light ? "text-accent" : "text-gold"}`}>
+        <p className={`mb-3 text-sm font-semibold uppercase tracking-[0.3em] ${light ? "text-accent" : "text-gold"}`}>
           {eyebrow}
         </p>
       )}
@@ -20,7 +20,7 @@ function SectionHeader({
       </h2>
 
       {description && (
-        <p className={`mt-6 text-lg leading-relaxed ${light ? "text-white/80" : "text-slate-600"}`}>
+        <p className={`mt-4 text-lg leading-relaxed ${light ? "text-white/80" : "text-slate-600"}`}>
           {description}
         </p>
       )}

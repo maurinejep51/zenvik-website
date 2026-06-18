@@ -26,7 +26,7 @@ function PortfolioSection() {
   }
 
   return (
-    <section id="portfolio" className="bg-light py-24">
+    <section id="portfolio" className="bg-light py-16 lg:py-20">
       <Container>
         <SectionHeader
           eyebrow="Our Work"
@@ -39,7 +39,7 @@ function PortfolioSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="mt-16 grid grid-cols-[repeat(auto-fit,minmax(min(100%,21rem),1fr))] gap-8"
+          className="mt-10 grid grid-cols-[repeat(auto-fit,minmax(min(100%,21rem),1fr))] gap-6 lg:mt-12"
         >
           {projects.map((project, index) => (
             <motion.div
@@ -86,7 +86,7 @@ function PortfolioSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-20 rounded-[2rem] bg-primary px-8 py-14 text-center text-white shadow-soft md:p-12"
+          className="mt-14 rounded-[2rem] bg-primary px-8 py-10 text-center text-white shadow-soft md:p-10"
         >
           <p className="mb-2 text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Ready to Build Something Great?
@@ -96,12 +96,12 @@ function PortfolioSection() {
             Start Your Next Project Today
           </h3>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/80">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/80">
             Whether you need a custom software solution, enterprise hosting infrastructure, or a modern website,
             our team of experts is ready to deliver exceptional results.
           </p>
 
-          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+          <div className="mt-7 flex flex-col justify-center gap-4 sm:flex-row">
             <Button
               href="#contact"
               variant="accent"
