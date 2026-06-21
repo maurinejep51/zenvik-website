@@ -1,0 +1,169 @@
+WHY CHOOSE ZENVIK — BACKGROUND DEPTH ENHANCEMENT
+
+Enhance only the background of the Why Choose Zenvik section.
+
+Do not modify:
+
+* Content
+* Cards
+* Icons
+* Layout
+* Animations
+* Typography
+
+Only improve the background atmosphere.
+
+==================================================
+
+OBJECTIVE
+
+Create a premium enterprise technology environment.
+
+The background should reinforce:
+
+* Innovation
+* Infrastructure
+* Technology
+* Reliability
+
+without introducing visible devices or distracting graphics.
+
+==================================================
+
+TECHNOLOGY LIGHT COLUMNS
+
+Create 3 to 5 vertical technology light columns.
+
+Requirements:
+
+* Positioned behind the content
+* Different heights
+* Different widths
+* Soft edges
+* Low opacity
+
+Colors:
+
+Primary:
+#043a7e
+
+Secondary:
+#0f172a
+
+Highlight:
+#dfa408
+
+==================================================
+
+LIGHT BEHAVIOR
+
+Each light column should:
+
+* Fade upward naturally
+* Fade into the section background
+* Appear as a technology energy source
+* Create depth
+
+Do not create:
+
+* Solid beams
+* Neon tubes
+* Harsh gradients
+* Bright streaks
+
+==================================================
+
+COLUMN PLACEMENT
+
+Suggested placement:
+
+* One behind left content area
+* Two behind card grid
+* One near bottom-right
+* One near upper-right
+
+Keep placement asymmetrical.
+
+Do not create evenly spaced columns.
+
+==================================================
+
+GOLD ACCENT LIGHTS
+
+Add occasional gold highlights within the columns.
+
+Requirements:
+
+* Very subtle
+* Small sections only
+* Not entire columns
+* Opacity below 10%
+
+Color:
+
+#dfa408
+
+Secondary accent:
+
+#7a6200
+
+==================================================
+
+BACKGROUND MOTION
+
+Very subtle motion only.
+
+Requirements:
+
+* Slow light breathing effect
+* 8–12 second cycle
+* Minimal brightness variation
+
+Do not create:
+
+* Moving beams
+* Flashing effects
+* Pulsing backgrounds
+* Visible animation loops
+
+The movement should be almost imperceptible.
+
+==================================================
+
+DEPTH LAYERS
+
+Create three background layers:
+
+Layer 1:
+Dark gradient base
+
+Layer 2:
+Technology light columns
+
+Layer 3:
+Soft atmospheric glow
+
+This creates depth without clutter.
+
+==================================================
+
+VISUAL GOAL
+
+The section should feel like it exists inside a premium technology environment.
+
+The background should suggest:
+
+* Enterprise infrastructure
+* Cloud platforms
+* Innovation
+* Digital transformation
+
+without showing:
+
+* Laptops
+* Computer screens
+* Servers
+* Data centers
+* Technology devices
+
+The effect should be subtle, premium, modern, and support the trust-focused nature of the Why Choose Zenvik section.

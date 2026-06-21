@@ -138,11 +138,104 @@ function WhyChooseSection() {
         background: "linear-gradient(145deg, #0f172a 0%, #062561 38%, #043a7e 62%, #0f172a 100%)",
       }}
     >
-      {/* Ambient depth glows — no grid, no nodes */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-40 top-0 h-[480px] w-[480px] rounded-full bg-[#043a7e] opacity-25 blur-[120px]" />
-        <div className="absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-[#062561] opacity-30 blur-[100px]" />
-        <div className="absolute left-1/2 top-1/2 h-[300px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#043a7e] opacity-10 blur-[80px]" />
+      {/* ── Background depth — three layers ──────────────────────────── */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+
+        {/* Layer 1: dark gradient base is on the section itself */}
+
+        {/* Layer 2: technology light columns */}
+
+        {/* Column A — left content area, tall, blue */}
+        <motion.div
+          className="absolute bottom-0 left-[8%] w-[90px] rounded-t-full"
+          style={{
+            height: "72%",
+            background: "linear-gradient(to top, rgba(4,58,126,0.28) 0%, rgba(4,58,126,0.12) 55%, transparent 100%)",
+            filter: "blur(38px)",
+          }}
+          animate={{ opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* Column B — behind left card column, medium, accent blue */}
+        <motion.div
+          className="absolute bottom-0 left-[52%] w-[60px] rounded-t-full"
+          style={{
+            height: "55%",
+            background: "linear-gradient(to top, rgba(4,58,126,0.22) 0%, rgba(6,37,97,0.1) 60%, transparent 100%)",
+            filter: "blur(30px)",
+          }}
+          animate={{ opacity: [0.6, 0.9, 0.6] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+        />
+
+        {/* Column C — behind right card column, narrower, gold-tinted */}
+        <motion.div
+          className="absolute bottom-0 left-[70%] w-[48px] rounded-t-full"
+          style={{
+            height: "44%",
+            background: "linear-gradient(to top, rgba(122,98,0,0.09) 0%, rgba(4,58,126,0.14) 40%, transparent 100%)",
+            filter: "blur(26px)",
+          }}
+          animate={{ opacity: [0.5, 0.85, 0.5] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+        />
+
+        {/* Column D — upper-right, short, narrow */}
+        <motion.div
+          className="absolute right-[14%] top-0 w-[40px] rounded-b-full"
+          style={{
+            height: "38%",
+            background: "linear-gradient(to bottom, rgba(4,58,126,0.20) 0%, rgba(4,58,126,0.06) 70%, transparent 100%)",
+            filter: "blur(24px)",
+          }}
+          animate={{ opacity: [0.4, 0.75, 0.4] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        />
+
+        {/* Column E — bottom-right accent, widest, very soft */}
+        <motion.div
+          className="absolute bottom-0 right-[4%] w-[110px] rounded-t-full"
+          style={{
+            height: "50%",
+            background: "linear-gradient(to top, rgba(4,58,126,0.18) 0%, rgba(6,37,97,0.06) 65%, transparent 100%)",
+            filter: "blur(50px)",
+          }}
+          animate={{ opacity: [0.55, 0.8, 0.55] }}
+          transition={{ duration: 13, repeat: Infinity, ease: "easeInOut", delay: 4.5 }}
+        />
+
+        {/* Gold accent highlights — tiny, low opacity, within columns */}
+        <motion.div
+          className="absolute left-[8%] w-[28px]"
+          style={{
+            bottom: "30%",
+            height: "80px",
+            background: "linear-gradient(to top, transparent, rgba(223,164,8,0.07), transparent)",
+            filter: "blur(14px)",
+          }}
+          animate={{ opacity: [0.4, 0.9, 0.4] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+        <motion.div
+          className="absolute left-[70%] w-[22px]"
+          style={{
+            bottom: "18%",
+            height: "60px",
+            background: "linear-gradient(to top, transparent, rgba(122,98,0,0.08), transparent)",
+            filter: "blur(12px)",
+          }}
+          animate={{ opacity: [0.3, 0.8, 0.3] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 5 }}
+        />
+
+        {/* Layer 3: soft atmospheric glow overlay */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "radial-gradient(ellipse 60% 40% at 20% 80%, rgba(4,58,126,0.18) 0%, transparent 70%), radial-gradient(ellipse 50% 35% at 78% 25%, rgba(4,58,126,0.14) 0%, transparent 70%)",
+          }}
+        />
       </div>
 
       <Container className="relative">
