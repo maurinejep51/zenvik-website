@@ -1,0 +1,282 @@
+SERVICES SECTION — ECOSYSTEM SIGNAL CHAIN
+
+Apply the following enhancement to the existing Services section.
+
+IMPORTANT
+
+Do not modify:
+
+* Card layout
+* Card positions
+* Card dimensions
+* Card illustrations
+* Card content
+* Typography
+* Section structure
+* Spacing
+
+Only add the ecosystem signal chain animation.
+
+==================================================
+
+OBJECTIVE
+
+The six services must visibly feel connected.
+
+Visitors should immediately understand:
+
+These services work together as one ecosystem.
+
+The connection must be visible and understandable without reading text.
+
+==================================================
+
+SERVICE ORDER
+
+Use the existing service order:
+
+1. Hosting & Cloud Solutions
+2. Website Development
+3. Software Development
+4. AI Solutions
+5. Marketing & Branding
+6. ICT Services
+
+==================================================
+
+ECOSYSTEM SIGNAL CHAIN
+
+Use the service illustrations as the ecosystem connection points.
+
+Do not create:
+
+* Background beams
+* Flowcharts
+* Large connector lines
+* Additional nodes
+* Additional diagrams
+
+The illustrations themselves are the ecosystem.
+
+==================================================
+
+SCROLL ACTIVATION
+
+When the Services section enters the viewport:
+
+Run one ecosystem activation sequence.
+
+Run once only.
+
+Do not continuously loop.
+
+==================================================
+
+ACTIVATION SEQUENCE
+
+STEP 1
+
+Hosting & Cloud Solutions activates.
+
+Effects:
+
+* Illustration brightness increases slightly
+* Cloud icon glow increases slightly
+* Data pulse animation becomes active
+
+Duration:
+
+0.6 seconds
+
+==================================================
+
+STEP 2
+
+A small gold signal leaves the Hosting illustration.
+
+Signal appearance:
+
+* Circular pulse
+* Size: 6px to 8px
+* Color: #dfa408
+* Soft glow
+
+The signal travels toward Website Development.
+
+==================================================
+
+STEP 3
+
+Website Development receives the signal.
+
+Effects:
+
+* Browser illustration activates
+* Responsive device icons gain emphasis
+* Progress pulse becomes active
+
+Duration:
+
+0.6 seconds
+
+==================================================
+
+STEP 4
+
+Website sends the signal to Software Development.
+
+==================================================
+
+STEP 5
+
+Software Development receives the signal.
+
+Effects:
+
+* Core application module activates
+* API nodes illuminate
+* Module connections brighten
+
+Duration:
+
+0.6 seconds
+
+==================================================
+
+STEP 6
+
+Software sends the signal to AI Solutions.
+
+==================================================
+
+STEP 7
+
+AI Solutions receives the signal.
+
+Effects:
+
+* AI core sphere activates
+* Neural pathways illuminate
+* Automation routes become visible
+
+Duration:
+
+0.6 seconds
+
+==================================================
+
+STEP 8
+
+AI sends the signal to Marketing & Branding.
+
+==================================================
+
+STEP 9
+
+Marketing & Branding receives the signal.
+
+Effects:
+
+* Growth path activates
+* Marketing nodes illuminate
+* Analytics indicator gains emphasis
+
+Duration:
+
+0.6 seconds
+
+==================================================
+
+STEP 10
+
+Marketing sends the signal to ICT Services.
+
+==================================================
+
+STEP 11
+
+ICT Services receives the signal.
+
+Effects:
+
+* Network hub activates
+* Security shield illuminates
+* Infrastructure routes gain emphasis
+
+Duration:
+
+0.6 seconds
+
+==================================================
+
+FINAL ACTIVATION
+
+After ICT Services activates:
+
+All six illustrations briefly enter a connected state.
+
+Requirements:
+
+* Slight synchronized glow
+* Very subtle emphasis
+* Duration: 1 second
+
+Then return to normal.
+
+==================================================
+
+SIGNAL PATH DESIGN
+
+The signal must appear to move between cards.
+
+Requirements:
+
+* Thin temporary travel path only during activation
+* Gold color (#dfa408)
+* Low visual weight
+* Disappears after signal passes
+
+Do not leave permanent connectors visible.
+
+==================================================
+
+IDLE STATE
+
+After activation completes:
+
+* Cards remain static
+* No continuous chain animation
+* No constant motion between cards
+
+Only service-specific animations remain active.
+
+==================================================
+
+HOVER BEHAVIOR
+
+When hovering a card:
+
+* Only that card reacts
+* Only that illustration gains emphasis
+* Do not activate the ecosystem chain
+* Do not affect other cards
+
+==================================================
+
+VISUAL GOAL
+
+Visitors should immediately recognize:
+
+Hosting powers Websites.
+
+Websites connect to Software.
+
+Software enables AI.
+
+AI supports Marketing.
+
+Marketing relies on ICT infrastructure.
+
+The animation should communicate that Zenvik delivers a connected ecosystem of technology solutions rather than six isolated services.
+
+The effect must remain premium, controlled, professional, and consistent with the Zenvik brand.

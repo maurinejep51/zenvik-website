@@ -1,5 +1,5 @@
-import { motion, useInView } from "framer-motion"
-import { useEffect, useRef, useState } from "react"
+import { motion, useInView, useMotionValue, animate } from "framer-motion"
+import { useEffect, useRef, useState, useCallback } from "react"
 import { coreServices } from "../data/services"
 import Container from "../components/common/Container"
 import SectionHeader from "../components/common/SectionHeader"
@@ -26,7 +26,6 @@ function TechnologyBackgroundIcon({ type }) {
       </svg>
     )
   }
-
   if (type === "wordpress") {
     return (
       <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" viewBox="0 0 120 120">
@@ -35,7 +34,6 @@ function TechnologyBackgroundIcon({ type }) {
       </svg>
     )
   }
-
   if (type === "react") {
     return (
       <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" viewBox="0 0 120 120">
@@ -46,7 +44,6 @@ function TechnologyBackgroundIcon({ type }) {
       </svg>
     )
   }
-
   if (type === "mysql") {
     return (
       <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" viewBox="0 0 120 120">
@@ -56,7 +53,6 @@ function TechnologyBackgroundIcon({ type }) {
       </svg>
     )
   }
-
   if (type === "cloud") {
     return (
       <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" viewBox="0 0 120 120">
@@ -65,7 +61,6 @@ function TechnologyBackgroundIcon({ type }) {
       </svg>
     )
   }
-
   if (type === "ai") {
     return (
       <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" viewBox="0 0 120 120">
@@ -75,7 +70,6 @@ function TechnologyBackgroundIcon({ type }) {
       </svg>
     )
   }
-
   if (type === "cyber") {
     return (
       <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" viewBox="0 0 120 120">
@@ -85,7 +79,6 @@ function TechnologyBackgroundIcon({ type }) {
       </svg>
     )
   }
-
   if (type === "hosting") {
     return (
       <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" viewBox="0 0 120 120">
@@ -97,7 +90,6 @@ function TechnologyBackgroundIcon({ type }) {
       </svg>
     )
   }
-
   return (
     <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" viewBox="0 0 120 120">
       <rect x="21" y="25" width="78" height="70" rx="12" />
@@ -126,7 +118,6 @@ function TechnologyBackgroundLayer() {
           <TechnologyBackgroundIcon type={item.type} />
         </div>
       ))}
-
       <svg
         className="absolute inset-0 h-full w-full"
         fill="none"
@@ -172,141 +163,6 @@ function TechnologyBackgroundLayer() {
         />
       </svg>
     </div>
-  )
-}
-
-const BEAM_PATH =
-  "M -60 160 C 50 175 75 282 170 282 C 285 282 575 272 720 280 C 898 287 1178 274 1270 282 C 1398 290 1435 478 1308 652 C 1195 722 375 722 170 700 C 298 690 576 680 720 680 C 882 680 1152 674 1270 680 C 1392 685 1452 762 1510 828"
-
-const BEAM_WAYPOINTS = [
-  { x: 170, y: 282 },
-  { x: 720, y: 280 },
-  { x: 1270, y: 282 },
-  { x: 170, y: 700 },
-  { x: 720, y: 680 },
-  { x: 1270, y: 680 },
-]
-
-const BEAM_HOVER_SEGMENTS = [
-  "M 75 283 C 110 282 148 282 210 282",
-  "M 618 277 C 658 279 700 280 762 279",
-  "M 1168 278 C 1210 280 1252 282 1325 283",
-  "M 240 712 C 204 705 182 701 135 700",
-  "M 618 680 C 658 680 700 680 762 680",
-  "M 1168 676 C 1210 678 1252 680 1328 680",
-]
-
-function EcosystemBeam({ activeCard, hoveredCard, activated }) {
-  return (
-    <svg
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 h-full w-full"
-      fill="none"
-      preserveAspectRatio="xMidYMid slice"
-      viewBox="0 0 1440 900"
-    >
-      <defs>
-        <filter id="esb-glow-soft" x="-80%" y="-80%" width="260%" height="260%">
-          <feGaussianBlur stdDeviation="7" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-        <filter id="esb-glow-strong" x="-150%" y="-150%" width="400%" height="400%">
-          <feGaussianBlur stdDeviation="14" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="blur" />
-          </feMerge>
-        </filter>
-        <filter id="esb-glow-idle" x="-120%" y="-120%" width="340%" height="340%">
-          <feGaussianBlur stdDeviation="9" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-
-      {/* Base beam — always at very low opacity */}
-      <path
-        d={BEAM_PATH}
-        stroke="#043a7e"
-        strokeOpacity="0.055"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-      />
-
-      {/* Hover beam segments — revealed near hovered card */}
-      {BEAM_HOVER_SEGMENTS.map((seg, i) => (
-        <motion.path
-          key={i}
-          d={seg}
-          stroke="#dfa408"
-          strokeWidth="3.5"
-          strokeLinecap="round"
-          initial={{ strokeOpacity: 0 }}
-          animate={{ strokeOpacity: hoveredCard === i ? 0.38 : 0 }}
-          transition={{ duration: 0.28, ease: "easeOut" }}
-          filter="url(#esb-glow-soft)"
-        />
-      ))}
-
-      {/* Traveling activation glow — moves between card waypoints */}
-      {activeCard >= 0 && activeCard < 6 && (
-        <motion.circle
-          key={`glow-${activeCard}`}
-          r="22"
-          fill="#dfa408"
-          initial={{
-            cx: activeCard > 0 ? BEAM_WAYPOINTS[activeCard - 1].x : BEAM_WAYPOINTS[0].x - 240,
-            cy: activeCard > 0 ? BEAM_WAYPOINTS[activeCard - 1].y : BEAM_WAYPOINTS[0].y + 20,
-            fillOpacity: 0,
-          }}
-          animate={{
-            cx: BEAM_WAYPOINTS[activeCard].x,
-            cy: BEAM_WAYPOINTS[activeCard].y,
-            fillOpacity: [0, 0.14, 0.08],
-          }}
-          transition={{ duration: 0.58, ease: "easeInOut" }}
-          filter="url(#esb-glow-strong)"
-        />
-      )}
-
-      {/* Idle pulse — single dot traversing beam every ~18s after activation */}
-      {activated && (
-        <g>
-          <circle r="3.5" fill="#dfa408" fillOpacity="0">
-            <animateMotion
-              dur="18s"
-              begin="4s"
-              repeatCount="indefinite"
-              path={BEAM_PATH}
-              calcMode="spline"
-              keyTimes="0;1"
-              keySplines="0.4 0 0.6 1"
-            />
-            <animate
-              attributeName="fill-opacity"
-              values="0;0;0.2;0.14;0.08;0"
-              keyTimes="0;0.05;0.15;0.5;0.85;1"
-              dur="18s"
-              begin="4s"
-              repeatCount="indefinite"
-            />
-            <animate
-              attributeName="r"
-              values="2.5;2.5;6.5;5;3;2.5"
-              keyTimes="0;0.05;0.15;0.5;0.85;1"
-              dur="18s"
-              begin="4s"
-              repeatCount="indefinite"
-            />
-          </circle>
-        </g>
-      )}
-    </svg>
   )
 }
 
@@ -357,8 +213,8 @@ function ServiceVisual({ type, index }) {
             <DiagramNode x={x} y="88" width="36" height="24" rx="7" />
             <circle cx={x + 8} cy="100" r="2.2" fill="#dfa408" />
             <path d={`M${x + 15} 100h13`} stroke="rgba(4,58,126,0.42)" strokeLinecap="round" strokeWidth="1.4" />
-        </g>
-      ))}
+          </g>
+        ))}
         {["M101 47 L63 88", "M110 48 L110 88", "M119 47 L157 88"].map((path, item) => (
           <circle key={path} r="2.8" fill="#dfa408">
             <animateMotion dur="4s" begin={`${delay + item * 0.22}s`} repeatCount="indefinite" path={path} />
@@ -523,51 +379,183 @@ function ServiceVisual({ type, index }) {
   )
 }
 
-const CARD_ACTIVATION_DURATION = 680
+// ─── Signal Chain Overlay ─────────────────────────────────────────────────────
+
+function SignalDot({ x, y }) {
+  return (
+    <motion.div
+      aria-hidden="true"
+      className="pointer-events-none absolute"
+      style={{
+        left: 0,
+        top: 0,
+        x: x,
+        y: y,
+        translateX: "-50%",
+        translateY: "-50%",
+      }}
+    >
+      <div
+        style={{
+          width: 8,
+          height: 8,
+          borderRadius: "50%",
+          backgroundColor: "#dfa408",
+          boxShadow: "0 0 10px 4px rgba(223,164,8,0.55), 0 0 22px 8px rgba(223,164,8,0.22)",
+        }}
+      />
+    </motion.div>
+  )
+}
+
+function TempConnector({ from, to, visible }) {
+  if (!from || !to) return null
+  return (
+    <motion.svg
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: visible ? 1 : 0 }}
+      transition={{ duration: 0.18 }}
+    >
+      <defs>
+        <filter id="sc-line-glow" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="2.5" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      <line
+        x1={from.x}
+        y1={from.y}
+        x2={to.x}
+        y2={to.y}
+        stroke="#dfa408"
+        strokeOpacity="0.28"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeDasharray="4 6"
+        filter="url(#sc-line-glow)"
+      />
+    </motion.svg>
+  )
+}
+
+// ─── Main Section ─────────────────────────────────────────────────────────────
+
+const CARD_ACTIVATE_MS  = 600
+const SIGNAL_TRAVEL_MS  = 480
+const FINAL_CONNECTED_MS = 1000
 
 function ServicesSection() {
-  const sectionRef = useRef(null)
+  const sectionRef   = useRef(null)
+  const cardRefs     = useRef([])
+  const activatedRef = useRef(false)
+
   const isInView = useInView(sectionRef, { once: true, margin: "-120px 0px" })
-  const [activeCard, setActiveCard] = useState(-1)
-  const [hoveredCard, setHoveredCard] = useState(-1)
-  const [beamActivated, setBeamActivated] = useState(false)
-  const activationRan = useRef(false)
+
+  const [activeCard,    setActiveCard]    = useState(-1)
+  const [allConnected,  setAllConnected]  = useState(false)
+  const [hoveredCard,   setHoveredCard]   = useState(-1)
+  const [showSignal,    setShowSignal]    = useState(false)
+  const [connectorFrom, setConnectorFrom] = useState(null)
+  const [connectorTo,   setConnectorTo]   = useState(null)
+
+  const signalX = useMotionValue(-999)
+  const signalY = useMotionValue(-999)
+
+  const getIllustrationCenter = useCallback((index) => {
+    const card    = cardRefs.current[index]
+    const section = sectionRef.current
+    if (!card || !section) return null
+
+    const cardRect    = card.getBoundingClientRect()
+    const sectionRect = section.getBoundingClientRect()
+
+    // Center of the illustration area (top panel = bg-primary p-5, ~148px tall)
+    // We aim for the vertical midpoint of the illustration (h-32 = 128px + 20px padding top = ~84px from card top)
+    return {
+      x: cardRect.left - sectionRect.left + cardRect.width / 2,
+      y: cardRect.top  - sectionRect.top  + 84,
+    }
+  }, [])
 
   useEffect(() => {
-    if (!isInView || activationRan.current) return
-    activationRan.current = true
+    if (!isInView || activatedRef.current) return
+    activatedRef.current = true
 
-    const timers = []
+    let cancelled = false
 
-    for (let i = 0; i < coreServices.length; i++) {
-      timers.push(
-        setTimeout(() => {
-          setActiveCard(i)
-        }, i * CARD_ACTIVATION_DURATION)
-      )
+    async function runSequence() {
+      for (let i = 0; i < coreServices.length; i++) {
+        if (cancelled) return
+
+        // Activate card i
+        setActiveCard(i)
+        await new Promise(r => setTimeout(r, CARD_ACTIVATE_MS))
+
+        // Send signal to next card
+        if (i < coreServices.length - 1) {
+          const from = getIllustrationCenter(i)
+          const to   = getIllustrationCenter(i + 1)
+
+          if (from && to) {
+            // Position signal at departure card, show it
+            signalX.set(from.x)
+            signalY.set(from.y)
+            setConnectorFrom(from)
+            setConnectorTo(to)
+            setShowSignal(true)
+
+            // Travel to next card
+            await Promise.all([
+              animate(signalX, to.x, { duration: SIGNAL_TRAVEL_MS / 1000, ease: "easeInOut" }),
+              animate(signalY, to.y, { duration: SIGNAL_TRAVEL_MS / 1000, ease: "easeInOut" }),
+            ])
+
+            if (!cancelled) {
+              setShowSignal(false)
+              setConnectorFrom(null)
+              setConnectorTo(null)
+            }
+          }
+        }
+      }
+
+      if (cancelled) return
+
+      // Final: all connected
+      setActiveCard(-1)
+      setAllConnected(true)
+      await new Promise(r => setTimeout(r, FINAL_CONNECTED_MS))
+
+      if (!cancelled) {
+        setAllConnected(false)
+      }
     }
 
-    timers.push(
-      setTimeout(() => {
-        setActiveCard(-1)
-        setBeamActivated(true)
-      }, coreServices.length * CARD_ACTIVATION_DURATION + 600)
-    )
+    runSequence()
 
-    return () => timers.forEach(clearTimeout)
-  }, [isInView])
+    return () => {
+      cancelled = true
+    }
+  }, [isInView, getIllustrationCenter, signalX, signalY])
 
   return (
     <section ref={sectionRef} id="services" className="relative overflow-hidden bg-light py-16 lg:py-20">
+      {/* Grid texture */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(4,58,126,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(4,58,126,0.035)_1px,transparent_1px)] bg-[size:48px_48px]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(223,164,8,0.045),transparent_28%),radial-gradient(circle_at_82%_72%,rgba(4,58,126,0.04),transparent_30%)]" />
+
       <TechnologyBackgroundLayer />
 
-      <EcosystemBeam
-        activeCard={activeCard}
-        hoveredCard={hoveredCard}
-        activated={beamActivated}
-      />
+      {/* Signal chain overlay — positioned inside the section, above background, below cards */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-10">
+        <TempConnector from={connectorFrom} to={connectorTo} visible={showSignal} />
+        {showSignal && <SignalDot x={signalX} y={signalY} />}
+      </div>
 
       <motion.span
         className="absolute left-[12%] top-24 h-2 w-2 rounded-full bg-accent"
@@ -580,7 +568,7 @@ function ServicesSection() {
         transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
       />
 
-      <Container className="relative">
+      <Container className="relative z-20">
         <SectionHeader
           eyebrow="Our Services"
           title="Explore Zenvik Services"
@@ -589,37 +577,57 @@ function ServicesSection() {
 
         <div className="mt-10 grid grid-cols-[repeat(auto-fit,minmax(min(100%,20rem),1fr))] gap-6 lg:mt-12">
           {coreServices.map((service, index) => {
-            const isExternal = service.href.startsWith("http")
-            const isActive = activeCard === index
-            const isHovered = hoveredCard === index
+            const isExternal   = service.href.startsWith("http")
+            const isActive     = activeCard === index
+            const isConnected  = allConnected
+            const isHovered    = hoveredCard === index
+
+            // Illustration brightness: active during sequence, unified during final, subtle on hover
+            const illustrationFilter = isActive
+              ? "brightness(1.16)"
+              : isConnected
+              ? "brightness(1.08)"
+              : isHovered
+              ? "brightness(1.06)"
+              : "brightness(1)"
+
+            // Border emphasis
+            const borderColor = isActive
+              ? "rgba(223,164,8,0.58)"
+              : isConnected
+              ? "rgba(223,164,8,0.32)"
+              : isHovered
+              ? "rgba(223,164,8,0.38)"
+              : "rgba(255,255,255,0.7)"
+
+            const boxShadow = isActive
+              ? "0 8px 36px rgba(223,164,8,0.14), 0 2px 10px rgba(4,58,126,0.08)"
+              : isConnected
+              ? "0 4px 20px rgba(223,164,8,0.08)"
+              : undefined
 
             return (
               <motion.article
                 key={service.title}
+                ref={el => { cardRefs.current[index] = el }}
                 initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
                 viewport={{ once: true, margin: "-80px" }}
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(-1)}
-                className="group flex h-full flex-col overflow-hidden rounded-3xl border bg-white shadow-soft backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="group flex h-full flex-col overflow-hidden rounded-3xl border bg-white shadow-soft backdrop-blur transition-shadow duration-300 hover:-translate-y-1 hover:shadow-xl"
                 style={{
-                  borderColor: isActive
-                    ? "rgba(223,164,8,0.55)"
-                    : isHovered
-                    ? "rgba(223,164,8,0.42)"
-                    : "rgba(255,255,255,0.7)",
-                  boxShadow: isActive
-                    ? "0 8px 32px rgba(223,164,8,0.12), 0 2px 8px rgba(4,58,126,0.08)"
-                    : undefined,
-                  transition: "border-color 0.35s ease, box-shadow 0.35s ease",
+                  borderColor,
+                  boxShadow,
+                  transition: "border-color 0.32s ease, box-shadow 0.32s ease, transform 0.3s ease",
                 }}
               >
                 <div
                   className="bg-primary p-5"
                   style={{
-                    filter: isActive ? "brightness(1.14)" : "brightness(1)",
-                    transition: "filter 0.4s ease",
+                    filter: illustrationFilter,
+                    transition: "filter 0.38s ease",
                   }}
                 >
                   <ServiceVisual type={service.visual} index={index} />
@@ -629,11 +637,9 @@ function ServicesSection() {
                   <h3 className="text-xl font-bold text-white">
                     {service.title}
                   </h3>
-
                   <p className="mt-3 flex-1 leading-relaxed text-white/78">
                     {service.description}
                   </p>
-
                   <a
                     href={service.href}
                     target={isExternal ? "_blank" : undefined}
