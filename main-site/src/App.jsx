@@ -4,6 +4,8 @@ import PartnersTechnologiesSection from "./sections/PartnersTechnologiesSection"
 import ServicesSection from "./sections/ServicesSection"
 import WhyChooseSection from "./sections/WhyChooseSection"
 import FeaturedProjectsSection from "./sections/FeaturedProjectsSection"
+import ProcessSection from "./sections/ProcessSection"
+import CTASection from "./sections/CTASection"
 import ContactSection from "./sections/ContactSection"
 import BlogPreviewSection from "./sections/BlogPreviewSection"
 import PrivacyPolicy from "./pages/PrivacyPolicy"
@@ -24,6 +26,8 @@ function App() {
           <ServicesSection />
           <WhyChooseSection />
           <FeaturedProjectsSection />
+          <ProcessSection />
+          <CTASection />
           <BlogPreviewSection />
           <ContactSection />
         </main>
