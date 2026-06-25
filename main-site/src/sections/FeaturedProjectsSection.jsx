@@ -13,6 +13,8 @@ const projects = [
     summary: "A complete digital property management ecosystem for landlords, tenants, payments, maintenance, and operations.",
     image: null,
     project_url: "#",
+    project_status: "Enterprise",
+    technologies: ["Laravel", "React", "MySQL"],
     featured: true,
     status: "published",
     sort_order: 1,
@@ -24,6 +26,8 @@ const projects = [
     summary: "A modern business website focused on branding, lead generation, customer engagement, and growth.",
     image: null,
     project_url: "#",
+    project_status: "Live",
+    technologies: ["React", "PHP", "Cloudflare"],
     featured: true,
     status: "published",
     sort_order: 2,
@@ -35,6 +39,8 @@ const projects = [
     summary: "A hosting ecosystem with account management, billing automation, support systems, and infrastructure management.",
     image: null,
     project_url: "#",
+    project_status: "Featured",
+    technologies: ["WHMCS", "PHP", "Cloudflare"],
     featured: true,
     status: "published",
     sort_order: 3,
@@ -46,6 +52,8 @@ const projects = [
     summary: "An intelligent automation solution designed to streamline operations, customer engagement, and productivity.",
     image: null,
     project_url: "#",
+    project_status: "Case Study",
+    technologies: ["OpenAI", "Node.js", "React"],
     featured: true,
     status: "published",
     sort_order: 4,
@@ -55,58 +63,79 @@ const projects = [
 // ─── Stats ────────────────────────────────────────────────────────────────────
 
 const stats = [
-  { value: 125, suffix: "+", label: "Websites Built" },
-  { value: 35,  suffix: "+", label: "Software Systems" },
-  { value: 200, suffix: "+", label: "Websites Hosted" },
-  { value: 360, suffix: "+", label: "Projects Delivered" },
+  { value: 125, suffix: "+", label: "Websites Built", icon: "web" },
+  { value: 35,  suffix: "+", label: "Software Systems", icon: "software" },
+  { value: 200, suffix: "+", label: "Websites Hosted", icon: "hosting" },
+  { value: 360, suffix: "+", label: "Projects Delivered", icon: "delivery" },
 ]
 
 // ─── Category badge styles ────────────────────────────────────────────────────
 
 const badgeStyle = {
-  "Software Development":     "bg-primary/8 text-primary ring-1 ring-primary/16",
-  "Website Development":      "bg-[#dfa408]/10 text-[#7a6200] ring-1 ring-[#dfa408]/20",
-  "Hosting & Infrastructure": "bg-primary/8 text-primary ring-1 ring-primary/16",
-  "AI Solutions":             "bg-[#dfa408]/10 text-[#7a6200] ring-1 ring-[#dfa408]/20",
+  "Software Development":     "text-primary ring-1 ring-primary/16",
+  "Website Development":      "text-[#7a6200] ring-1 ring-[#dfa408]/20",
+  "Hosting & Infrastructure": "text-primary ring-1 ring-primary/16",
+  "AI Solutions":             "text-[#7a6200] ring-1 ring-[#dfa408]/20",
 }
 
 // ─── Stat card with count-up + gold accent line ───────────────────────────────
 
-function StatCard({ value, suffix, label, delay }) {
-  const ref      = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-60px" })
+function MetricIcon({ type }) {
+  const paths = {
+    web: <><circle cx="12" cy="12" r="8" /><path d="M4.5 10h15M4.5 14h15M12 4a13 13 0 0 1 0 16M12 4a13 13 0 0 0 0 16" /></>,
+    software: <><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14" /></>,
+    hosting: <><rect x="4" y="5" width="16" height="6" rx="2" /><rect x="4" y="13" width="16" height="6" rx="2" /><path d="M8 8h.01M8 16h.01M12 8h5M12 16h5" /></>,
+    delivery: <><path d="M5 12h14M13 6l6 6-6 6" /><circle cx="5" cy="12" r="2" /></>,
+  }
+
+  return (
+    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {paths[type]}
+    </svg>
+  )
+}
+
+function StatCard({ value, suffix, label, icon, delay, isActive }) {
   const count    = useMotionValue(0)
   const display  = useTransform(count, (v) => Math.round(v))
 
   useEffect(() => {
-    if (!isInView) return
-    const ctrl = animate(count, value, { duration: 1.5, ease: "easeOut" })
+    if (!isActive) return
+    const ctrl = animate(count, value, {
+      duration: 1.5,
+      delay,
+      ease: [0.22, 1, 0.36, 1],
+    })
     return ctrl.stop
-  }, [isInView, count, value])
+  }, [isActive, count, delay, value])
 
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 16 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.48, delay, ease: "easeOut" }}
-      whileHover={{ y: -3, boxShadow: "0 8px 28px rgba(4,58,126,0.10)", transition: { type: "spring", stiffness: 340, damping: 22 } }}
-      className="rounded-2xl border bg-white px-6 py-5 text-center shadow-soft"
-      style={{ borderColor: "rgba(4,58,126,0.10)" }}
+      animate={isActive ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.48, delay, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -2, boxShadow: "0 8px 28px rgba(4,58,126,0.12)", transition: { type: "spring", stiffness: 340, damping: 22 } }}
+      className="relative z-10 flex h-full min-h-[6.5rem] flex-col items-center justify-center overflow-hidden rounded-xl border border-primary/[0.12] bg-white px-4 py-3 text-center shadow-[0_5px_18px_rgba(15,23,42,0.045)] transition-colors duration-300 hover:border-primary/25"
     >
-      <p className="text-3xl font-black tabular-nums text-primary lg:text-4xl">
+      <span className="pointer-events-none absolute inset-x-3 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent" aria-hidden="true" />
+      <span className="mb-1 flex h-6 w-6 items-center justify-center rounded-full bg-primary/[0.07] text-primary">
+        <MetricIcon type={icon} />
+      </span>
+      <p className="text-4xl font-black tabular-nums leading-none text-primary lg:text-[2.65rem]">
         <motion.span>{display}</motion.span>{suffix}
       </p>
 
-      {/* Gold accent line — expands left→right */}
+      {/* Gold accent line — expands from the center after counting */}
       <motion.div
-        className="mx-auto mt-2 h-[2px] w-10 origin-left rounded-full bg-accent"
+        className="mx-auto mt-2 h-[2px] w-10 origin-center rounded-full bg-accent"
         initial={{ scaleX: 0 }}
-        animate={isInView ? { scaleX: 1 } : {}}
-        transition={{ duration: 0.55, delay: delay + 0.35, ease: "easeOut" }}
+        animate={isActive ? { scaleX: 1 } : {}}
+        transition={{ duration: 0.45, delay: delay + 1.5, ease: "easeOut" }}
       />
 
-      <p className="mt-2.5 text-sm font-medium text-dark">{label}</p>
+      <p className="mt-2 text-xs font-semibold uppercase tracking-[0.08em] text-dark/80">
+        {label}
+      </p>
     </motion.div>
   )
 }
@@ -344,13 +373,26 @@ function ProjectCard({ project, index }) {
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.55, delay: index * 0.13, ease: "easeOut" }}
       whileHover={{ y: -4, transition: { type: "spring", stiffness: 320, damping: 24 } }}
-      className="group flex flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-soft transition-shadow duration-300 hover:shadow-lg"
+      className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-primary/[0.12] bg-white shadow-soft transition duration-300 hover:border-primary/25 hover:shadow-[0_14px_34px_rgba(4,58,126,0.11)]"
     >
+      <span className="absolute right-4 top-4 z-20 rounded-full border border-white/20 bg-[#0f172a]/70 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.1em] text-white/85 backdrop-blur-md">
+        {project.project_status}
+      </span>
+
       {/* ── Premium preview stage ─────────────────────────────── */}
       <div
-        className="relative h-52 overflow-hidden"
-        style={{ background: "linear-gradient(145deg, #062561 0%, #043a7e 55%, #0e1c30 100%)" }}
+        className="relative h-44 shrink-0 overflow-hidden border-b border-primary/20 transition-colors duration-300 group-hover:border-primary/40 sm:h-48"
+        style={{
+          background: "linear-gradient(145deg, #062561 0%, #043a7e 55%, #0e1c30 100%)",
+          boxShadow: "inset 0 0 0 1px rgba(4,58,126,0.18)",
+        }}
       >
+        <div className="absolute inset-x-0 top-0 z-10 flex h-7 items-center gap-1.5 border-b border-white/10 bg-[#071426]/80 px-3 backdrop-blur-sm">
+          <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+          <span className="h-1.5 w-1.5 rounded-full bg-accent/55" />
+          <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+          <span className="ml-2 h-1.5 w-20 rounded-full bg-white/10" />
+        </div>
         {/* Gold radial glow — resting state */}
         <div
           aria-hidden="true"
@@ -377,9 +419,9 @@ function ProjectCard({ project, index }) {
         />
 
         {/* Mockup — centered at 82% width, drop shadow for depth */}
-        <div className="absolute inset-0 flex items-center justify-center" style={{ padding: "14px 10px 0" }}>
+        <div className="absolute inset-0 flex items-center justify-center" style={{ padding: "34px 10px 0" }}>
           <motion.div
-            className="w-[82%] overflow-hidden rounded-lg transition-transform duration-500 group-hover:scale-[1.03]"
+            className="w-[82%] overflow-hidden rounded-lg border border-primary/40 transition duration-500 group-hover:scale-[1.02] group-hover:border-primary/60"
             style={{ boxShadow: "0 10px 40px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3)" }}
             initial={{ clipPath: "inset(0 0 100% 0)" }}
             animate={isInView ? { clipPath: "inset(0 0 0% 0)" } : {}}
@@ -388,17 +430,19 @@ function ProjectCard({ project, index }) {
             {Preview && <Preview />}
           </motion.div>
         </div>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#0e1c30]/45 to-transparent" aria-hidden="true" />
       </div>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col p-6">
         <motion.span
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.3, delay: index * 0.13 + 0.2 }}
-          className={`inline-block self-start rounded-full px-3 py-1 text-xs font-semibold ${badge}`}
+          className={`relative inline-block self-start overflow-hidden rounded-full bg-gradient-to-r from-[#dfa408]/[0.08] via-[#dfa408]/[0.16] to-[#dfa408]/[0.08] px-3 py-1 text-xs font-semibold transition duration-300 group-hover:brightness-110 ${badge}`}
         >
-          {project.category}
+          <span className="relative z-10">{project.category}</span>
+          <span className="absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 [animation:project-badge-shine_7s_ease-in-out_infinite]" aria-hidden="true" />
         </motion.span>
 
         <motion.h3
@@ -414,7 +458,7 @@ function ProjectCard({ project, index }) {
           initial={{ opacity: 0, y: 5 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.35, delay: index * 0.13 + 0.4 }}
-          className="mt-1.5 flex-1 text-sm leading-relaxed text-slate-500"
+          className="mt-2 flex-1 text-sm leading-relaxed text-slate-500"
         >
           {project.summary}
         </motion.p>
@@ -423,13 +467,23 @@ function ProjectCard({ project, index }) {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.3, delay: index * 0.13 + 0.5 }}
-          className="mt-4"
+          className="mt-5"
         >
+          <div className="mb-4 flex flex-wrap gap-1.5">
+            {project.technologies.map((technology) => (
+              <span
+                key={technology}
+                className="rounded-full border border-primary/10 bg-primary/[0.035] px-2.5 py-1 text-[0.68rem] font-semibold text-primary/70 transition duration-300 group-hover:border-primary/20 group-hover:bg-primary/[0.065] group-hover:text-primary"
+              >
+                {technology}
+              </span>
+            ))}
+          </div>
           <a
             href={project.project_url}
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-all duration-200 group-hover:gap-2.5 group-hover:text-accent"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent"
           >
-            View Project <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+            View Project <span aria-hidden="true">→</span>
           </a>
         </motion.div>
       </div>
@@ -440,24 +494,79 @@ function ProjectCard({ project, index }) {
 // ─── Section ──────────────────────────────────────────────────────────────────
 
 function FeaturedProjectsSection() {
+  const sectionRef = useRef(null)
+  const sectionInView = useInView(sectionRef, { once: true, margin: "-100px" })
+
   return (
-    <section id="featured-projects" className="bg-white py-16 lg:py-20">
+    <section ref={sectionRef} id="featured-projects" className="relative overflow-hidden bg-white py-16 lg:py-20">
+      <div className="pointer-events-none absolute inset-0 opacity-[0.03]" aria-hidden="true">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(4,58,126,0.7)_1px,transparent_1px),linear-gradient(90deg,rgba(4,58,126,0.7)_1px,transparent_1px)] bg-[size:72px_72px]" />
+        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1200 900" preserveAspectRatio="none">
+          <g fill="none" stroke="#043a7e" strokeWidth="1.2">
+            <path d="M40 180 H300 Q340 180 340 220 V330 H690 Q730 330 730 370 V470 H1160" />
+            <path d="M120 760 V650 Q120 610 160 610 H510 Q550 610 550 570 V510 H1040 Q1080 510 1080 470 V300" />
+          </g>
+          <g fill="#043a7e">
+            <circle cx="340" cy="330" r="4" /><circle cx="730" cy="470" r="4" />
+            <circle cx="550" cy="510" r="4" /><circle cx="1080" cy="300" r="4" />
+          </g>
+        </svg>
+      </div>
       <Container>
-        <SectionHeader
-          eyebrow="Our Work"
-          title="Projects That Deliver Real Business Results"
-          description="Explore how Zenvik Technologies transforms ideas into scalable digital solutions through custom software, websites, hosting infrastructure, and intelligent automation."
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={sectionInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <SectionHeader
+            eyebrow="Our Work"
+            title="Projects That Deliver Real Business Results"
+            description="Explore how Zenvik Technologies transforms ideas into scalable digital solutions through custom software, websites, hosting infrastructure, and intelligent automation."
+          />
+        </motion.div>
 
         {/* Stats strip */}
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4">
-          {stats.map(({ value, suffix, label }, i) => (
-            <StatCard key={label} value={value} suffix={suffix} label={label} delay={i * 0.15} />
-          ))}
+        <div className="relative mt-10 lg:mt-12">
+          <motion.div
+            className="pointer-events-none absolute inset-x-[10%] top-7 h-28 rounded-[50%] bg-primary/[0.08] blur-[54px]"
+            initial={{ opacity: 0 }}
+            animate={sectionInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.9, delay: 0.28, ease: "easeOut" }}
+            aria-hidden="true"
+          />
+          <motion.p
+            className="relative mb-3 text-center text-sm font-semibold uppercase tracking-[0.3em] text-gold"
+            initial={{ opacity: 0, y: 12 }}
+            animate={sectionInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
+          >
+            PROJECT METRICS
+            <motion.span
+              className="mx-auto mt-2 block h-[2px] w-12 origin-center rounded-full bg-accent"
+              initial={{ scaleX: 0 }}
+              animate={sectionInView ? { scaleX: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.62, ease: "easeOut" }}
+              aria-hidden="true"
+            />
+          </motion.p>
+          <div className="relative grid grid-cols-1 gap-2 rounded-2xl border border-primary/[0.06] bg-light/60 p-1.5 sm:grid-cols-2 lg:grid-cols-4">
+            <span className="pointer-events-none absolute left-[4%] right-[4%] top-1/2 h-px bg-primary/[0.07]" aria-hidden="true" />
+            {stats.map(({ value, suffix, label, icon }, i) => (
+              <StatCard
+                key={label}
+                value={value}
+                suffix={suffix}
+                label={label}
+                icon={icon}
+                delay={0.55 + i * 0.12}
+                isActive={sectionInView}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Projects 2×2 grid */}
-        <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:mt-14">
+        <div className="mt-12 grid items-stretch gap-7 sm:grid-cols-2 lg:mt-14">
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}

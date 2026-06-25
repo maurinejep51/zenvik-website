@@ -58,6 +58,28 @@
 }
 
 @layer components {
+  @keyframes project-badge-shine {
+    0%,
+    72% {
+      left: -50%;
+      opacity: 0;
+    }
+
+    76% {
+      opacity: 0.55;
+    }
+
+    86% {
+      left: 125%;
+      opacity: 0;
+    }
+
+    100% {
+      left: 125%;
+      opacity: 0;
+    }
+  }
+
   .partners-blueprint {
     position: absolute;
     inset: 0;
@@ -338,11 +360,13 @@
   .tech-strip-logos {
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    width: 100%;
+    max-width: 58rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: center;
     justify-content: center;
-    gap: clamp(1.35rem, 3vw, 2.9rem);
+    gap: clamp(1rem, 2.4vw, 2rem);
     min-height: 3.25rem;
     backface-visibility: hidden;
     transform-style: preserve-3d;
@@ -352,8 +376,10 @@
     --logo-color: #043a7e;
     position: relative;
     display: inline-flex;
+    min-width: 0;
     flex: 0 0 auto;
     align-items: center;
+    justify-content: center;
     gap: 0.7rem;
     color: #475569;
     opacity: 1;
@@ -496,6 +522,14 @@
     transition:
       color 220ms ease,
       text-shadow 220ms ease;
+  }
+
+  @media (min-width: 1024px) {
+    .tech-strip-logos {
+      max-width: 68rem;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(1.35rem, 2.6vw, 2.5rem);
+    }
   }
 
   @keyframes tech-mark-signal {
@@ -692,11 +726,21 @@
     }
 
     .tech-strip-logos {
-      gap: 1.25rem 1.45rem;
+      gap: 0.65rem;
+      min-height: 3.25rem;
     }
 
     .tech-logo {
-      gap: 0.55rem;
+      gap: 0.35rem;
+    }
+
+    .tech-logo-mark {
+      width: clamp(1.45rem, 7vw, 1.8rem);
+      height: clamp(1.45rem, 7vw, 1.8rem);
+    }
+
+    .tech-logo-name {
+      font-size: clamp(0.68rem, 2.9vw, 0.82rem);
     }
 
     .tech-logo::after {

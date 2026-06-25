@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import Container from "../components/common/Container"
-import SectionHeader from "../components/common/SectionHeader"
 import aiOperationsImage from "../assets/insights/ai-operations.png"
 import hostingInfrastructureImage from "../assets/insights/hosting-infrastructure.png"
 import scalableSoftwareImage from "../assets/insights/scalable-software.png"
@@ -80,8 +79,11 @@ const revealVariants = {
 
 function ArticleMeta({ article, showReadingTime = false }) {
   return (
-    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[0.12em]">
-      <span className="text-gold">{article.category}</span>
+    <div className="flex flex-wrap items-center gap-x-2.5 gap-y-2 text-xs font-semibold uppercase tracking-[0.12em]">
+      <span className="insights-category-badge relative overflow-hidden rounded-full border border-accent/20 bg-gradient-to-r from-accent/[0.08] via-accent/[0.16] to-accent/[0.08] px-3 py-1 text-[#7a6200] transition duration-300 group-hover:brightness-110">
+        <span className="relative z-10">{article.category}</span>
+        <span className="absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/35 to-transparent opacity-0 [animation:project-badge-shine_7s_ease-in-out_infinite]" aria-hidden="true" />
+      </span>
       <span className="h-1 w-1 rounded-full bg-primary/25" aria-hidden="true" />
       <time className="text-slate-500">{article.publish_date}</time>
       {showReadingTime && (
@@ -98,7 +100,7 @@ function ArticleLink({ slug }) {
   return (
     <a
       href={`/blog/${slug}`}
-      className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-bold text-primary transition-colors duration-300 group-hover:text-accent"
+      className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-bold text-primary transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent"
     >
       Read Article
       <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
@@ -116,25 +118,27 @@ function FeaturedArticle({ article }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -12 }}
       transition={{ duration: 0.45 }}
-      className="group grid overflow-hidden rounded-[2rem] border border-primary/[0.08] bg-white shadow-[0_12px_40px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(15,23,42,0.1)] lg:grid-cols-[2fr_3fr]"
+      className="group relative isolate grid overflow-hidden rounded-[2rem] border border-primary/[0.12] bg-[linear-gradient(145deg,#ffffff_0%,#ffffff_72%,rgba(4,58,126,0.025)_100%)] shadow-[0_10px_34px_rgba(15,23,42,0.055),inset_0_0_0_1px_rgba(4,58,126,0.025)] transition duration-300 hover:-translate-y-1 hover:border-primary/25 hover:shadow-[0_16px_42px_rgba(4,58,126,0.105),inset_0_0_22px_rgba(4,58,126,0.035)] lg:grid-cols-[2fr_3fr]"
     >
-      <div className="overflow-hidden bg-[#f8fbff]">
+      <div className="relative z-[1] overflow-hidden border-b border-primary/20 bg-[#f8fbff] shadow-[inset_0_0_0_1px_rgba(4,58,126,0.18)] transition duration-300 group-hover:border-primary/40 group-hover:shadow-[inset_0_0_0_1px_rgba(4,58,126,0.32)] lg:border-b-0 lg:border-r">
         <img
           src={article.featured_image}
           alt=""
-          className="h-full min-h-64 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03] lg:min-h-[23rem]"
+          className="h-full min-h-56 w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] lg:min-h-[20rem]"
         />
+        <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-primary/20 transition duration-300 group-hover:ring-primary/40" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-primary/15 to-transparent" aria-hidden="true" />
       </div>
 
-      <div className="flex flex-col justify-center p-7 sm:p-10 lg:px-14 lg:py-12">
+      <div className="relative z-[1] flex flex-col justify-center p-6 sm:p-8 lg:px-11 lg:py-9">
         <ArticleMeta article={article} showReadingTime />
-        <h3 className="mt-6 text-3xl font-black leading-tight tracking-[-0.025em] text-primary sm:text-4xl">
+        <h3 className="mt-4 text-3xl font-black leading-tight tracking-[-0.025em] text-primary sm:text-4xl">
           {article.title}
         </h3>
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
           {article.excerpt}
         </p>
-        <div className="mt-2">
+        <div className="mt-1">
           <ArticleLink slug={article.slug} />
         </div>
       </div>
@@ -150,23 +154,25 @@ function SecondaryArticle({ article }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -12 }}
       transition={{ duration: 0.45 }}
-      className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-primary/[0.08] bg-white shadow-[0_10px_32px_rgba(15,23,42,0.055)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_42px_rgba(15,23,42,0.095)]"
+      className="group relative isolate flex h-full flex-col overflow-hidden rounded-[2rem] border border-primary/[0.12] bg-[linear-gradient(145deg,#ffffff_0%,#ffffff_72%,rgba(4,58,126,0.025)_100%)] shadow-[0_8px_28px_rgba(15,23,42,0.05),inset_0_0_0_1px_rgba(4,58,126,0.025)] transition duration-300 hover:-translate-y-1 hover:border-primary/25 hover:shadow-[0_14px_36px_rgba(4,58,126,0.1),inset_0_0_22px_rgba(4,58,126,0.035)]"
     >
-      <div className="aspect-[16/7.4] overflow-hidden bg-[#f8fbff]">
+      <div className="relative z-[1] aspect-[16/6.8] shrink-0 overflow-hidden border-b border-primary/20 bg-[#f8fbff] shadow-[inset_0_0_0_1px_rgba(4,58,126,0.18)] transition duration-300 group-hover:border-primary/40 group-hover:shadow-[inset_0_0_0_1px_rgba(4,58,126,0.32)]">
         <img
           src={article.featured_image}
           alt=""
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           loading="lazy"
         />
+        <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-primary/20 transition duration-300 group-hover:ring-primary/40" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-primary/15 to-transparent" aria-hidden="true" />
       </div>
 
-      <div className="flex flex-1 flex-col p-6 sm:px-7 sm:py-6">
+      <div className="relative z-[1] flex flex-1 flex-col p-5 sm:px-6 sm:py-5">
         <ArticleMeta article={article} />
-        <h3 className="mt-3.5 text-2xl font-bold leading-tight text-primary sm:text-[1.55rem]">
+        <h3 className="mt-3 text-2xl font-bold leading-tight text-primary sm:text-[1.5rem]">
           {article.title}
         </h3>
-        <p className="mt-3 line-clamp-2 leading-relaxed text-slate-600">
+        <p className="mt-2.5 line-clamp-2 leading-relaxed text-slate-600">
           {article.excerpt}
         </p>
         <ArticleLink slug={article.slug} />
@@ -178,7 +184,7 @@ function SecondaryArticle({ article }) {
 function ExploreMoreInsights() {
   return (
     <motion.div
-      className="relative mt-4 isolate flex flex-col items-center overflow-hidden rounded-[2rem] bg-gradient-to-b from-primary to-[#0f172a] px-6 py-12 text-center text-white sm:px-10 sm:py-14"
+      className="relative mt-3 isolate flex flex-col items-center overflow-hidden rounded-[2rem] bg-gradient-to-b from-primary to-[#0f172a] px-8 py-10 text-center text-white sm:px-12 sm:py-11"
     >
       <motion.div
         className="pointer-events-none absolute left-1/2 top-[34%] -z-10 h-40 w-[42rem] max-w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-accent/[0.055] blur-[70px]"
@@ -189,9 +195,10 @@ function ExploreMoreInsights() {
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[24rem] w-[65rem] max-w-[110%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-primary/[0.08] blur-[90px]"
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[24rem] w-[65rem] max-w-[110%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[#1d5fa9]/[0.08] blur-[90px]"
         aria-hidden="true"
       />
+      <div className="pointer-events-none absolute left-1/2 top-[72%] -z-10 h-16 w-[46rem] max-w-[85%] -translate-x-1/2 -translate-y-1/2 bg-accent/[0.04] blur-[40px]" aria-hidden="true" />
 
       <motion.h3
         initial={{ opacity: 0, y: 16 }}
@@ -241,8 +248,22 @@ function ExploreMoreInsights() {
           strokeLinecap="round"
           filter="url(#insights-trail-blur)"
         >
-          <path d="M-60 250 C230 230 390 220 600 245" stroke="url(#insights-trail-left)" />
-          <path d="M1260 250 C970 230 810 220 600 245" stroke="url(#insights-trail-right)" />
+          <motion.path
+            d="M-60 250 C230 230 390 220 600 245"
+            stroke="url(#insights-trail-left)"
+            initial={{ pathLength: 0 }}
+            whileInView={{ pathLength: 1 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 1.1, delay: 0.55, ease: "easeOut" }}
+          />
+          <motion.path
+            d="M1260 250 C970 230 810 220 600 245"
+            stroke="url(#insights-trail-right)"
+            initial={{ pathLength: 0 }}
+            whileInView={{ pathLength: 1 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 1.1, delay: 0.55, ease: "easeOut" }}
+          />
         </g>
       </motion.svg>
 
@@ -252,7 +273,7 @@ function ExploreMoreInsights() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.35 }}
         transition={{ duration: 0.55, delay: 0.78, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-7 inline-flex items-center justify-center rounded-full bg-accent px-7 py-3.5 text-sm font-bold text-[#0f172a] shadow-[0_12px_28px_rgba(223,164,8,0.2)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-[#0f172a]"
+        className="relative mt-6 inline-flex items-center justify-center rounded-full bg-accent px-8 py-3.5 text-sm font-bold text-[#0f172a] shadow-[0_14px_32px_rgba(223,164,8,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-[#0f172a]"
       >
         Browse Knowledge Center
       </motion.a>
@@ -277,25 +298,56 @@ function BlogPreviewSection() {
   }
 
   return (
-    <section className="bg-white py-20 lg:py-24" aria-labelledby="insights-heading">
-      <Container>
+    <section className="relative overflow-hidden bg-white py-16 lg:py-20" aria-labelledby="insights-heading">
+      <div className="pointer-events-none absolute inset-0 opacity-[0.025]" aria-hidden="true">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(4,58,126,0.65)_1px,transparent_1px),linear-gradient(90deg,rgba(4,58,126,0.65)_1px,transparent_1px)] bg-[size:84px_84px]" />
+        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1200 1000" preserveAspectRatio="none">
+          <g fill="none" stroke="#043a7e" strokeWidth="1.2">
+            <path d="M-40 190 H250 Q290 190 290 230 V320 H520" />
+            <path d="M1240 410 H960 Q920 410 920 450 V560 H670" />
+            <path d="M80 850 V730 Q80 690 120 690 H400" />
+          </g>
+          <g fill="#043a7e">
+            <circle cx="290" cy="320" r="4" />
+            <circle cx="920" cy="560" r="4" />
+            <circle cx="120" cy="690" r="4" />
+          </g>
+        </svg>
+      </div>
+
+      <Container className="relative">
         <motion.div
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.12 }}
+          className="mx-auto max-w-[1180px]"
         >
-          <motion.div variants={revealVariants}>
-            <SectionHeader
-              eyebrow="LATEST INSIGHTS"
-              title="Insights, Trends & Practical Technology Knowledge"
-              description="Explore practical insights, industry trends, implementation strategies, technology innovations, and business-focused digital knowledge from the Zenvik team."
-            />
+          <motion.div className="max-w-3xl">
+            <motion.p
+              variants={revealVariants}
+              className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-gold"
+            >
+              LATEST INSIGHTS
+            </motion.p>
+            <motion.h2
+              id="insights-heading"
+              variants={revealVariants}
+              className="text-3xl font-black leading-tight text-primary sm:text-4xl md:text-5xl"
+            >
+              Insights, Trends &amp; Practical Technology Knowledge
+            </motion.h2>
+            <motion.p
+              variants={revealVariants}
+              className="mt-4 text-lg leading-relaxed text-slate-600"
+            >
+              Explore practical insights, industry trends, implementation strategies, technology innovations, and business-focused digital knowledge from the Zenvik team.
+            </motion.p>
           </motion.div>
 
           <motion.div
             variants={revealVariants}
-            className="mx-auto mt-8 flex max-w-5xl flex-wrap items-center justify-center gap-2.5"
+            className="mx-auto mt-7 flex max-w-5xl flex-wrap items-center justify-center gap-2.5"
             aria-label="Filter insights by category"
           >
             {CATEGORIES.map((category) => {
@@ -325,7 +377,7 @@ function BlogPreviewSection() {
             })}
           </motion.div>
 
-          <motion.div variants={revealVariants} className="mt-12">
+          <motion.div variants={revealVariants} className="mt-10">
             <AnimatePresence mode="wait">
               {featuredArticle ? (
                 <FeaturedArticle key={featuredArticle.id} article={featuredArticle} />
@@ -354,7 +406,7 @@ function BlogPreviewSection() {
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -12 }}
-                  className="mt-7 grid gap-7 md:grid-cols-2"
+                  className="mt-5 grid items-stretch gap-5 md:grid-cols-2"
                 >
                   {secondaryArticles.slice(0, 2).map((article) => (
                     <SecondaryArticle key={article.id} article={article} />

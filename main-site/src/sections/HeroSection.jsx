@@ -4,12 +4,12 @@ import Button from "../components/ui/Button"
 import Container from "../components/common/Container"
 
 const ecosystemNodes = [
-  { label: "Cloud Infrastructure", icon: "cloud", x: 50, y: 10, className: "left-1/2 top-[7%] -translate-x-1/2" },
-  { label: "AI & Automation", icon: "ai", x: 84, y: 28, className: "right-[2%] top-[22%]" },
-  { label: "Software Engineering", icon: "code", x: 82, y: 74, className: "right-[3%] bottom-[18%]" },
-  { label: "Web Platforms", icon: "web", x: 50, y: 92, className: "bottom-[4%] left-1/2 -translate-x-1/2" },
-  { label: "Digital Growth", icon: "growth", x: 16, y: 74, className: "bottom-[18%] left-[2%]" },
-  { label: "ICT & Security", icon: "security", x: 16, y: 28, className: "left-[2%] top-[22%]" },
+  { label: "Cloud Infrastructure", icon: "cloud", x: 50, y: 7 },
+  { label: "AI & Automation", icon: "ai", x: 87.2, y: 28.5 },
+  { label: "Software Engineering", icon: "code", x: 50, y: 93 },
+  { label: "Web Platforms", icon: "web", x: 87.2, y: 71.5 },
+  { label: "Digital Growth", icon: "growth", x: 12.8, y: 71.5 },
+  { label: "ICT & Security", icon: "security", x: 12.8, y: 28.5 },
 ]
 
 const signalTokens = ["<>", "</>", "{}", "01", "API", "AI"]
@@ -395,29 +395,34 @@ function EcosystemNode({ activeNode, node, index, setActiveNode }) {
   const isActive = activeNode === index
 
   return (
-    <motion.div
-      className={`absolute z-20 flex max-w-[9.25rem] items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-[0.64rem] font-bold leading-tight text-white backdrop-blur-md transition-colors duration-300 sm:max-w-[10.5rem] sm:px-3 sm:text-[0.72rem] ${node.className} ${isActive ? "border-accent/45 bg-white/14 shadow-[0_12px_32px_rgba(223,164,8,0.22)]" : "border-white/14 bg-white/8 shadow-[0_10px_28px_rgba(0,0,0,0.16)]"}`}
-      initial={{ opacity: 0, scale: 0.92 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.55, delay: 0.25 + index * 0.08 }}
-      onHoverStart={() => setActiveNode(index)}
-      onHoverEnd={() => setActiveNode(null)}
+    <div
+      className="absolute z-20 -translate-x-1/2 -translate-y-1/2"
+      style={{ left: `${node.x}%`, top: `${node.y}%` }}
     >
-      <motion.span
-        className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 rounded-full border border-accent/20"
-        animate={{ opacity: isActive ? [0.28, 0.7, 0.28] : [0.14, 0.32, 0.14], scale: isActive ? [1, 1.08, 1] : [1, 1.05, 1] }}
-        transition={{
-          duration: 3.6,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: index * 0.22,
-        }}
-      />
-      <span className={`relative flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${isActive ? "bg-accent/22 text-accent" : "bg-white/10 text-white/78"}`}>
-        <NodeIcon type={node.icon} />
-      </span>
-      <span className="relative">{node.label}</span>
-    </motion.div>
+      <motion.div
+        className={`relative flex max-w-[8rem] items-center gap-1 rounded-full border px-2 py-1 text-[0.56rem] font-bold leading-tight text-white backdrop-blur-md transition-colors duration-300 sm:max-w-[9.25rem] sm:gap-1.5 sm:px-2.5 sm:py-1.5 sm:text-[0.64rem] lg:max-w-[10.5rem] lg:px-3 lg:text-[0.72rem] ${isActive ? "border-accent/45 bg-white/14 shadow-[0_12px_32px_rgba(223,164,8,0.22)]" : "border-white/14 bg-white/8 shadow-[0_10px_28px_rgba(0,0,0,0.16)]"}`}
+        initial={{ opacity: 0, scale: 0.92 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.55, delay: 0.25 + index * 0.08 }}
+        onHoverStart={() => setActiveNode(index)}
+        onHoverEnd={() => setActiveNode(null)}
+      >
+        <motion.span
+          className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 rounded-full border border-accent/20"
+          animate={{ opacity: isActive ? [0.28, 0.7, 0.28] : [0.14, 0.32, 0.14], scale: isActive ? [1, 1.08, 1] : [1, 1.05, 1] }}
+          transition={{
+            duration: 3.6,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: index * 0.22,
+          }}
+        />
+        <span className={`relative flex h-5 w-5 shrink-0 items-center justify-center rounded-full sm:h-6 sm:w-6 ${isActive ? "bg-accent/22 text-accent" : "bg-white/10 text-white/78"}`}>
+          <NodeIcon type={node.icon} />
+        </span>
+        <span className="relative whitespace-nowrap">{node.label}</span>
+      </motion.div>
+    </div>
   )
 }
 
@@ -427,28 +432,30 @@ function HeroVisual({ exitOpacity, exitScale }) {
 
   return (
     <motion.div
-      className="relative mx-auto h-[26.5rem] w-full max-w-[41rem] lg:h-[36rem]"
+      className="relative mx-auto h-[22rem] w-full max-w-[41rem] sm:h-[26.5rem] lg:h-[36rem]"
       style={{ opacity: exitOpacity, scale: exitScale }}
     >
-      <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/12 blur-3xl lg:h-[28rem] lg:w-[28rem]" />
-      <div className="absolute left-1/2 top-1/2 h-[72%] w-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10" />
-      <div className="absolute left-1/2 top-1/2 h-[88%] w-[88%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/8" />
-      <ConnectionLines activeNode={activeNode} isGlobeHovered={isGlobeHovered} />
-      <TechnologyGlobe
-        activeNode={activeNode}
-        isGlobeHovered={isGlobeHovered}
-        setIsGlobeHovered={setIsGlobeHovered}
-      />
-      <DataSignalSystem activeNode={activeNode} isGlobeHovered={isGlobeHovered} />
-      {ecosystemNodes.map((node, index) => (
-        <EcosystemNode
-          key={node.label}
+      <div className="absolute inset-0 origin-center scale-[0.88] sm:scale-100">
+        <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/12 blur-3xl lg:h-[28rem] lg:w-[28rem]" />
+        <div className="absolute left-1/2 top-1/2 h-[72%] w-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10" />
+        <div className="absolute left-1/2 top-1/2 h-[88%] w-[88%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/8" />
+        <ConnectionLines activeNode={activeNode} isGlobeHovered={isGlobeHovered} />
+        <TechnologyGlobe
           activeNode={activeNode}
-          node={node}
-          index={index}
-          setActiveNode={setActiveNode}
+          isGlobeHovered={isGlobeHovered}
+          setIsGlobeHovered={setIsGlobeHovered}
         />
-      ))}
+        <DataSignalSystem activeNode={activeNode} isGlobeHovered={isGlobeHovered} />
+        {ecosystemNodes.map((node, index) => (
+          <EcosystemNode
+            key={node.label}
+            activeNode={activeNode}
+            node={node}
+            index={index}
+            setActiveNode={setActiveNode}
+          />
+        ))}
+      </div>
     </motion.div>
   )
 }
