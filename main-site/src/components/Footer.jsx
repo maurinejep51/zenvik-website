@@ -81,6 +81,26 @@ function Footer() {
             <p className="mt-5 leading-relaxed text-slate-400">
               {siteConfig.positioning}
             </p>
+
+            <div className="mt-6 text-slate-400">
+              <h4 className="text-lg font-bold text-white">Location</h4>
+              <p className="mt-3 flex items-center gap-3">
+                <svg
+                  className="h-5 w-5 shrink-0 text-slate-500"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.8"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M12 21s7-5.1 7-11a7 7 0 0 0-14 0c0 5.9 7 11 7 11Z" />
+                  <circle cx="12" cy="10" r="2.5" />
+                </svg>
+                <span>Nairobi, Kenya</span>
+              </p>
+            </div>
           </div>
 
           <div>
@@ -107,7 +127,7 @@ function Footer() {
           </div>
 
           <div>
-            <h4 className="text-lg font-bold">Legal Center</h4>
+            <h4 className="text-lg font-bold">Legal</h4>
             <ul className="mt-5 space-y-3 text-slate-400">
               <li><a href={siteConfig.legal.center} className={footerLinkClass}>Legal Center</a></li>
               <li><a href={siteConfig.legal.terms} className={footerLinkClass}>Terms & Conditions</a></li>
@@ -136,26 +156,6 @@ function Footer() {
                 </a>
               </li>
             </ul>
-
-            <div className="mt-6 text-slate-400">
-              <h4 className="text-lg font-bold text-white">Address</h4>
-              <p className="mt-5 flex items-center gap-3">
-                <svg
-                  className="h-5 w-5 shrink-0 text-slate-500"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.8"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M12 21s7-5.1 7-11a7 7 0 0 0-14 0c0 5.9 7 11 7 11Z" />
-                  <circle cx="12" cy="10" r="2.5" />
-                </svg>
-                <span>Nairobi, Kenya</span>
-              </p>
-            </div>
 
           </div>
         </div>

@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react"
 import MainLayout from "./layouts/MainLayout"
 import HeroSection from "./sections/HeroSection"
 import PartnersTechnologiesSection from "./sections/PartnersTechnologiesSection"
@@ -8,14 +9,19 @@ import ProcessSection from "./sections/ProcessSection"
 import CTASection from "./sections/CTASection"
 import ContactSection from "./sections/ContactSection"
 import BlogPreviewSection from "./sections/BlogPreviewSection"
-import LegalCenter from "./pages/LegalCenter"
+
+const LegalCenter = lazy(() => import("./pages/LegalCenter"))
 
 function App() {
   const pathname = typeof window !== "undefined" ? window.location.pathname.replace(/\/$/, "") : "/"
 
   const content =
     pathname === "/legal"
-      ? <LegalCenter />
+      ? (
+        <Suspense fallback={<main className="min-h-screen bg-[#f8fbff]" />}>
+          <LegalCenter />
+        </Suspense>
+      )
       : (
         <main className="min-h-screen bg-white text-dark">
           <HeroSection />

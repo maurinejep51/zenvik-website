@@ -57,6 +57,302 @@
   }
 }
 
+.legal-print-only {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 18mm 16mm 24mm;
+  }
+
+  html,
+  body {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 10.5pt;
+    line-height: 1.65;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  body * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  header,
+  footer,
+  .legal-print-hide {
+    display: none !important;
+  }
+
+  .legal-print-only {
+    display: block !important;
+  }
+
+  .legal-center-page,
+  .legal-print-section {
+    height: auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    scrollbar-width: none !important;
+  }
+
+  .legal-print-section {
+    padding: 0 !important;
+  }
+
+  .legal-print-section > .pointer-events-none {
+    display: none !important;
+  }
+
+  .legal-print-section > div {
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    border: 0 !important;
+    scrollbar-width: none !important;
+  }
+
+  .legal-print-section > div > div {
+    display: block !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    border: 0 !important;
+    scrollbar-width: none !important;
+  }
+
+  .legal-document-scroll {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    border: 0 !important;
+    scrollbar-width: none !important;
+  }
+
+  .legal-print-document {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    color: #0f172a !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    scrollbar-width: none !important;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  .legal-center-page::-webkit-scrollbar,
+  .legal-print-section::-webkit-scrollbar,
+  .legal-print-section > div::-webkit-scrollbar,
+  .legal-print-section > div > div::-webkit-scrollbar,
+  .legal-document-scroll::-webkit-scrollbar,
+  .legal-print-document::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  .legal-screen-document-header {
+    display: none !important;
+  }
+
+  .legal-print-corporate-header {
+    margin-bottom: 9mm;
+    padding-bottom: 7mm;
+    border-bottom: 1.5pt solid #043a7e;
+  }
+
+  .legal-print-header-row {
+    display: grid !important;
+    grid-template-columns: 145px minmax(0, 1fr) 175px;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .legal-print-logo {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .legal-print-logo img {
+    width: auto;
+    max-width: 135px;
+    height: 16mm;
+    object-fit: contain;
+  }
+
+  .legal-print-title-block {
+    min-width: 0;
+    text-align: center;
+  }
+
+  .legal-print-title-block p {
+    margin: 0;
+    color: #043a7e;
+    font-size: 10pt;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .legal-print-corporate-header h1 {
+    margin: 2mm 0 0;
+    color: #0f172a;
+    font-size: 15pt;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .legal-print-dates {
+    display: flex !important;
+    flex-direction: column;
+    gap: 1.5mm;
+    color: #475569;
+    font-size: 8.5pt;
+    font-weight: 700;
+    line-height: 1.35;
+    text-align: right;
+  }
+
+  .legal-print-toc {
+    break-after: page;
+    margin: 0;
+    padding: 0;
+  }
+
+  .legal-print-toc h2 {
+    margin: 0 0 5mm;
+    color: #043a7e;
+    font-size: 17pt;
+    line-height: 1.25;
+  }
+
+  .legal-print-toc ol {
+    columns: 2;
+    column-gap: 12mm;
+    margin: 0;
+    padding-left: 6mm;
+  }
+
+  .legal-print-toc li {
+    break-inside: avoid;
+    margin: 0 0 2.5mm;
+    color: #334155;
+    line-height: 1.4;
+  }
+
+  .legal-print-toc a {
+    color: #334155 !important;
+    text-decoration: none !important;
+  }
+
+  .legal-print-document article {
+    break-inside: avoid-page;
+    margin: 0 0 6mm !important;
+    padding: 6mm !important;
+    border-color: rgba(4, 58, 126, 0.18) !important;
+    border-radius: 4mm !important;
+    box-shadow: none !important;
+  }
+
+  .legal-accordion-trigger {
+    display: none !important;
+  }
+
+  .legal-print-section-title {
+    display: block !important;
+    break-after: avoid-page;
+    margin: 0 0 3mm !important;
+    color: #043a7e !important;
+    font-size: 15pt !important;
+    line-height: 1.3 !important;
+  }
+
+  .legal-accordion-content[hidden] {
+    display: block !important;
+  }
+
+  .legal-print-document .legal-accordion-content,
+  .legal-print-document .legal-accordion-content[hidden],
+  .legal-print-document .legal-accordion-content[aria-hidden="true"],
+  .legal-print-document .legal-accordion-content.collapsed,
+  .legal-print-document .legal-accordion-content.closed,
+  .legal-print-document .legal-accordion-content[class*="max-h-0"],
+  .legal-print-document .legal-accordion-content[class*="h-0"],
+  .legal-print-document .legal-accordion-content[class*="overflow-hidden"] {
+    display: block !important;
+    visibility: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+    transform: none !important;
+  }
+
+  .legal-print-document .legal-accordion-content {
+    max-width: none !important;
+    margin-top: 4mm !important;
+  }
+
+  .legal-accordion-content h4 {
+    break-after: avoid-page;
+    margin: 5mm 0 2mm !important;
+    padding: 0 !important;
+    color: #043a7e !important;
+    font-size: 11.5pt !important;
+    line-height: 1.35 !important;
+  }
+
+  .legal-accordion-content p,
+  .legal-accordion-content > div {
+    orphans: 3;
+    widows: 3;
+    margin-top: 0 !important;
+    margin-bottom: 3mm !important;
+    color: #1e293b !important;
+    line-height: 1.65 !important;
+  }
+
+  .legal-accordion-content > div {
+    break-inside: avoid;
+  }
+
+  .legal-print-footer {
+    position: fixed;
+    right: 0;
+    bottom: -15mm;
+    left: 0;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5mm;
+    padding-top: 3mm;
+    color: #64748b;
+    border-top: 0.5pt solid rgba(4, 58, 126, 0.22);
+    font-size: 7.5pt;
+    line-height: 1.2;
+  }
+
+}
+
 @layer components {
   @keyframes project-badge-shine {
     0%,

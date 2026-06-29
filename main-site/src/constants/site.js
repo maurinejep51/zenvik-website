@@ -44,6 +44,11 @@ socials: {
     refund: "/legal#refund-policy",
     aup: "/legal#acceptable-use-policy",
     sla: "/legal#service-level-agreement",
+    cookies: "/legal#cookie-policy",
+    copyright: "/legal#copyright-policy",
+    dpa: "/legal#data-processing-agreement",
+    accessibility: "/legal#accessibility-statement",
+    responsibleAi: "/legal#responsible-ai-policy",
   },
 
   liveChat: {
