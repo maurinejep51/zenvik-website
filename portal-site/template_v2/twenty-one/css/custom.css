@@ -27,8 +27,8 @@
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    margin: 0 0 42px;
-    border-radius: 0 0 38px 38px;
+    margin: 0 0 34px;
+    border-radius: 0 0 30px 30px;
     background:
         radial-gradient(circle at 13% 18%, rgba(223, 164, 8, 0.25), transparent 30%),
         radial-gradient(circle at 78% 16%, rgba(255, 255, 255, 0.18), transparent 28%),
@@ -36,7 +36,7 @@
         linear-gradient(135deg, #043a7e 0%, #043a7e 47%, #0f172a 100%);
     background-size: 150% 150%;
     color: #ffffff;
-    box-shadow: 0 30px 80px rgba(4, 58, 126, 0.28);
+    box-shadow: 0 22px 58px rgba(4, 58, 126, 0.24);
     animation: zt-portal-gradient-shift 18s ease-in-out infinite;
 }
 
@@ -60,8 +60,8 @@
 .zt-portal-hero::after {
     bottom: -1px;
     top: auto;
-    height: 92px;
-    background: radial-gradient(120% 95px at 50% 100%, #ffffff 0%, #ffffff 45%, transparent 47%);
+    height: 64px;
+    background: radial-gradient(120% 68px at 50% 100%, #ffffff 0%, #ffffff 45%, transparent 47%);
     opacity: 0.96;
 }
 
@@ -185,15 +185,15 @@
 .zt-portal-hero__inner {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 54fr) minmax(340px, 46fr);
-    gap: 46px;
+    grid-template-columns: minmax(0, 53fr) minmax(300px, 47fr);
+    gap: 38px;
     align-items: center;
-    min-height: 670px;
-    padding: 78px 56px 44px;
+    min-height: 520px;
+    padding: 54px 54px 28px;
 }
 
 .zt-portal-hero__content {
-    max-width: 720px;
+    max-width: 650px;
     animation: zt-portal-fade-in 0.8s ease both;
 }
 
@@ -224,12 +224,15 @@
 .zt-portal-hero__eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.08);
     color: rgba(255, 255, 255, 0.86);
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
+    font-size: 0.74rem;
+    font-weight: 850;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
 }
 
@@ -241,22 +244,22 @@
 }
 
 .zt-portal-hero__title {
-    max-width: 680px;
+    max-width: 650px;
     margin: 0;
     color: #ffffff;
-    font-size: clamp(2.7rem, 5.45vw, 5.35rem);
+    font-size: clamp(2.45rem, 4.2vw, 4.25rem);
     font-weight: 900;
-    line-height: 0.95;
+    line-height: 1.02;
     letter-spacing: 0;
     text-wrap: balance;
 }
 
 .zt-portal-hero__copy {
-    max-width: 620px;
-    margin-top: 26px;
+    max-width: 590px;
+    margin-top: 20px;
     color: rgba(255, 255, 255, 0.86);
-    font-size: clamp(1rem, 1.35vw, 1.14rem);
-    line-height: 1.72;
+    font-size: clamp(0.98rem, 1.15vw, 1.08rem);
+    line-height: 1.68;
 }
 
 .zt-portal-hero__copy p {
@@ -271,15 +274,15 @@
     display: flex;
     flex-wrap: wrap;
     gap: 14px;
-    margin-top: 34px;
+    margin-top: 28px;
 }
 
 .zt-portal-hero__button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 54px;
-    padding: 0.98rem 1.75rem;
+    min-height: 50px;
+    padding: 0.9rem 1.55rem;
     border-radius: 999px;
     font-size: 0.96rem;
     font-weight: 800;
@@ -372,6 +375,17 @@
     animation: zt-portal-fade-float 0.9s ease 0.08s both, zt-portal-gentle-float 6.5s ease-in-out 1s infinite;
 }
 
+.zt-portal-mobile-illustration {
+    display: none;
+}
+
+.zt-portal-mobile-illustration img {
+    display: block;
+    width: min(100%, 520px);
+    height: auto;
+    margin: 0 auto;
+}
+
 .zt-portal-hero__visual::before,
 .zt-portal-hero__visual::after {
     content: "";
@@ -436,11 +450,11 @@
 .zt-portal-card {
     position: relative;
     z-index: 1;
-    width: min(100%, 500px);
+    width: min(100%, 440px);
     margin-left: auto;
-    padding: 22px;
+    padding: 18px;
     border: 1px solid rgba(255, 255, 255, 0.28);
-    border-radius: 30px;
+    border-radius: 24px;
     background:
         linear-gradient(145deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.12)),
         radial-gradient(circle at 22% 16%, rgba(255, 255, 255, 0.18), transparent 28%);
@@ -453,7 +467,7 @@
     position: absolute;
     inset: 1px;
     pointer-events: none;
-    border-radius: 29px;
+    border-radius: 23px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 42%);
 }
 
@@ -465,7 +479,7 @@
 .zt-portal-card__toolbar {
     display: flex;
     gap: 7px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
 .zt-portal-card__toolbar span {
@@ -479,7 +493,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .zt-portal-card__nav-item {
@@ -507,10 +521,10 @@
     align-items: center;
     justify-content: space-between;
     gap: 14px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     border: 1px solid rgba(255, 255, 255, 0.17);
-    border-radius: 22px;
-    padding: 15px;
+    border-radius: 18px;
+    padding: 13px;
     background:
         radial-gradient(circle at 14% 20%, rgba(223, 164, 8, 0.16), transparent 38%),
         rgba(15, 23, 42, 0.18);
@@ -558,7 +572,7 @@
 .zt-portal-card__header {
     justify-content: space-between;
     gap: 18px;
-    padding-bottom: 18px;
+    padding-bottom: 14px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.16);
 }
 
@@ -654,8 +668,8 @@
 .zt-portal-metrics {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    margin-top: 18px;
+    gap: 10px;
+    margin-top: 14px;
 }
 
 .zt-portal-metric,
@@ -670,13 +684,13 @@
 .zt-portal-metric {
     position: relative;
     overflow: hidden;
-    min-height: 104px;
-    padding: 15px;
+    min-height: 88px;
+    padding: 13px;
 }
 
 .zt-portal-metric--wide {
     grid-column: 1 / -1;
-    min-height: 126px;
+    min-height: 108px;
 }
 
 .zt-portal-metric::after {
@@ -696,7 +710,7 @@
     height: 30px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.14);
     color: #dfa408;
@@ -714,9 +728,9 @@
 
 .zt-portal-metric strong {
     display: block;
-    margin-top: 10px;
+    margin-top: 7px;
     color: #ffffff;
-    font-size: 1.35rem;
+    font-size: 1.1rem;
     font-weight: 900;
     line-height: 1.1;
     overflow-wrap: anywhere;
@@ -726,7 +740,7 @@
     display: grid;
     grid-template-columns: 1.2fr 0.75fr 0.95fr;
     gap: 8px;
-    margin-top: 16px;
+    margin-top: 12px;
 }
 
 .zt-portal-health span {
@@ -755,8 +769,8 @@
 
 .zt-portal-security {
     gap: 12px;
-    margin-top: 12px;
-    padding: 15px;
+    margin-top: 10px;
+    padding: 12px;
 }
 
 .zt-portal-security__icon {
@@ -799,8 +813,8 @@
 }
 
 .zt-portal-quick-actions {
-    margin-top: 12px;
-    padding: 15px;
+    margin-top: 10px;
+    padding: 12px;
 }
 
 .zt-portal-quick-actions p {
@@ -812,7 +826,7 @@
 .zt-portal-quick-actions div {
     flex-wrap: wrap;
     gap: 8px;
-    margin-top: 12px;
+    margin-top: 9px;
 }
 
 .zt-portal-quick-actions span {
@@ -831,10 +845,10 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-top: 12px;
+    margin-top: 10px;
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 18px;
-    padding: 12px;
+    padding: 10px;
     background: rgba(15, 23, 42, 0.18);
 }
 
@@ -860,13 +874,13 @@
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1px;
-    margin: 0 56px 44px;
+    margin: 0 54px 30px;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 22px;
+    border-radius: 16px;
     background: rgba(255, 255, 255, 0.08);
     color: rgba(255, 255, 255, 0.82);
-    font-size: 0.84rem;
+    font-size: 0.78rem;
     font-weight: 850;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(14px);
@@ -876,9 +890,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 9px;
-    min-height: 62px;
-    padding: 15px;
+    gap: 8px;
+    min-height: 44px;
+    padding: 10px 12px;
     background: rgba(255, 255, 255, 0.04);
     line-height: 1.35;
     text-align: center;
@@ -1383,9 +1397,9 @@
 @media (max-width: 991.98px) {
     .zt-portal-hero__inner {
         grid-template-columns: 1fr;
-        gap: 34px;
+        gap: 30px;
         min-height: 0;
-        padding: 56px 32px 36px;
+        padding: 48px 32px 28px;
     }
 
     .zt-portal-hero__content {
@@ -1407,7 +1421,7 @@
 
     .zt-portal-hero__trust {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        margin: 0 32px 38px;
+        margin: 0 32px 28px;
     }
 
     .zt-home-section {
@@ -1441,19 +1455,28 @@
     .zt-portal-hero {
         margin-right: -15px;
         margin-left: -15px;
-        border-radius: 0 0 26px 26px;
+        border-radius: 0 0 22px 22px;
     }
 
     .zt-portal-hero__inner {
-        padding: 44px 20px 28px;
+        gap: 24px;
+        padding: 34px 20px 22px;
     }
 
     .zt-portal-hero__title {
-        font-size: clamp(2.15rem, 13vw, 3.25rem);
+        max-width: 100%;
+        font-size: clamp(2rem, 10vw, 2.75rem);
+        line-height: 1.06;
+    }
+
+    .zt-portal-hero__copy {
+        margin-top: 16px;
+        font-size: 0.98rem;
     }
 
     .zt-portal-hero__actions {
         flex-direction: column;
+        margin-top: 22px;
     }
 
     .zt-hero-status-row {
@@ -1468,13 +1491,20 @@
         width: 100%;
     }
 
+    .zt-portal-hero__visual {
+        animation: zt-portal-fade-float 0.9s ease 0.08s both;
+    }
+
+    .zt-portal-mobile-illustration {
+        display: block;
+    }
+
     .zt-portal-metrics {
         grid-template-columns: 1fr;
     }
 
     .zt-portal-card {
-        padding: 14px;
-        border-radius: 22px;
+        display: none;
     }
 
     .zt-portal-signal {
@@ -1506,14 +1536,15 @@
     }
 
     .zt-portal-hero__trust {
-        grid-template-columns: 1fr;
-        margin: 0 20px 30px;
-        border-radius: 18px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin: 0 20px 24px;
+        border-radius: 14px;
     }
 
     .zt-portal-hero__trust span {
         justify-content: flex-start;
-        min-height: 54px;
+        min-height: 42px;
+        padding: 9px 10px;
         text-align: left;
     }
 

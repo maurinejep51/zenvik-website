@@ -12,26 +12,17 @@
 
         <div class="zt-portal-hero__inner">
             <div class="zt-portal-hero__content">
-                <div class="zt-portal-hero__seal">
-                    <span class="zt-portal-hero__seal-dot" aria-hidden="true"></span>
-                    <span>Official Zenvik Customer Portal</span>
-                </div>
-
                 <div class="zt-portal-hero__eyebrow">
-                    <span class="zt-portal-hero__eyebrow-line"></span>
-                    <span>CLIENT PORTAL</span>
+                    <span>CUSTOMER PORTAL</span>
                 </div>
 
                 <h1 id="zt-portal-hero-title" class="zt-portal-hero__title">
-                    Your Secure Customer Portal for Everything After &quot;Buy&quot;.
+                    Manage Your Services with Confidence
                 </h1>
 
                 <div class="zt-portal-hero__copy">
                     <p>
-                        Manage your services, invoices, support requests and customer account through one secure portal.
-                    </p>
-                    <p>
-                        Need a new solution? Visit our main website to explore hosting, software development, websites, marketing and ICT services.
+                        Securely Access your services, invoices, support tickets, account details, and customer care tools whenever you need it.
                     </p>
                 </div>
 
@@ -43,26 +34,11 @@
                         Create Account
                     </a>
                 </div>
-
-                <a class="zt-portal-hero__site-link" href="https://zenviktechnologies.com">
-                    Visit Main Website &rarr;
-                </a>
-
-                <div class="zt-hero-status-row" aria-label="Portal service highlights">
-                    <span><strong>24/7</strong> portal access</span>
-                    <span><strong>Secure</strong> billing area</span>
-                    <span><strong>Fast</strong> support routing</span>
-                </div>
             </div>
 
             <div class="zt-portal-hero__visual" aria-label="Customer portal account overview illustration">
-                <div class="zt-portal-signal zt-portal-signal--top" aria-hidden="true">
-                    <span></span>
-                    <strong>Billing synced</strong>
-                </div>
-                <div class="zt-portal-signal zt-portal-signal--bottom" aria-hidden="true">
-                    <span></span>
-                    <strong>Support routed</strong>
+                <div class="zt-portal-mobile-illustration">
+                    <img src="{$WEB_ROOT}/hero.png" alt="Zenvik customer portal illustration">
                 </div>
 
                 <div class="zt-portal-card">
@@ -83,7 +59,7 @@
                             <span>Customer Workspace</span>
                             <strong>Account control center</strong>
                         </div>
-                        <em>Secure session</em>
+                        <em>Protected</em>
                     </div>
 
                     <div class="zt-portal-card__header">
@@ -97,14 +73,6 @@
                         <span class="zt-portal-card__status">Secure</span>
                     </div>
 
-                    <div class="zt-portal-card__notice">
-                        <div>
-                            <span>Next action</span>
-                            <strong>Review invoice and support updates</strong>
-                        </div>
-                        <em aria-hidden="true">Today</em>
-                    </div>
-
                     <div class="zt-portal-metrics">
                         <div class="zt-portal-metric zt-portal-metric--services zt-portal-metric--wide">
                             <span class="zt-portal-metric__icon" aria-hidden="true"><i class="far fa-cubes"></i></span>
@@ -116,20 +84,15 @@
                                 <span></span>
                             </div>
                         </div>
-                        <div class="zt-portal-metric zt-portal-metric--paid">
-                            <span class="zt-portal-metric__icon" aria-hidden="true"><i class="fal fa-receipt"></i></span>
-                            <span class="zt-portal-metric__label">Recent Invoice</span>
-                            <strong>Paid</strong>
-                        </div>
                         <div class="zt-portal-metric zt-portal-metric--ticket">
                             <span class="zt-portal-metric__icon" aria-hidden="true"><i class="fal fa-comments"></i></span>
-                            <span class="zt-portal-metric__label">Open Support Ticket</span>
-                            <strong>01</strong>
+                            <span class="zt-portal-metric__label">Support Tickets</span>
+                            <strong>Open</strong>
                         </div>
                         <div class="zt-portal-metric zt-portal-metric--domains">
                             <span class="zt-portal-metric__icon" aria-hidden="true"><i class="fal fa-globe"></i></span>
-                            <span class="zt-portal-metric__label">My Domains</span>
-                            <strong>example.co.ke</strong>
+                            <span class="zt-portal-metric__label">Account Tools</span>
+                            <strong>Ready</strong>
                         </div>
                     </div>
 
@@ -159,10 +122,10 @@
         </div>
 
         <div class="zt-portal-hero__trust" aria-label="Portal trust highlights">
-            <span><i class="fal fa-shield-check" aria-hidden="true"></i> Secure Customer Portal</span>
-            <span><i class="fal fa-headset" aria-hidden="true"></i> Professional Support</span>
-            <span><i class="fal fa-bolt" aria-hidden="true"></i> Fast Ticket Resolution</span>
-            <span><i class="fal fa-handshake" aria-hidden="true"></i> Trusted Technology Partner</span>
+            <span><i class="fal fa-headset" aria-hidden="true"></i> 24/7 Support</span>
+            <span><i class="fal fa-shield-check" aria-hidden="true"></i> Secure Account</span>
+            <span><i class="fal fa-bolt" aria-hidden="true"></i> Fast Response</span>
+            <span><i class="fal fa-handshake" aria-hidden="true"></i> trusted partner</span>
         </div>
     </section>
 
